@@ -13,7 +13,6 @@ import {
   CheckCircle,
   Home,
   ArrowRight,
-  Star,
   BarChart3,
   MapPin,
   DollarSign,
@@ -55,9 +54,6 @@ export default function NosotrosPage() {
               </Link>
               <Link href="/nosotros" className="text-sm font-medium text-green-500">
                 Nosotros
-              </Link>
-              <Link href="/#casos" className="text-sm font-medium hover:text-green-500 transition-colors">
-                Casos de Éxito
               </Link>
               <Link href="/#contacto" className="text-sm font-medium hover:text-green-500 transition-colors">
                 Contacto
@@ -413,64 +409,6 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* Caso de Éxito Actualizado */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Caso de Éxito: <span className="text-green-600">Laura</span>
-            </h2>
-            <p className="text-xl text-muted-foreground">Una historia real de transformación en Zumpango</p>
-          </div>
-
-          <Card className="max-w-4xl mx-auto border-2 border-green-500/20 shadow-2xl">
-            <CardContent className="p-8">
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-2 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Laura, de 42 años, vivía en <strong>Zumpango</strong> con un nudo en el estómago. Su casa, comprada
-                    con INFONAVIT, estaba abandonada tras mudarse por trabajo. Las deudas de predial y servicios se
-                    acumulaban, y el vandalismo la hacía invendible.
-                  </p>
-
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Su buró de crédito estaba en rojo, bloqueando sus planes de un nuevo hogar. Contactó a Rescate
-                    Vivienda, y en menos de un mes pagamos sus deudas, regularizamos los documentos y le dimos efectivo
-                    por la propiedad.
-                  </p>
-
-                  <blockquote className="border-l-4 border-green-500 pl-4 italic text-green-600 text-xl">
-                    "Rescate Vivienda me devolvió la esperanza"
-                  </blockquote>
-
-                  <div className="space-y-2">
-                    <div className="font-semibold text-lg">Laura Martínez</div>
-                    <div className="text-muted-foreground">Zumpango, Estado de México • 42 años</div>
-                    <div className="text-sm text-green-600 font-medium">✅ Caso resuelto en menos de 30 días</div>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <Image
-                    src="/images/renovation-examples.jpeg"
-                    alt="Transformación de casa en Zumpango"
-                    width={500}
-                    height={400}
-                    className="rounded-xl shadow-lg"
-                  />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-green-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -500,7 +438,7 @@ export default function NosotrosPage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-green-600 px-8 py-4 text-lg"
+              className="border-white text-white hover:bg-white hover:text-green-600 px-8 py-4 text-lg bg-transparent"
               asChild
             >
               <Link href="/">Volver al Inicio</Link>
@@ -549,11 +487,6 @@ export default function NosotrosPage() {
                 <li>
                   <Link href="/nosotros" className="hover:text-green-500 transition-colors">
                     • Nosotros
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#casos" className="hover:text-green-500 transition-colors">
-                    • Casos de Éxito
                   </Link>
                 </li>
               </ul>
