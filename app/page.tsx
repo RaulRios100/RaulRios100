@@ -24,6 +24,7 @@ import { useEffect, useState } from "react"
 import { ContactButtons } from "@/components/contact-buttons"
 import { SocialLinks } from "@/components/social-links"
 import { FloatingContact } from "@/components/floating-contact"
+import { QuestionnaireForm } from "@/components/questionnaire-form" // Import the new component
 
 export default function RescateViviendaModern() {
   const [isVisible, setIsVisible] = useState(false)
@@ -119,6 +120,13 @@ export default function RescateViviendaModern() {
                 onClick={scrollToTop}
               >
                 FAQs
+              </Link>
+              <Link
+                href="#cuestionario" // New link to questionnaire
+                className="text-sm font-medium hover:text-green-500 transition-colors"
+                onClick={scrollToTop}
+              >
+                Cuestionario
               </Link>
               <Link
                 href="#contacto"
@@ -442,8 +450,15 @@ export default function RescateViviendaModern() {
         </div>
       </section>
 
+      {/* Questionnaire Section */}
+      <section id="cuestionario" className="py-20">
+        <div className="container mx-auto px-4">
+          <QuestionnaireForm />
+        </div>
+      </section>
+
       {/* FAQs Section */}
-      <section id="faqs" className="py-20">
+      <section id="faqs" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
