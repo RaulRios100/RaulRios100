@@ -19,7 +19,7 @@ export function SocialLinks({ variant = "default", className = "" }: SocialLinks
     {
       name: "Instagram",
       icon: Instagram,
-      url: "https://instagram.com/rescatevivienda",
+      url: "https://www.instagram.com/rescate_vivienda_mx?igsh=N3N3N2I0dDJvb2Q2",
       color: "hover:text-pink-500",
     },
   ]
