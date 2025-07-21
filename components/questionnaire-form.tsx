@@ -7,443 +7,345 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { ArrowRight, MessageCircle } from "lucide-react"
+import { Checkbox } from "@/components/ui/checkbox"
+import { FileText, Send, ArrowRight, User, Home, DollarSign } from "lucide-react"
 
 export function QuestionnaireForm() {
   const [formData, setFormData] = useState({
-    nombreCompleto: "",
+    nombre: "",
     telefono: "",
-    correo: "",
-    ciudadColonia: "",
-    estadoPropiedad: "",
-    estadoPropiedadOtra: "",
-    aniosPropiedad: "",
-    superficieCasa: "",
-    hipotecaActiva: "",
-    saldoPendiente: "",
-    compartirDocumentos: "",
-    queHacerPropiedad: "",
-    estadoCivil: "",
-    estadoCivilOtro: "",
-    dispuestoCoinversion: "",
-    juicioRelacionado: "",
-    prontoResolver: "",
+    ciudad: "",
+    tipoPropiedad: "",
+    situacionDeuda: "",
+    tiempoAbandonada: "",
+    valorEstimado: "",
+    deudaAproximada: "",
+    documentos: "",
+    objetivoPrincipal: "",
+    comentarios: "",
+    aceptaTerminos: false,
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target
-    setFormData((prev) => ({ ...prev, [id]: value }))
-  }
-
-  const handleRadioChange = (id: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [id]: value }))
+  const handleInputChange = (field: string, value: string | boolean) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
-    let message =
-      "¡Hola! He completado el cuestionario de Rescate Vivienda y me gustaría que un asesor me contacte.\n\n"
-    message += "--- Sección 1: Datos de contacto ---\n"
-    message += `1. Nombre completo: ${formData.nombreCompleto}\n`
-    message += `2. Teléfono (WhatsApp): ${formData.telefono}\n`
-    message += `3. Correo electrónico: ${formData.correo}\n\n`
-
-    message += "--- Sección 2: Información de la propiedad ---\n"
-    message += `4. Ciudad y colonia: ${formData.ciudadColonia}\n`
-    message += `5. Estado actual de la propiedad: ${formData.estadoPropiedad}`
-    if (formData.estadoPropiedad === "Otra" && formData.estadoPropiedadOtra) {
-      message += ` (${formData.estadoPropiedadOtra})\n`
-    } else {
-      message += "\n"
+    if (!formData.aceptaTerminos) {
+      alert("Debes aceptar los términos y condiciones para continuar.")
+      return
     }
-    message += `6. Años de la propiedad: ${formData.aniosPropiedad}\n`
-    message += `7. Superficie de la casa: ${formData.superficieCasa}\n\n`
 
-    message += "--- Sección 3: Situación legal y crediticia ---\n"
-    message += `8. Hipoteca activa: ${formData.hipotecaActiva}\n`
-    message += `9. Saldo pendiente/deuda: ${formData.saldoPendiente}\n`
-    message += `10. Dispuesto a compartir documentos: ${formData.compartirDocumentos}\n`
-    message += `11. Qué te gustaría hacer con la propiedad: ${formData.queHacerPropiedad}\n\n`
+    const message = `¡Hola! He completado el cuestionario de evaluación:
 
-    message += "--- Sección 4: Estado civil y disposición ---\n"
-    message += `12. Estado civil: ${formData.estadoCivil}`
-    if (formData.estadoCivil === "Otro" && formData.estadoCivilOtro) {
-      message += ` (${formData.estadoCivilOtro})\n`
-    } else {
-      message += "\n"
-    }
-    message += `13. Dispuesto a firmar contrato de coinversión: ${formData.dispuestoCoinversion}\n`
-    message += `14. Juicio relacionado con la casa: ${formData.juicioRelacionado}\n`
-    message += `15. Qué tan pronto necesitas resolver: ${formData.prontoResolver}\n\n`
+📋 *DATOS PERSONALES*
+• Nombre: ${formData.nombre}
+• Teléfono: ${formData.telefono}
+• Ciudad: ${formData.ciudad}
 
-    message +=
-      "Muchas gracias. Con esta información analizaremos si tu caso es viable para ayudarte a resolver la deuda o vender tu casa de forma rápida y segura. Un asesor te contactará pronto si el caso califica."
+🏠 *INFORMACIÓN DE LA PROPIEDAD*
+• Tipo: ${formData.tipoPropiedad}
+• Situación de deuda: ${formData.situacionDeuda}
+• Tiempo abandonada: ${formData.tiempoAbandonada}
+• Valor estimado: ${formData.valorEstimado}
+• Deuda aproximada: ${formData.deudaAproximada}
 
-    const whatsappNumber = "524775780721" // Tu número de WhatsApp
+📄 *DOCUMENTACIÓN*
+• Estado de documentos: ${formData.documentos}
+
+🎯 *OBJETIVO*
+• Objetivo principal: ${formData.objetivoPrincipal}
+
+💬 *COMENTARIOS ADICIONALES*
+${formData.comentarios || "Ninguno"}
+
+¿Pueden evaluar mi caso?`
+
     const encodedMessage = encodeURIComponent(message)
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank")
+    window.open(`https://wa.me/524775780721?text=${encodedMessage}`, "_blank")
   }
 
   return (
-    <Card className="w-full max-w-4xl mx-auto shadow-lg border-2 border-green-500/20">
-      <CardHeader className="text-center">
-        <CardTitle className="text-3xl md:text-4xl font-bold text-green-600">
-          📝 Cuestionario para Propietarios
-        </CardTitle>
-        <p className="text-muted-foreground text-lg mt-2">
-          Ayúdanos a entender tu situación para ofrecerte la mejor solución.
-        </p>
-      </CardHeader>
-      <CardContent className="p-6 md:p-8">
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Sección 1: Datos de contacto */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-semibold text-green-700 dark:text-green-400 border-b pb-2 mb-4">
-              Sección 1: Datos de contacto (obligatorio)
-            </h3>
-            <div>
-              <Label htmlFor="nombreCompleto" className="mb-2 block">
-                1. Nombre completo del propietario:
-              </Label>
-              <Input
-                id="nombreCompleto"
-                value={formData.nombreCompleto}
-                onChange={handleChange}
-                placeholder="Tu nombre completo"
-                required
-              />
-            </div>
-            <div>
-              <Label htmlFor="telefono" className="mb-2 block">
-                2. Número de teléfono (WhatsApp preferente):
-              </Label>
-              <Input
-                id="telefono"
-                value={formData.telefono}
-                onChange={handleChange}
-                placeholder="Ej. 521234567890"
-                type="tel"
-                required
-              />
-            </div>
-            <div>
-              <Label htmlFor="correo" className="mb-2 block">
-                3. Correo electrónico de contacto:
-              </Label>
-              <Input
-                id="correo"
-                value={formData.correo}
-                onChange={handleChange}
-                placeholder="tu.email@ejemplo.com"
-                type="email"
-                required
-              />
-            </div>
-          </div>
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        <FileText className="h-12 w-12 text-green-600 mx-auto mb-4" />
+        Evalúa tu <span className="text-green-600">Caso</span>
+      </h2>
+      <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
+        Completa este cuestionario para recibir una evaluación personalizada de tu situación. Es gratuito y sin
+        compromiso.
+      </p>
 
-          {/* Sección 2: Información de la propiedad */}
-          <div className="space-y-4 pt-6 border-t border-border">
-            <h3 className="text-2xl font-semibold text-green-700 dark:text-green-400 border-b pb-2 mb-4">
-              Sección 2: Información de la propiedad
-            </h3>
-            <div>
-              <Label htmlFor="ciudadColonia" className="mb-2 block">
-                4. ¿En qué ciudad y colonia se ubica la casa?
-              </Label>
-              <Input
-                id="ciudadColonia"
-                value={formData.ciudadColonia}
-                onChange={handleChange}
-                placeholder="Ej. León, Guanajuato, Col. Jardines del Moral"
-              />
-            </div>
-            <div>
-              <Label className="mb-2 block">5. ¿Cuál es el estado actual de la propiedad?</Label>
-              <RadioGroup
-                onValueChange={(value) => handleRadioChange("estadoPropiedad", value)}
-                value={formData.estadoPropiedad}
-                className="flex flex-col space-y-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Habitada por mí o mi familia" id="estadoPropiedad1" />
-                  <Label htmlFor="estadoPropiedad1">Habitada por mí o mi familia</Label>
+      <Card className="max-w-4xl mx-auto border-2 border-green-500/20 shadow-2xl">
+        <CardHeader>
+          <CardTitle className="text-2xl text-center text-green-600">Cuestionario de Evaluación</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Datos Personales */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold flex items-center">
+                <User className="h-6 w-6 mr-2 text-green-600" />
+                Datos Personales
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="nombre">Nombre completo *</Label>
+                  <Input
+                    id="nombre"
+                    value={formData.nombre}
+                    onChange={(e) => handleInputChange("nombre", e.target.value)}
+                    placeholder="Tu nombre completo"
+                    required
+                  />
                 </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Deshabitada pero en buen estado" id="estadoPropiedad2" />
-                  <Label htmlFor="estadoPropiedad2">Deshabitada pero en buen estado</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="telefono">Teléfono *</Label>
+                  <Input
+                    id="telefono"
+                    value={formData.telefono}
+                    onChange={(e) => handleInputChange("telefono", e.target.value)}
+                    placeholder="10 dígitos"
+                    required
+                  />
                 </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Abandonada o vandalizada" id="estadoPropiedad3" />
-                  <Label htmlFor="estadoPropiedad3">Abandonada o vandalizada</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Rentada a otra persona" id="estadoPropiedad4" />
-                  <Label htmlFor="estadoPropiedad4">Rentada a otra persona</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Otra" id="estadoPropiedad5" />
-                  <Label htmlFor="estadoPropiedad5">Otra (especificar)</Label>
-                </div>
-              </RadioGroup>
-              {formData.estadoPropiedad === "Otra" && (
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="ciudad">Ciudad donde está la propiedad *</Label>
                 <Input
-                  id="estadoPropiedadOtra"
-                  value={formData.estadoPropiedadOtra}
-                  onChange={handleChange}
-                  placeholder="Especifica el estado de la propiedad"
-                  className="mt-2"
+                  id="ciudad"
+                  value={formData.ciudad}
+                  onChange={(e) => handleInputChange("ciudad", e.target.value)}
+                  placeholder="Ciudad, Estado"
+                  required
                 />
-              )}
+              </div>
             </div>
-            <div>
-              <Label htmlFor="aniosPropiedad" className="mb-2 block">
-                6. ¿Cuántos años tiene la propiedad (aproximadamente)?
-              </Label>
-              <Input
-                id="aniosPropiedad"
-                value={formData.aniosPropiedad}
-                onChange={handleChange}
-                placeholder="Ej. 15 años"
-                type="text"
+
+            {/* Información de la Propiedad */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold flex items-center">
+                <Home className="h-6 w-6 mr-2 text-green-600" />
+                Información de la Propiedad
+              </h3>
+
+              <div className="space-y-4">
+                <Label>Tipo de propiedad *</Label>
+                <RadioGroup
+                  value={formData.tipoPropiedad}
+                  onValueChange={(value) => handleInputChange("tipoPropiedad", value)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="casa" id="casa" />
+                    <Label htmlFor="casa">Casa</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="departamento" id="departamento" />
+                    <Label htmlFor="departamento">Departamento</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="duplex" id="duplex" />
+                    <Label htmlFor="duplex">Dúplex</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div className="space-y-4">
+                <Label>Situación actual de la deuda *</Label>
+                <RadioGroup
+                  value={formData.situacionDeuda}
+                  onValueChange={(value) => handleInputChange("situacionDeuda", value)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="al-corriente" id="al-corriente" />
+                    <Label htmlFor="al-corriente">Al corriente con pagos</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="atrasado" id="atrasado" />
+                    <Label htmlFor="atrasado">Atrasado en pagos</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="demanda" id="demanda" />
+                    <Label htmlFor="demanda">En proceso de demanda</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="adjudicado" id="adjudicado" />
+                    <Label htmlFor="adjudicado">Ya fue adjudicado</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div className="space-y-4">
+                <Label>¿Cuánto tiempo lleva deshabitada? *</Label>
+                <RadioGroup
+                  value={formData.tiempoAbandonada}
+                  onValueChange={(value) => handleInputChange("tiempoAbandonada", value)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="menos-1-año" id="menos-1-año" />
+                    <Label htmlFor="menos-1-año">Menos de 1 año</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="1-3-años" id="1-3-años" />
+                    <Label htmlFor="1-3-años">1 a 3 años</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="3-5-años" id="3-5-años" />
+                    <Label htmlFor="3-5-años">3 a 5 años</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="mas-5-años" id="mas-5-años" />
+                    <Label htmlFor="mas-5-años">Más de 5 años</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="valorEstimado">Valor estimado de la propiedad</Label>
+                  <Input
+                    id="valorEstimado"
+                    value={formData.valorEstimado}
+                    onChange={(e) => handleInputChange("valorEstimado", e.target.value)}
+                    placeholder="Ej: $500,000"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="deudaAproximada">Deuda aproximada</Label>
+                  <Input
+                    id="deudaAproximada"
+                    value={formData.deudaAproximada}
+                    onChange={(e) => handleInputChange("deudaAproximada", e.target.value)}
+                    placeholder="Ej: $200,000"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Documentación */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold flex items-center">
+                <FileText className="h-6 w-6 mr-2 text-green-600" />
+                Documentación
+              </h3>
+
+              <div className="space-y-4">
+                <Label>Estado de tus documentos *</Label>
+                <RadioGroup
+                  value={formData.documentos}
+                  onValueChange={(value) => handleInputChange("documentos", value)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="completos" id="completos" />
+                    <Label htmlFor="completos">Tengo escrituras y documentos completos</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="parciales" id="parciales" />
+                    <Label htmlFor="parciales">Tengo algunos documentos</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="sin-documentos" id="sin-documentos" />
+                    <Label htmlFor="sin-documentos">No tengo documentos</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="herencia" id="herencia" />
+                    <Label htmlFor="herencia">Es herencia sin regularizar</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+            </div>
+
+            {/* Objetivo */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold flex items-center">
+                <DollarSign className="h-6 w-6 mr-2 text-green-600" />
+                Tu Objetivo
+              </h3>
+
+              <div className="space-y-4">
+                <Label>¿Cuál es tu objetivo principal? *</Label>
+                <RadioGroup
+                  value={formData.objetivoPrincipal}
+                  onValueChange={(value) => handleInputChange("objetivoPrincipal", value)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="vender-rapido" id="vender-rapido" />
+                    <Label htmlFor="vender-rapido">Vender rápido y salir de deudas</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="limpiar-buro" id="limpiar-buro" />
+                    <Label htmlFor="limpiar-buro">Limpiar mi buró de crédito</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="obtener-efectivo" id="obtener-efectivo" />
+                    <Label htmlFor="obtener-efectivo">Obtener efectivo por la propiedad</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="regularizar" id="regularizar" />
+                    <Label htmlFor="regularizar">Solo regularizar documentos</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+            </div>
+
+            {/* Comentarios */}
+            <div className="space-y-2">
+              <Label htmlFor="comentarios">Comentarios adicionales</Label>
+              <Textarea
+                id="comentarios"
+                value={formData.comentarios}
+                onChange={(e) => handleInputChange("comentarios", e.target.value)}
+                placeholder="Cuéntanos más detalles sobre tu situación..."
+                rows={4}
               />
             </div>
-            <div>
-              <Label htmlFor="superficieCasa" className="mb-2 block">
-                7. ¿Qué superficie tiene la casa (terreno y construcción si sabes)?
-              </Label>
-              <Input
-                id="superficieCasa"
-                value={formData.superficieCasa}
-                onChange={handleChange}
-                placeholder="Ej. Terreno 120m², Construcción 80m²"
+
+            {/* Términos */}
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="terminos"
+                checked={formData.aceptaTerminos}
+                onCheckedChange={(checked) => handleInputChange("aceptaTerminos", checked as boolean)}
               />
+              <Label htmlFor="terminos" className="text-sm">
+                Acepto los{" "}
+                <a
+                  href="/terminos-condiciones"
+                  className="text-green-600 hover:underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  términos y condiciones
+                </a>{" "}
+                y la{" "}
+                <a
+                  href="/politica-privacidad"
+                  className="text-green-600 hover:underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  política de privacidad
+                </a>
+                *
+              </Label>
             </div>
-          </div>
 
-          {/* Sección 3: Situación legal y crediticia */}
-          <div className="space-y-4 pt-6 border-t border-border">
-            <h3 className="text-2xl font-semibold text-green-700 dark:text-green-400 border-b pb-2 mb-4">
-              Sección 3: Situación legal y crediticia
-            </h3>
-            <div>
-              <Label className="mb-2 block">8. ¿La propiedad tiene hipoteca activa?</Label>
-              <RadioGroup
-                onValueChange={(value) => handleRadioChange("hipotecaActiva", value)}
-                value={formData.hipotecaActiva}
-                className="flex flex-col space-y-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Sí, con INFONAVIT" id="hipoteca1" />
-                  <Label htmlFor="hipoteca1">Sí, con INFONAVIT</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Sí, con FOVISSSTE" id="hipoteca2" />
-                  <Label htmlFor="hipoteca2">Sí, con FOVISSSTE</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Sí, con banco" id="hipoteca3" />
-                  <Label htmlFor="hipoteca3">Sí, con banco</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="No tiene hipoteca" id="hipoteca4" />
-                  <Label htmlFor="hipoteca4">No tiene hipoteca</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="No lo sé" id="hipoteca5" />
-                  <Label htmlFor="hipoteca5">No lo sé</Label>
-                </div>
-              </RadioGroup>
-            </div>
-            <div>
-              <Label htmlFor="saldoPendiente" className="mb-2 block">
-                9. ¿Conoces el saldo pendiente del crédito o la deuda acumulada?
-              </Label>
-              <Input
-                id="saldoPendiente"
-                value={formData.saldoPendiente}
-                onChange={handleChange}
-                placeholder="Ej. $250,000 MXN aprox."
-              />
-            </div>
-            <div>
-              <Label className="mb-2 block">
-                10. ¿Estás dispuesto/a a compartir tus documentos para análisis legal (escritura, predial, estado de
-                cuenta)?
-              </Label>
-              <RadioGroup
-                onValueChange={(value) => handleRadioChange("compartirDocumentos", value)}
-                value={formData.compartirDocumentos}
-                className="flex space-x-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Sí" id="docsSi" />
-                  <Label htmlFor="docsSi">Sí</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="No" id="docsNo" />
-                  <Label htmlFor="docsNo">No</Label>
-                </div>
-              </RadioGroup>
-            </div>
-            <div>
-              <Label className="mb-2 block">11. ¿Qué te gustaría hacer con la propiedad?</Label>
-              <RadioGroup
-                onValueChange={(value) => handleRadioChange("queHacerPropiedad", value)}
-                value={formData.queHacerPropiedad}
-                className="flex flex-col space-y-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Cancelar la deuda y vender" id="accion1" />
-                  <Label htmlFor="accion1">Cancelar la deuda y vender</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Vender con la deuda incluida" id="accion2" />
-                  <Label htmlFor="accion2">Vender con la deuda incluida</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Remodelarla en asociación" id="accion3" />
-                  <Label htmlFor="accion3">Remodelarla en asociación</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Aún no estoy seguro/a" id="accion4" />
-                  <Label htmlFor="accion4">Aún no estoy seguro/a</Label>
-                </div>
-              </RadioGroup>
-            </div>
-          </div>
-
-          {/* Sección 4: Estado civil y disposición */}
-          <div className="space-y-4 pt-6 border-t border-border">
-            <h3 className="text-2xl font-semibold text-green-700 dark:text-green-400 border-b pb-2 mb-4">
-              Sección 4: Estado civil y disposición
-            </h3>
-            <div>
-              <Label className="mb-2 block">12. ¿Estás casado(a)? Si es así, ¿con qué régimen?</Label>
-              <RadioGroup
-                onValueChange={(value) => handleRadioChange("estadoCivil", value)}
-                value={formData.estadoCivil}
-                className="flex flex-col space-y-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="No estoy casado" id="civil1" />
-                  <Label htmlFor="civil1">No estoy casado</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Sí, por bienes mancomunados" id="civil2" />
-                  <Label htmlFor="civil2">Sí, por bienes mancomunados</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Sí, por separación de bienes" id="civil3" />
-                  <Label htmlFor="civil3">Sí, por separación de bienes</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Otro" id="civil4" />
-                  <Label htmlFor="civil4">Otro (especificar)</Label>
-                </div>
-              </RadioGroup>
-              {formData.estadoCivil === "Otro" && (
-                <Input
-                  id="estadoCivilOtro"
-                  value={formData.estadoCivilOtro}
-                  onChange={handleChange}
-                  placeholder="Especifica el régimen"
-                  className="mt-2"
-                />
-              )}
-            </div>
-            <div>
-              <Label className="mb-2 block">
-                13. ¿Estás dispuesto/a a firmar un contrato de coinversión o asociación para que te ayudemos a resolver
-                la deuda y venderla juntos?
-              </Label>
-              <RadioGroup
-                onValueChange={(value) => handleRadioChange("dispuestoCoinversion", value)}
-                value={formData.dispuestoCoinversion}
-                className="flex space-x-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Sí" id="coinversionSi" />
-                  <Label htmlFor="coinversionSi">Sí</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="No" id="coinversionNo" />
-                  <Label htmlFor="coinversionNo">No</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Quisiera saber más" id="coinversionMas" />
-                  <Label htmlFor="coinversionMas">Quisiera saber más</Label>
-                </div>
-              </RadioGroup>
-            </div>
-            <div>
-              <Label className="mb-2 block">
-                14. ¿Actualmente cuentas con algún juicio (intestamentario, sucesorio, etc.) relacionado con esta casa?
-              </Label>
-              <RadioGroup
-                onValueChange={(value) => handleRadioChange("juicioRelacionado", value)}
-                value={formData.juicioRelacionado}
-                className="flex space-x-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Sí" id="juicioSi" />
-                  <Label htmlFor="juicioSi">Sí</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="No" id="juicioNo" />
-                  <Label htmlFor="juicioNo">No</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="En proceso" id="juicioProceso" />
-                  <Label htmlFor="juicioProceso">En proceso</Label>
-                </div>
-              </RadioGroup>
-            </div>
-            <div>
-              <Label className="mb-2 block">15. ¿Qué tan pronto necesitas resolver esta situación?</Label>
-              <RadioGroup
-                onValueChange={(value) => handleRadioChange("prontoResolver", value)}
-                value={formData.prontoResolver}
-                className="flex flex-col space-y-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Urgente (menos de 30 días)" id="pronto1" />
-                  <Label htmlFor="pronto1">Urgente (menos de 30 días)</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="En 1-3 meses" id="pronto2" />
-                  <Label htmlFor="pronto2">En 1-3 meses</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="No tengo prisa" id="pronto3" />
-                  <Label htmlFor="pronto3">No tengo prisa</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Solo estoy explorando opciones" id="pronto4" />
-                  <Label htmlFor="pronto4">Solo estoy explorando opciones</Label>
-                </div>
-              </RadioGroup>
-            </div>
-          </div>
-
-          <div className="text-center mt-8">
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              Muchas gracias. Con esta información analizaremos si tu caso es viable para ayudarte a resolver la deuda o
-              vender tu casa de forma rápida y segura. Un asesor te contactará pronto si el caso califica.
-            </p>
+            {/* Submit Button */}
             <Button
               type="submit"
               size="lg"
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-bold group"
+              className="w-full bg-green-600 hover:bg-green-700 text-white py-4 text-lg group"
             >
-              <MessageCircle className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
-              Enviar Cuestionario por WhatsApp
+              <Send className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
+              Enviar Evaluación por WhatsApp
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-          </div>
-        </form>
-      </CardContent>
-    </Card>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   )
 }

@@ -1,43 +1,49 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Facebook, Instagram } from "lucide-react"
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 
 interface SocialLinksProps {
   variant?: "default" | "footer"
-  className?: string
 }
 
-export function SocialLinks({ variant = "default", className = "" }: SocialLinksProps) {
+export function SocialLinks({ variant = "default" }: SocialLinksProps) {
   const socialLinks = [
     {
       name: "Facebook",
       icon: Facebook,
-      url: "https://www.facebook.com/people/Rescate-Vivienda/61576487535374/",
-      color: "hover:text-blue-500",
+      url: "https://facebook.com/rescatevivienda",
     },
     {
       name: "Instagram",
       icon: Instagram,
-      url: "https://www.instagram.com/rescate_vivienda_mx?igsh=N3N3N2I0dDJvb2Q2",
-      color: "hover:text-pink-500",
+      url: "https://instagram.com/rescatevivienda",
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      url: "https://twitter.com/rescatevivienda",
+    },
+    {
+      name: "YouTube",
+      icon: Youtube,
+      url: "https://youtube.com/@rescatevivienda",
     },
   ]
 
   if (variant === "footer") {
     return (
-      <div className={`flex space-x-4 ${className}`}>
+      <div className="flex space-x-2">
         {socialLinks.map((social) => (
           <Button
             key={social.name}
             variant="ghost"
-            size="icon"
-            asChild
-            className={`${social.color} transition-colors duration-300`}
+            size="sm"
+            className="h-8 w-8 p-0 hover:bg-green-100 dark:hover:bg-green-900"
+            onClick={() => window.open(social.url, "_blank")}
           >
-            <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={`Síguenos en ${social.name}`}>
-              <social.icon className="h-5 w-5" />
-            </a>
+            <social.icon className="h-4 w-4" />
+            <span className="sr-only">{social.name}</span>
           </Button>
         ))}
       </div>
@@ -45,19 +51,11 @@ export function SocialLinks({ variant = "default", className = "" }: SocialLinks
   }
 
   return (
-    <div className={`flex space-x-2 ${className}`}>
+    <div className="flex space-x-4">
       {socialLinks.map((social) => (
-        <Button
-          key={social.name}
-          variant="outline"
-          size="sm"
-          asChild
-          className={`${social.color} transition-all duration-300 hover:scale-110`}
-        >
-          <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={`Síguenos en ${social.name}`}>
-            <social.icon className="h-4 w-4 mr-2" />
-            {social.name}
-          </a>
+        <Button key={social.name} variant="outline" size="sm" onClick={() => window.open(social.url, "_blank")}>
+          <social.icon className="h-4 w-4 mr-2" />
+          {social.name}
         </Button>
       ))}
     </div>

@@ -24,7 +24,7 @@ import { useEffect, useState } from "react"
 import { ContactButtons } from "@/components/contact-buttons"
 import { SocialLinks } from "@/components/social-links"
 import { FloatingContact } from "@/components/floating-contact"
-import { QuestionnaireForm } from "@/components/questionnaire-form" // Import the new component
+import { QuestionnaireForm } from "@/components/questionnaire-form"
 
 export default function RescateViviendaModern() {
   const [isVisible, setIsVisible] = useState(false)
@@ -122,7 +122,7 @@ export default function RescateViviendaModern() {
                 FAQs
               </Link>
               <Link
-                href="#cuestionario" // New link to questionnaire
+                href="#cuestionario"
                 className="text-sm font-medium hover:text-green-500 transition-colors"
                 onClick={scrollToTop}
               >
@@ -181,10 +181,8 @@ export default function RescateViviendaModern() {
                 <div className="text-sm text-muted-foreground">Éxito Garantizado</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">
-                  <AnimatedCounter end={24} suffix="h" />
-                </div>
-                <div className="text-sm text-muted-foreground">Respuesta Rápida</div>
+                <div className="text-3xl font-bold text-green-600">24/7</div>
+                <div className="text-sm text-muted-foreground">Atención Disponible</div>
               </div>
             </div>
           </div>
@@ -538,9 +536,7 @@ export default function RescateViviendaModern() {
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-lg opacity-90">
-              ⚡ Respuesta en menos de 1 hora • 🏆 +50 casas rescatadas • ✅ 95% de éxito
-            </p>
+            <p className="text-lg opacity-90">⚡ Atención 24/7 • 🏆 +50 casas rescatadas • ✅ Respuestas rápidas</p>
           </div>
         </div>
       </section>
