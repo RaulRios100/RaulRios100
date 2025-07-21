@@ -9,7 +9,9 @@ import {
   Shield,
   Users,
   Heart,
+  Mail,
   ArrowRight,
+  Star,
   Phone,
   FileText,
   HelpCircle,
@@ -24,7 +26,6 @@ import { useEffect, useState } from "react"
 import { ContactButtons } from "@/components/contact-buttons"
 import { SocialLinks } from "@/components/social-links"
 import { FloatingContact } from "@/components/floating-contact"
-import { QuestionnaireForm } from "@/components/questionnaire-form" // Import the new component
 
 export default function RescateViviendaModern() {
   const [isVisible, setIsVisible] = useState(false)
@@ -108,6 +109,13 @@ export default function RescateViviendaModern() {
                 Nosotros
               </Link>
               <Link
+                href="#casos"
+                className="text-sm font-medium hover:text-green-500 transition-colors"
+                onClick={scrollToTop}
+              >
+                Casos de Éxito
+              </Link>
+              <Link
                 href="#requisitos"
                 className="text-sm font-medium hover:text-green-500 transition-colors"
                 onClick={scrollToTop}
@@ -120,13 +128,6 @@ export default function RescateViviendaModern() {
                 onClick={scrollToTop}
               >
                 FAQs
-              </Link>
-              <Link
-                href="#cuestionario" // New link to questionnaire
-                className="text-sm font-medium hover:text-green-500 transition-colors"
-                onClick={scrollToTop}
-              >
-                Cuestionario
               </Link>
               <Link
                 href="#contacto"
@@ -157,7 +158,7 @@ export default function RescateViviendaModern() {
                 del peso de
                 <br />
                 <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
-                  tu deuda
+                  tu casa
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
@@ -242,6 +243,52 @@ export default function RescateViviendaModern() {
         </div>
       </section>
 
+      {/* Before/After Showcase */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Transformaciones <span className="text-green-600">Reales</span>
+            </h2>
+            <p className="text-xl text-muted-foreground">Mira cómo convertimos problemas en soluciones</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <Image
+                src="/images/before-after-houses.png"
+                alt="Antes y después - Transformación de viviendas"
+                width={600}
+                height={400}
+                className="rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold">De Problema a Solución</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Cada casa tiene una historia. Nosotros la convertimos en una historia de éxito. Desde propiedades
+                abandonadas hasta hogares renovados que recuperan su valor.
+              </p>
+
+              <div className="space-y-4">
+                {[
+                  "Evaluación gratuita en 24 horas",
+                  "Liquidación completa de deudas",
+                  "Renovación profesional",
+                  "Documentación legal en orden",
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0" />
+                    <span className="text-lg">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section id="servicios" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
@@ -305,6 +352,68 @@ export default function RescateViviendaModern() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonial Section */}
+      <section id="casos" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Historia de <span className="text-green-600">Éxito</span>
+            </h2>
+            <p className="text-xl text-muted-foreground">La transformación de Laura: de pesadilla a tranquilidad</p>
+          </div>
+
+          <Card className="max-w-4xl mx-auto border-2 border-green-500/20 shadow-2xl">
+            <CardContent className="p-8">
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-2 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+
+                  <blockquote className="text-2xl font-medium leading-relaxed">
+                    "Rescate Vivienda me devolvió la esperanza. En menos de un mes resolvieron todo: pagaron mis deudas,
+                    arreglaron los papeles y me dieron efectivo por mi casa."
+                  </blockquote>
+
+                  <div className="space-y-2">
+                    <div className="font-semibold text-lg">Laura Martínez</div>
+                    <div className="text-muted-foreground">León, Guanajuato • 42 años</div>
+                    <div className="text-sm text-green-600 font-medium">✅ Caso resuelto en 28 días</div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4 pt-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">$0</div>
+                      <div className="text-sm text-muted-foreground">Deudas restantes</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">100%</div>
+                      <div className="text-sm text-muted-foreground">Buró limpio</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">28</div>
+                      <div className="text-sm text-muted-foreground">Días total</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <Image
+                    src="/images/renovation-examples.png"
+                    alt="Ejemplos de renovación - Antes y después"
+                    width={500}
+                    height={400}
+                    className="rounded-xl shadow-lg"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -450,15 +559,8 @@ export default function RescateViviendaModern() {
         </div>
       </section>
 
-      {/* Questionnaire Section */}
-      <section id="cuestionario" className="py-20">
-        <div className="container mx-auto px-4">
-          <QuestionnaireForm />
-        </div>
-      </section>
-
       {/* FAQs Section */}
-      <section id="faqs" className="py-20 bg-muted/30">
+      <section id="faqs" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -535,6 +637,22 @@ export default function RescateViviendaModern() {
               <Phone className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
               +52 4775780721
             </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-green-600 px-8 py-4 text-lg bg-transparent"
+              onClick={() => {
+                scrollToTop()
+                const subject = encodeURIComponent("Consulta urgente - Rescate Vivienda")
+                const body = encodeURIComponent(
+                  "Hola,\n\nNecesito ayuda urgente con mi situación de vivienda INFONAVIT.\n\nGracias.",
+                )
+                window.open(`mailto:soporte@rescatevivienda.mx?subject=${subject}&body=${body}`, "_blank")
+              }}
+            >
+              <Mail className="h-5 w-5 mr-2" />
+              soporte@rescatevivienda.mx
+            </Button>
           </div>
 
           <div className="mt-12 text-center">
@@ -590,8 +708,20 @@ export default function RescateViviendaModern() {
             </div>
           </div>
 
-          <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Rescate Vivienda. Todos los derechos reservados.</p>
+          <div className="border-t border-border mt-12 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-muted-foreground">
+                <Link href="/politica-privacidad" className="hover:text-green-600 transition-colors">
+                  Política de Privacidad
+                </Link>
+                <Link href="/terminos-condiciones" className="hover:text-green-600 transition-colors">
+                  Términos y Condiciones
+                </Link>
+              </div>
+              <p className="text-muted-foreground text-sm">
+                &copy; 2024 Rescate Vivienda. Todos los derechos reservados.
+              </p>
+            </div>
           </div>
         </div>
       </footer>
