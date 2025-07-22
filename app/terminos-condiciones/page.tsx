@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, FileText, Scale, AlertTriangle, CheckCircle, XCircle, DollarSign, Clock } from "lucide-react"
+import { ArrowLeft, Scale, AlertTriangle, FileText, Shield, Users, XCircle } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -44,11 +44,9 @@ export default function TerminosCondiciones() {
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Términos y <span className="text-green-600">Condiciones</span>
+              Términos y <span className="text-green-600">Condiciones de Uso</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Conoce los términos que rigen nuestros servicios de rescate y liquidación de propiedades INFONAVIT.
-            </p>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">de www.rescatevivienda.com</p>
             <div className="mt-6 text-sm text-muted-foreground">
               <p>Última actualización: 21 de enero de 2025</p>
             </div>
@@ -60,10 +58,17 @@ export default function TerminosCondiciones() {
               <div className="flex items-start space-x-3">
                 <AlertTriangle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Aceptación de Términos</h3>
+                  <h3 className="font-semibold text-lg mb-2">Bienvenido</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Bienvenido al sitio web www.rescatevivienda.com (en adelante, "el Sitio"), operado por Rescate
+                    Vivienda S.A. de C.V., con domicilio en México. Al acceder o utilizar el Sitio, usted acepta cumplir
+                    con estos Términos y Condiciones (en adelante, "Términos"). Si no está de acuerdo con ellos, por
+                    favor no utilice el Sitio.
+                  </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    Al utilizar los servicios de Rescate Vivienda, aceptas estos términos y condiciones en su totalidad.
-                    Si no estás de acuerdo con alguna parte, te recomendamos no utilizar nuestros servicios.
+                    Estos Términos regulan el uso del Sitio y los servicios ofrecidos. Nos reservamos el derecho de
+                    modificarlos en cualquier momento, notificándolo a través del Sitio. El uso continuado del Sitio
+                    después de cualquier modificación implica su aceptación de los cambios.
                   </p>
                 </div>
               </div>
@@ -72,395 +77,155 @@ export default function TerminosCondiciones() {
 
           {/* Content Sections */}
           <div className="space-y-8">
-            {/* Definiciones */}
+            {/* Descripción de Servicios */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <FileText className="h-6 w-6 mr-3 text-green-600" />
-                  1. Definiciones
+                  1. Descripción de los Servicios
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Rescate Vivienda</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Empresa especializada en la adquisición, liquidación y rescate de propiedades con adeudos
-                      INFONAVIT.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Cliente/Usuario</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Persona física propietaria de un inmueble que solicita nuestros servicios de rescate.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Propiedad/Inmueble</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Casa, departamento o terreno adquirido mediante crédito INFONAVIT objeto del servicio.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Servicios</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Evaluación, liquidación de deudas, trámites legales y adquisición de propiedades.
-                    </p>
-                  </div>
-                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  En www.rescatevivienda.com ofrecemos servicios de asesoría y gestión para ayudar a propietarios de
+                  viviendas con deudas relacionadas con créditos hipotecarios de Infonavit, Fovissste u otras
+                  instituciones bancarias. Nuestros servicios incluyen:
+                </p>
+                <ul className="space-y-2 text-muted-foreground ml-4">
+                  <li>• Asesoría para la resolución de deudas pendientes.</li>
+                  <li>
+                    • Gestión de trámites relacionados con viviendas abandonadas, en estado de vandalismo o con
+                    problemas de pago.
+                  </li>
+                  <li>• Remodelación de propiedades para mejorar su estado.</li>
+                  <li>• Búsqueda de posibles compradores para las propiedades.</li>
+                </ul>
+                <p className="text-muted-foreground leading-relaxed">
+                  Estos servicios se proporcionan con el objetivo de asistir al usuario en la medida de nuestras
+                  posibilidades, incluyendo la gestión de gastos como agua, luz y otros servicios públicos asociados.
+                  Sin embargo,{" "}
+                  <strong>
+                    no garantizamos ni prometemos resultados específicos, resolución de deudas, tiempos de procesamiento
+                    ni éxito en la venta o remodelación
+                  </strong>
+                  . Los procesos dependen de factores externos como decisiones de instituciones financieras, autoridades
+                  gubernamentales o condiciones del mercado, que están fuera de nuestro control. Actuamos como
+                  facilitadores y no asumimos responsabilidad por retrasos, denegaciones o cualquier outcome negativo.
+                </p>
               </CardContent>
             </Card>
 
-            {/* Servicios Ofrecidos */}
+            {/* Obligaciones del Usuario */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
-                  <CheckCircle className="h-6 w-6 mr-3 text-green-600" />
-                  2. Servicios Ofrecidos
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Servicios Principales</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>
-                      • <strong>Evaluación Gratuita:</strong> Análisis inicial de viabilidad del caso sin costo
-                    </li>
-                    <li>
-                      • <strong>Liquidación de Deudas:</strong> Pago total de adeudos con INFONAVIT y servicios
-                    </li>
-                    <li>
-                      • <strong>Trámites Legales:</strong> Gestión de escrituras, registros y documentación
-                    </li>
-                    <li>
-                      • <strong>Adquisición de Propiedades:</strong> Compra del inmueble una vez saldadas las deudas
-                    </li>
-                    <li>
-                      • <strong>Limpieza de Buró:</strong> Gestión para mejorar el historial crediticio
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Servicios Adicionales</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Asesoría legal especializada en INFONAVIT</li>
-                    <li>• Inspecciones y valuaciones profesionales</li>
-                    <li>• Gestión de desalojos cuando sea necesario</li>
-                    <li>• Regularización de documentos faltantes</li>
-                    <li>• Acompañamiento durante todo el proceso</li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Proceso y Requisitos */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <Clock className="h-6 w-6 mr-3 text-green-600" />
-                  3. Proceso y Requisitos
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Etapas del Proceso</h4>
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-2 flex-shrink-0">
-                        <span className="text-green-600 font-bold text-sm">1</span>
-                      </div>
-                      <div>
-                        <h5 className="font-semibold">Evaluación Inicial</h5>
-                        <p className="text-sm text-muted-foreground">
-                          Análisis de documentos y viabilidad del caso (24-48 horas)
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-2 flex-shrink-0">
-                        <span className="text-green-600 font-bold text-sm">2</span>
-                      </div>
-                      <div>
-                        <h5 className="font-semibold">Propuesta Formal</h5>
-                        <p className="text-sm text-muted-foreground">Presentación de oferta y términos específicos</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-2 flex-shrink-0">
-                        <span className="text-green-600 font-bold text-sm">3</span>
-                      </div>
-                      <div>
-                        <h5 className="font-semibold">Firma de Contrato</h5>
-                        <p className="text-sm text-muted-foreground">Formalización del acuerdo ante notario público</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-2 flex-shrink-0">
-                        <span className="text-green-600 font-bold text-sm">4</span>
-                      </div>
-                      <div>
-                        <h5 className="font-semibold">Liquidación</h5>
-                        <p className="text-sm text-muted-foreground">Pago de todas las deudas pendientes</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="bg-green-100 dark:bg-green-900/30 rounded-full p-2 flex-shrink-0">
-                        <span className="text-green-600 font-bold text-sm">5</span>
-                      </div>
-                      <div>
-                        <h5 className="font-semibold">Transferencia</h5>
-                        <p className="text-sm text-muted-foreground">Escrituración y registro de la propiedad</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Requisitos Indispensables</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Ser propietario legal del inmueble (escrituras a tu nombre)</li>
-                    <li>• Identificación oficial vigente (INE/IFE o pasaporte)</li>
-                    <li>• CURP y RFC actualizados</li>
-                    <li>• Estado de cuenta INFONAVIT actualizado</li>
-                    <li>• Comprobante de domicilio reciente</li>
-                    <li>• Capacidad legal para contratar (mayor de edad)</li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Obligaciones del Cliente */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <FileText className="h-6 w-6 mr-3 text-green-600" />
-                  4. Obligaciones del Cliente
+                  <Users className="h-6 w-6 mr-3 text-green-600" />
+                  2. Obligaciones del Usuario
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Información y Documentación</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Proporcionar información veraz y completa sobre la propiedad</li>
-                    <li>• Entregar toda la documentación requerida en tiempo y forma</li>
-                    <li>• Notificar cualquier cambio en la situación legal del inmueble</li>
-                    <li>• Permitir inspecciones y valuaciones cuando sea necesario</li>
-                    <li>• Mantener actualizada su información de contacto</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Cooperación en el Proceso</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Asistir a citas programadas con notarios y autoridades</li>
-                    <li>• Firmar documentos requeridos en los plazos establecidos</li>
-                    <li>• Facilitar el acceso a la propiedad para inspecciones</li>
-                    <li>• Colaborar en la resolución de problemas legales que puedan surgir</li>
-                    <li>• Mantener comunicación constante durante el proceso</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Restricciones</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• No realizar actos que comprometan la propiedad durante el proceso</li>
-                    <li>• No negociar la venta con terceros una vez firmado el contrato</li>
-                    <li>• No ocultar información relevante sobre deudas o gravámenes</li>
-                    <li>• No realizar modificaciones estructurales sin autorización</li>
-                  </ul>
-                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  Al utilizar el Sitio y nuestros servicios, usted se compromete a:
+                </p>
+                <ul className="space-y-2 text-muted-foreground ml-4">
+                  <li>
+                    • Proporcionar información veraz, completa y actualizada sobre su situación (deudas, propiedad,
+                    etc.).
+                  </li>
+                  <li>
+                    • Cumplir con todas las leyes aplicables en México, incluyendo normativas de Infonavit, Fovissste y
+                    protección al consumidor.
+                  </li>
+                  <li>• No utilizar el Sitio para fines ilegales, fraudulentos o que violen derechos de terceros.</li>
+                  <li>
+                    • Asumir todos los costos asociados con los trámites, remodelaciones o gestiones (ej. pagos a
+                    terceros, materiales).
+                  </li>
+                  <li>
+                    • Autorizar expresamente la gestión de sus datos y trámites en su nombre, entendiendo que no hay
+                    garantías.
+                  </li>
+                </ul>
               </CardContent>
             </Card>
 
-            {/* Obligaciones de Rescate Vivienda */}
+            {/* Limitación de Responsabilidad */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
-                  <CheckCircle className="h-6 w-6 mr-3 text-green-600" />
-                  5. Nuestras Obligaciones
+                  <Shield className="h-6 w-6 mr-3 text-green-600" />
+                  3. Limitación de Responsabilidad
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Compromisos de Servicio</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Realizar evaluación gratuita y sin compromiso en 24-48 horas</li>
-                    <li>• Proporcionar información clara y transparente sobre costos y procesos</li>
-                    <li>• Liquidar todas las deudas acordadas en los plazos establecidos</li>
-                    <li>• Gestionar todos los trámites legales y notariales necesarios</li>
-                    <li>• Mantener comunicación constante sobre el progreso del caso</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Garantías</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Confidencialidad absoluta de tu información personal</li>
-                    <li>• Procesos 100% legales y transparentes</li>
-                    <li>• Asesoría profesional durante todo el proceso</li>
-                    <li>• Cumplimiento de plazos acordados contractualmente</li>
-                    <li>• Soporte post-venta para dudas o aclaraciones</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Limitaciones de Responsabilidad</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• No somos responsables por información falsa proporcionada por el cliente</li>
-                    <li>• Los plazos pueden extenderse por causas ajenas a nuestra voluntad</li>
-                    <li>• No garantizamos resultados en casos con problemas legales complejos</li>
-                    <li>• Nuestra responsabilidad se limita al monto del contrato firmado</li>
-                  </ul>
-                </div>
+              <CardContent>
+                <p className="text-muted-foreground leading-relaxed">
+                  En la medida permitida por la ley mexicana, www.rescatevivienda.com y sus representantes no serán
+                  responsables por daños directos, indirectos, incidentales o consecuentes derivados del uso del Sitio o
+                  servicios, incluyendo pero no limitado a pérdidas financieras, retrasos en trámites o fracaso en la
+                  resolución de deudas. No ofrecemos garantías expresas o implícitas sobre la efectividad de nuestros
+                  servicios. <strong>Usted utiliza el Sitio bajo su propio riesgo.</strong>
+                </p>
               </CardContent>
             </Card>
 
-            {/* Aspectos Financieros */}
+            {/* Propiedad Intelectual */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <DollarSign className="h-6 w-6 mr-3 text-green-600" />
-                  6. Aspectos Financieros
-                </CardTitle>
+                <CardTitle className="text-xl">4. Propiedad Intelectual</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Estructura de Pagos</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>
-                      • <strong>Evaluación:</strong> Completamente gratuita, sin costo ni compromiso
-                    </li>
-                    <li>
-                      • <strong>Servicios:</strong> El pago se realiza únicamente al completar la transacción
-                    </li>
-                    <li>
-                      • <strong>Gastos Notariales:</strong> Cubiertos por Rescate Vivienda
-                    </li>
-                    <li>
-                      • <strong>Trámites Legales:</strong> Incluidos en el servicio sin costo adicional
-                    </li>
-                    <li>
-                      • <strong>Liquidación de Deudas:</strong> Pagamos directamente a INFONAVIT y servicios
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Cálculo del Valor</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Valuación profesional del inmueble en su estado actual</li>
-                    <li>• Deducción de todas las deudas pendientes (INFONAVIT, servicios, predial)</li>
-                    <li>• Consideración de costos de renovación y puesta en valor</li>
-                    <li>• Margen operativo para garantizar la viabilidad del proyecto</li>
-                    <li>• El cliente recibe el remanente en efectivo</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Formas de Pago</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Transferencia bancaria directa</li>
-                    <li>• Cheque certificado</li>
-                    <li>• Efectivo para montos menores (sujeto a regulaciones)</li>
-                    <li>• Todos los pagos se realizan ante notario público</li>
-                  </ul>
-                </div>
+              <CardContent>
+                <p className="text-muted-foreground leading-relaxed">
+                  Todo el contenido del Sitio (textos, imágenes, logos) es propiedad de Rescate Vivienda S.A. de C.V. o
+                  sus licenciantes y está protegido por las leyes de propiedad intelectual en México. No se permite su
+                  reproducción sin autorización escrita.
+                </p>
               </CardContent>
             </Card>
 
-            {/* Cancelación y Terminación */}
+            {/* Privacidad */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">5. Privacidad</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground leading-relaxed">
+                  Consulte nuestra{" "}
+                  <Link href="/politica-privacidad" className="text-green-600 hover:underline">
+                    Política de Privacidad
+                  </Link>{" "}
+                  para información sobre cómo manejamos sus datos personales. Al usar el Sitio, acepta nuestras
+                  prácticas de privacidad.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Terminación */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <XCircle className="h-6 w-6 mr-3 text-green-600" />
-                  7. Cancelación y Terminación
+                  6. Terminación
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Derecho de Cancelación del Cliente</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Puedes cancelar el servicio antes de la firma del contrato definitivo</li>
-                    <li>• No hay penalizaciones por cancelación en etapa de evaluación</li>
-                    <li>• Una vez firmado el contrato, aplican las cláusulas de cancelación específicas</li>
-                    <li>• Debes notificar la cancelación por escrito</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Terminación por Rescate Vivienda</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Información falsa o incompleta proporcionada por el cliente</li>
-                    <li>• Incumplimiento de obligaciones contractuales</li>
-                    <li>• Problemas legales que impidan completar la transacción</li>
-                    <li>• Cambios en la situación legal del inmueble no reportados</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Efectos de la Terminación</h4>
-                  <ul className="space-y-2 text-muted-foreground ml-4">
-                    <li>• Devolución de documentos originales al cliente</li>
-                    <li>• Liquidación de gastos incurridos hasta la fecha</li>
-                    <li>• Confidencialidad de información se mantiene vigente</li>
-                    <li>• No hay obligaciones futuras para ninguna de las partes</li>
-                  </ul>
-                </div>
+              <CardContent>
+                <p className="text-muted-foreground leading-relaxed">
+                  Podemos terminar o suspender su acceso al Sitio en cualquier momento si viola estos Términos.
+                </p>
               </CardContent>
             </Card>
 
-            {/* Resolución de Disputas */}
+            {/* Ley Aplicable */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Scale className="h-6 w-6 mr-3 text-green-600" />
-                  8. Resolución de Disputas
+                  7. Ley Aplicable y Jurisdicción
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Proceso de Resolución</h4>
-                  <ol className="space-y-2 text-muted-foreground ml-4 list-decimal">
-                    <li>
-                      <strong>Comunicación Directa:</strong> Intentar resolver la disputa mediante diálogo directo
-                    </li>
-                    <li>
-                      <strong>Mediación:</strong> Recurrir a un mediador neutral si es necesario
-                    </li>
-                    <li>
-                      <strong>Arbitraje:</strong> Someter la disputa a arbitraje vinculante
-                    </li>
-                    <li>
-                      <strong>Jurisdicción:</strong> Como último recurso, tribunales competentes en México
-                    </li>
-                  </ol>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3 text-green-600">Ley Aplicable</h4>
-                  <p className="text-muted-foreground">
-                    Estos términos se rigen por las leyes de los Estados Unidos Mexicanos. Cualquier disputa será
-                    resuelta en los tribunales competentes de México.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Modificaciones */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl">9. Modificaciones a los Términos</CardTitle>
-              </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  Rescate Vivienda se reserva el derecho de modificar estos términos y condiciones en cualquier momento.
-                  Las modificaciones entrarán en vigor inmediatamente después de su publicación en nuestro sitio web.
-                </p>
-                <p className="text-muted-foreground">
-                  Te notificaremos sobre cambios significativos a través de nuestros canales de comunicación habituales.
-                  El uso continuado de nuestros servicios después de las modificaciones constituye tu aceptación de los
-                  nuevos términos.
+                <p className="text-muted-foreground leading-relaxed">
+                  Estos Términos se rigen por las leyes de México. Cualquier disputa se resolverá en los tribunales
+                  competentes de México.
                 </p>
               </CardContent>
             </Card>
@@ -468,20 +233,34 @@ export default function TerminosCondiciones() {
             {/* Contacto */}
             <Card className="border-2 border-green-500/20 bg-green-50 dark:bg-green-950/20">
               <CardHeader>
-                <CardTitle className="text-xl text-green-700 dark:text-green-300">10. Contacto y Soporte</CardTitle>
+                <CardTitle className="text-xl text-green-700 dark:text-green-300">Contacto</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-green-700 dark:text-green-300 mb-4">
-                  Para cualquier duda sobre estos términos y condiciones o nuestros servicios, contáctanos:
-                </p>
+                <p className="text-green-700 dark:text-green-300 mb-4">Si tiene preguntas, contáctenos en:</p>
                 <div className="space-y-2 text-green-700 dark:text-green-300">
                   <p>
-                    <strong>Rescate Vivienda</strong>
+                    <strong>Rescate Vivienda S.A. de C.V.</strong>
                   </p>
                   <p>WhatsApp: +52 4775780721</p>
                   <p>Teléfono: +52 4775780721</p>
-                  <p>Horario de atención: Lunes a Viernes, 9:00 AM - 6:00 PM</p>
-                  <p>Tiempo de respuesta: Menos de 1 hora en horario laboral</p>
+                  <p>Sitio web: www.rescatevivienda.com</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Aceptación Final */}
+            <Card className="border-2 border-yellow-500/50 bg-yellow-50 dark:bg-yellow-950/20">
+              <CardContent className="p-6">
+                <div className="flex items-start space-x-3">
+                  <AlertTriangle className="h-6 w-6 text-yellow-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+                      Confirmación de Aceptación
+                    </h4>
+                    <p className="text-sm text-yellow-700 dark:text-yellow-300 leading-relaxed">
+                      <strong>Al continuar usando el Sitio, confirma que ha leído y acepta estos Términos.</strong>
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
