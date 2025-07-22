@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useInView } from "react-intersection-observer"
 
 interface AnimatedCounterProps {
   end: number
@@ -11,35 +10,34 @@ interface AnimatedCounterProps {
 
 export function AnimatedCounter({ end, duration = 2000, suffix = "" }: AnimatedCounterProps) {
   const [count, setCount] = useState(0)
-  const { ref, inView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  })
 
   useEffect(() => {
-    if (inView) {
-      let startTime: number
-      const startCount = 0
+    let startTime: number
+    let animationFrame: number
 
-      const updateCount = (timestamp: number) => {
-        if (!startTime) startTime = timestamp
-        const progress = timestamp - startTime
-        const percentage = Math.min(progress / duration, 1)
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime
+      const progress = Math.min((currentTime - startTime) / duration, 1)
 
-        setCount(Math.floor(startCount + (end - startCount) * percentage))
+      setCount(Math.floor(progress * end))
 
-        if (percentage < 1) {
-          requestAnimationFrame(updateCount)
-        }
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate)
       }
-
-      requestAnimationFrame(updateCount)
     }
-  }, [inView, end, duration])
+
+    animationFrame = requestAnimationFrame(animate)
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame)
+      }
+    }
+  }, [end, duration])
 
   return (
-    <span ref={ref} className="font-bold">
-      {count.toLocaleString()}
+    <span>
+      {count}
       {suffix}
     </span>
   )
