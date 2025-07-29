@@ -141,7 +141,7 @@ export default function AIPositioningLanding() {
       `}</style>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white py-20 px-4 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white min-h-screen px-4 overflow-hidden flex items-center">
         {/* Animated Background Blobs */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
@@ -170,7 +170,7 @@ export default function AIPositioningLanding() {
           <div className="absolute top-1/2 right-1/4 w-5 h-5 bg-purple-400 rounded-full animate-float-reverse"></div>
         </div>
 
-        <div className="relative z-20 max-w-6xl mx-auto text-center">
+        <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10 min-h-screen py-20">
           <Badge className="mb-6 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 text-sm font-medium animate-slide-down">
             🚀 Posicionamiento en IA - Nueva Era Digital
           </Badge>
