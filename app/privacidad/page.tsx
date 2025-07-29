@@ -49,7 +49,7 @@ export default function Privacidad() {
           <Button
             variant="outline"
             className="mb-6 bg-transparent border-white text-white hover:bg-white hover:text-slate-900"
-            onClick={() => window.close()}
+            onClick={() => (window.location.href = "/")}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver
@@ -112,12 +112,26 @@ export default function Privacidad() {
               <CardContent className="space-y-4 text-slate-700 dark:text-slate-300">
                 <p>Utilizamos tu información personal para:</p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li><strong>Prestación de servicios:</strong> Implementar estrategias de posicionamiento AIO personalizadas</li>
-                  <li><strong>Comunicación:</strong> Mantener contacto sobre el progreso de tu proyecto</li>
-                  <li><strong>Facturación:</strong> Procesar pagos y mantener registros contables</li>
-                  <li><strong>Mejora de servicios:</strong> Analizar tendencias para mejorar nuestras metodologías</li>
-                  <li><strong>Soporte técnico:</strong> Resolver problemas y brindar asistencia</li>
-                  <li><strong>Marketing (con consentimiento):</strong> Enviar información sobre nuevos servicios y actualizaciones</li>
+                  <li>
+                    <strong>Prestación de servicios:</strong> Implementar estrategias de posicionamiento AIO
+                    personalizadas
+                  </li>
+                  <li>
+                    <strong>Comunicación:</strong> Mantener contacto sobre el progreso de tu proyecto
+                  </li>
+                  <li>
+                    <strong>Facturación:</strong> Procesar pagos y mantener registros contables
+                  </li>
+                  <li>
+                    <strong>Mejora de servicios:</strong> Analizar tendencias para mejorar nuestras metodologías
+                  </li>
+                  <li>
+                    <strong>Soporte técnico:</strong> Resolver problemas y brindar asistencia
+                  </li>
+                  <li>
+                    <strong>Marketing (con consentimiento):</strong> Enviar información sobre nuevos servicios y
+                    actualizaciones
+                  </li>
                 </ul>
               </CardContent>
             </Card>
@@ -212,7 +226,8 @@ export default function Privacidad() {
                 </div>
                 <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
                   <p className="text-green-800 dark:text-green-200 text-sm">
-                    <strong>Para ejercer estos derechos:</strong> Envía un email a privacy@posicionamientoaio.com con tu solicitud. Responderemos dentro de 30 días hábiles.
+                    <strong>Para ejercer estos derechos:</strong> Envía un email a privacy@posicionamientoaio.com con tu
+                    solicitud. Responderemos dentro de 30 días hábiles.
                   </p>
                 </div>
               </CardContent>
@@ -236,7 +251,9 @@ export default function Privacidad() {
                     </div>
                     <div className="border-l-4 border-purple-500 pl-4">
                       <h5 className="font-medium text-purple-700 dark:text-purple-300">Cookies de Marketing</h5>
-                      <p className="text-sm">Para personalizar contenido y mostrar anuncios relevantes (solo con consentimiento)</p>
+                      <p className="text-sm">
+                        Para personalizar contenido y mostrar anuncios relevantes (solo con consentimiento)
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -253,11 +270,21 @@ export default function Privacidad() {
               <CardContent className="space-y-4 text-slate-700 dark:text-slate-300">
                 <p>Conservamos tu información personal durante los siguientes períodos:</p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li><strong>Datos de clientes activos:</strong> Durante la duración del contrato más 2 años</li>
-                  <li><strong>Información de facturación:</strong> 7 años (requerimiento legal fiscal)</li>
-                  <li><strong>Datos de marketing:</strong> Hasta que retires el consentimiento</li>
-                  <li><strong>Logs técnicos:</strong> 12 meses máximo</li>
-                  <li><strong>Comunicaciones:</strong> 3 años para referencia y soporte</li>
+                  <li>
+                    <strong>Datos de clientes activos:</strong> Durante la duración del contrato más 2 años
+                  </li>
+                  <li>
+                    <strong>Información de facturación:</strong> 7 años (requerimiento legal fiscal)
+                  </li>
+                  <li>
+                    <strong>Datos de marketing:</strong> Hasta que retires el consentimiento
+                  </li>
+                  <li>
+                    <strong>Logs técnicos:</strong> 12 meses máximo
+                  </li>
+                  <li>
+                    <strong>Comunicaciones:</strong> 3 años para referencia y soporte
+                  </li>
                 </ul>
                 <p className="text-sm bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800">
                   Después de estos períodos, eliminamos o anonimizamos tu información de manera segura.
@@ -288,10 +315,12 @@ export default function Privacidad() {
               </CardHeader>
               <CardContent className="space-y-4 text-slate-700 dark:text-slate-300">
                 <p>
-                  Nuestros servicios están dirigidos a empresas y profesionales. No recopilamos intencionalmente información personal de menores de 18 años.
+                  Nuestros servicios están dirigidos a empresas y profesionales. No recopilamos intencionalmente
+                  información personal de menores de 18 años.
                 </p>
                 <p>
-                  Si descubrimos que hemos recopilado información de un menor sin el consentimiento parental apropiado, eliminaremos esa información inmediatamente.
+                  Si descubrimos que hemos recopilado información de un menor sin el consentimiento parental apropiado,
+                  eliminaremos esa información inmediatamente.
                 </p>
               </CardContent>
             </Card>
@@ -302,6 +331,63 @@ export default function Privacidad() {
               </CardHeader>
               <CardContent className="space-y-4 text-slate-700 dark:text-slate-300">
                 <p>
-                  Podemos actualizar esta política de privacidad ocasionalmente para reflejar cambios en nuestras prácticas o por razones legales.
+                  Podemos actualizar esta política de privacidad ocasionalmente para reflejar cambios en nuestras
+                  prácticas o por razones legales.
                 </p>
-                \
+                <p>Te notificaremos sobre cambios significativos mediante:</p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Email a la dirección registrada en tu cuenta</li>
+                  <li>Aviso prominente en nuestro sitio web</li>
+                  <li>Actualización de la fecha de "última modificación" en esta página</li>
+                </ul>
+                <p>
+                  El uso continuado de nuestros servicios después de los cambios constituye tu aceptación de la política
+                  actualizada.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-slate-200 dark:border-slate-700">
+              <CardHeader>
+                <CardTitle>11. Contacto</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-slate-700 dark:text-slate-300">
+                <p>
+                  Si tienes preguntas sobre esta política de privacidad o sobre cómo manejamos tu información personal,
+                  puedes contactarnos:
+                </p>
+                <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg space-y-2">
+                  <p>
+                    <strong>Email:</strong> privacy@posicionamientoaio.com
+                  </p>
+                  <p>
+                    <strong>Teléfono:</strong> +52 (55) 1234-5678
+                  </p>
+                  <p>
+                    <strong>Dirección:</strong> Av. Reforma 123, Col. Centro, CDMX, México
+                  </p>
+                  <p>
+                    <strong>Horario de atención:</strong> Lunes a Viernes, 9:00 AM - 6:00 PM (GMT-6)
+                  </p>
+                </div>
+                <p className="text-sm">
+                  Nos comprometemos a responder a todas las consultas de privacidad dentro de 30 días hábiles.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Back to Home Button */}
+          <div className="text-center mt-12">
+            <Button
+              onClick={() => (window.location.href = "/")}
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
+            >
+              Volver al Inicio
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
