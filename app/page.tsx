@@ -164,104 +164,6 @@ export default function AIPositioningLanding() {
         .animate-pyramid-spin { animation: pyramid-spin 15s linear infinite; }
         .animate-hexagon-pulse { animation: hexagon-pulse 8s ease-in-out infinite; }
 
-        .cube-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-        }
-
-        .cube-face {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          opacity: 0.8;
-          border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cube-front { transform: rotateY(0deg) translateZ(64px); }
-        .cube-back { transform: rotateY(180deg) translateZ(64px); }
-        .cube-right { transform: rotateY(90deg) translateZ(64px); }
-        .cube-left { transform: rotateY(-90deg) translateZ(64px); }
-        .cube-top { transform: rotateX(90deg) translateZ(64px); }
-        .cube-bottom { transform: rotateX(-90deg) translateZ(64px); }
-
-        .sphere {
-          box-shadow: 0 0 50px rgba(6, 182, 212, 0.5);
-        }
-
-        .pyramid-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-        }
-
-        .pyramid-face {
-          position: absolute;
-          opacity: 0.8;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .pyramid-front {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: translateZ(40px);
-        }
-
-        .pyramid-right {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(90deg) translateZ(40px);
-        }
-
-        .pyramid-back {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(180deg) translateZ(40px);
-        }
-
-        .pyramid-left {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(-90deg) translateZ(40px);
-        }
-
-        .hexagon {
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, #f43f5e, #ec4899);
-          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-          box-shadow: 0 0 40px rgba(244, 63, 94, 0.6);
-        }
-
-        @keyframes lion-float {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-20px) scale(1.02); }
-        }
-
-        @keyframes lion-pulse {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.3; }
-        }
-
-        @keyframes lion-breathe {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-        }
-
         @keyframes mane-flow-1 {
           0%, 100% { transform: translateX(0px) rotate(0deg); }
           50% { transform: translateX(-10px) rotate(-2deg); }
@@ -287,20 +189,11 @@ export default function AIPositioningLanding() {
           50% { transform: translateX(10px) rotate(2deg); }
         }
 
-        @keyframes lion-blink {
-          0%, 90%, 100% { transform: scaleY(1); }
-          95% { transform: scaleY(0.1); }
-        }
-
-        .animate-lion-float { animation: lion-float 8s ease-in-out infinite; }
-        .animate-lion-pulse { animation: lion-pulse 4s ease-in-out infinite; }
-        .animate-lion-breathe { animation: lion-breathe 6s ease-in-out infinite; }
         .animate-mane-flow-1 { animation: mane-flow-1 10s ease-in-out infinite; }
         .animate-mane-flow-2 { animation: mane-flow-2 12s ease-in-out infinite 1s; }
         .animate-mane-flow-3 { animation: mane-flow-3 14s ease-in-out infinite 2s; }
         .animate-mane-flow-4 { animation: mane-flow-4 11s ease-in-out infinite 0.5s; }
         .animate-mane-flow-5 { animation: mane-flow-5 13s ease-in-out infinite 1.5s; }
-        .animate-lion-blink { animation: lion-blink 8s ease-in-out infinite; }
       `}</style>
 
       {/* Hero Section */}
@@ -312,110 +205,107 @@ export default function AIPositioningLanding() {
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
 
-        {/* Animated Lion Silhouette */}
+        {/* Abstract Orange Shapes */}
         <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
-          {/* Abstract Orange Shapes */}
-          <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
-            {/* Abstract Shape 1 - Flowing Blob */}
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 animate-float opacity-20">
-              <svg width="256" height="256" viewBox="0 0 256 256" fill="none">
-                <path
-                  d="M50 128 C50 80, 80 50, 128 50 C176 50, 206 80, 206 128 C206 176, 176 206, 128 206 C80 206, 50 176, 50 128 Z"
-                  fill="url(#orangeGradient1)"
-                  className="animate-blob"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fb923c" />
-                    <stop offset="50%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#ea580c" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 1 - Flowing Blob */}
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 animate-float opacity-20">
+            <svg width="256" height="256" viewBox="0 0 256 256" fill="none">
+              <path
+                d="M50 128 C50 80, 80 50, 128 50 C176 50, 206 80, 206 128 C206 176, 176 206, 128 206 C80 206, 50 176, 50 128 Z"
+                fill="url(#orangeGradient1)"
+                className="animate-blob"
+              />
+              <defs>
+                <linearGradient id="orangeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fb923c" />
+                  <stop offset="50%" stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#ea580c" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
 
-            {/* Abstract Shape 2 - Twisted Ring */}
-            <div className="absolute top-1/3 right-1/3 w-48 h-48 animate-float-delayed opacity-25">
-              <svg width="192" height="192" viewBox="0 0 192 192" fill="none">
-                <path
-                  d="M96 20 C140 20, 172 52, 172 96 C172 140, 140 172, 96 172 C52 172, 20 140, 20 96 C20 52, 52 20, 96 20 Z M96 60 C116 60, 132 76, 132 96 C132 116, 116 132, 96 132 C76 132, 60 116, 60 96 C60 76, 76 60, 96 60 Z"
-                  fill="url(#orangeGradient2)"
-                  fillRule="evenodd"
-                  className="animate-pyramid-spin"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#f97316" />
-                    <stop offset="50%" stopColor="#fb923c" />
-                    <stop offset="100%" stopColor="#fdba74" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 2 - Twisted Ring */}
+          <div className="absolute top-1/3 right-1/3 w-48 h-48 animate-float-delayed opacity-25">
+            <svg width="192" height="192" viewBox="0 0 192 192" fill="none">
+              <path
+                d="M96 20 C140 20, 172 52, 172 96 C172 140, 140 172, 96 172 C52 172, 20 140, 20 96 C20 52, 52 20, 96 20 Z M96 60 C116 60, 132 76, 132 96 C132 116, 116 132, 96 132 C76 132, 60 116, 60 96 C60 76, 76 60, 96 60 Z"
+                fill="url(#orangeGradient2)"
+                fillRule="evenodd"
+                className="animate-pyramid-spin"
+              />
+              <defs>
+                <linearGradient id="orangeGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f97316" />
+                  <stop offset="50%" stopColor="#fb923c" />
+                  <stop offset="100%" stopColor="#fdba74" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
 
-            {/* Abstract Shape 3 - Organic Wave */}
-            <div className="absolute bottom-1/3 left-1/2 w-56 h-32 animate-float-slow opacity-30">
-              <svg width="224" height="128" viewBox="0 0 224 128" fill="none">
-                <path
-                  d="M0 64 C56 20, 112 20, 168 64 C224 108, 168 108, 112 64 C56 108, 0 108, 0 64 Z"
-                  fill="url(#orangeGradient3)"
-                  className="animate-hexagon-pulse"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#ea580c" />
-                    <stop offset="50%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#fb923c" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 3 - Organic Wave */}
+          <div className="absolute bottom-1/3 left-1/2 w-56 h-32 animate-float-slow opacity-30">
+            <svg width="224" height="128" viewBox="0 0 224 128" fill="none">
+              <path
+                d="M0 64 C56 20, 112 20, 168 64 C224 108, 168 108, 112 64 C56 108, 0 108, 0 64 Z"
+                fill="url(#orangeGradient3)"
+                className="animate-hexagon-pulse"
+              />
+              <defs>
+                <linearGradient id="orangeGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#ea580c" />
+                  <stop offset="50%" stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#fb923c" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
 
-            {/* Abstract Shape 4 - Geometric Crystal */}
-            <div className="absolute top-1/2 right-1/4 w-40 h-40 animate-float-reverse opacity-25">
-              <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
-                <path
-                  d="M80 10 L140 50 L120 120 L40 120 L20 50 Z"
-                  fill="url(#orangeGradient4)"
-                  className="animate-cube-rotate"
-                />
-                <path
-                  d="M80 10 L140 50 L80 80 Z"
-                  fill="url(#orangeGradient5)"
-                  opacity="0.8"
-                  className="animate-cube-rotate"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fdba74" />
-                    <stop offset="50%" stopColor="#fb923c" />
-                    <stop offset="100%" stopColor="#ea580c" />
-                  </linearGradient>
-                  <linearGradient id="orangeGradient5" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#fb923c" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 4 - Geometric Crystal */}
+          <div className="absolute top-1/2 right-1/4 w-40 h-40 animate-float-reverse opacity-25">
+            <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
+              <path
+                d="M80 10 L140 50 L120 120 L40 120 L20 50 Z"
+                fill="url(#orangeGradient4)"
+                className="animate-cube-rotate"
+              />
+              <path
+                d="M80 10 L140 50 L80 80 Z"
+                fill="url(#orangeGradient5)"
+                opacity="0.8"
+                className="animate-cube-rotate"
+              />
+              <defs>
+                <linearGradient id="orangeGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fdba74" />
+                  <stop offset="50%" stopColor="#fb923c" />
+                  <stop offset="100%" stopColor="#ea580c" />
+                </linearGradient>
+                <linearGradient id="orangeGradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#fb923c" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
 
-            {/* Abstract Shape 5 - Flowing Ribbon */}
-            <div className="absolute bottom-1/4 right-1/3 w-72 h-24 animate-sphere-float opacity-20">
-              <svg width="288" height="96" viewBox="0 0 288 96" fill="none">
-                <path
-                  d="M0 48 C72 12, 144 84, 216 48 C288 12, 216 84, 144 48 C72 84, 0 12, 0 48 Z"
-                  fill="url(#orangeGradient6)"
-                  className="animate-mane-flow-1"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient6" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fb923c" />
-                    <stop offset="50%" stopColor="#fdba74" />
-                    <stop offset="100%" stopColor="#f97316" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 5 - Flowing Ribbon */}
+          <div className="absolute bottom-1/4 right-1/3 w-72 h-24 animate-sphere-float opacity-20">
+            <svg width="288" height="96" viewBox="0 0 288 96" fill="none">
+              <path
+                d="M0 48 C72 12, 144 84, 216 48 C288 12, 216 84, 144 48 C72 84, 0 12, 0 48 Z"
+                fill="url(#orangeGradient6)"
+                className="animate-mane-flow-1"
+              />
+              <defs>
+                <linearGradient id="orangeGradient6" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fb923c" />
+                  <stop offset="50%" stopColor="#fdba74" />
+                  <stop offset="100%" stopColor="#f97316" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
         </div>
 
@@ -428,34 +318,36 @@ export default function AIPositioningLanding() {
         </div>
 
         <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10 min-h-screen py-20">
-          <Badge className="mb-6 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 text-sm font-medium animate-slide-down">
-            🚀 Posicionamiento en IA - Nueva Era Digital
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-slide-up">
-            ¿Estás apareciendo en las{" "}
-            <span className="text-orange-400 animate-pulse-glow">respuestas de Google con IA</span>?
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-slate-300 max-w-4xl mx-auto leading-relaxed animate-slide-up-delayed">
-            Si la IA no menciona tu marca, estás fuera del juego digital. Te ayudamos a recuperar visibilidad con
-            contenido optimizado para motores de inteligencia artificial.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up-delayed-2">
-            <Button
-              size="lg"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-bounce-subtle"
-              onClick={() => (window.location.href = "/calendario")}
-            >
-              Agenda tu auditoría gratuita
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg transform hover:scale-105 transition-all duration-300"
-              onClick={() => (window.location.href = "/aprende-mas")}
-            >
-              <BookOpen className="mr-2 h-5 w-5" />
-              Aprende más
-            </Button>
+          <div className="col-span-2 lg:col-span-1">
+            <Badge className="mb-6 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 text-sm font-medium animate-slide-down">
+              🚀 Posicionamiento en IA - Nueva Era Digital
+            </Badge>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-slide-up">
+              ¿Estás apareciendo en las{" "}
+              <span className="text-orange-400 animate-pulse-glow">respuestas de Google con IA</span>?
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-slate-300 max-w-4xl leading-relaxed animate-slide-up-delayed">
+              Si la IA no menciona tu marca, estás fuera del juego digital. Te ayudamos a recuperar visibilidad con
+              contenido optimizado para motores de inteligencia artificial.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 animate-slide-up-delayed-2">
+              <Button
+                size="lg"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-bounce-subtle"
+                onClick={() => (window.location.href = "/calendario")}
+              >
+                Agenda tu auditoría gratuita
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg transform hover:scale-105 transition-all duration-300"
+                onClick={() => (window.location.href = "/aprende-mas")}
+              >
+                <BookOpen className="mr-2 h-5 w-5" />
+                Aprende más
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -817,10 +709,7 @@ export default function AIPositioningLanding() {
       <section id="faq" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2
-              className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6
-"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
               Preguntas <span className="text-green-500">frecuentes</span>
             </h2>
           </div>
@@ -925,7 +814,7 @@ export default function AIPositioningLanding() {
       <footer className="bg-orange-500 dark:bg-orange-600 text-white py-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
-            <h3 className="text-2xl font-bold mb-2">{"Diseño y Optimización Online "}</h3>
+            <h3 className="text-2xl font-bold mb-2">Diseño y Optimización Online</h3>
             <p className="text-white">La agencia líder en posicionamiento para motores de IA</p>
           </div>
 
@@ -1008,7 +897,7 @@ export default function AIPositioningLanding() {
           </div>
 
           <div className="border-t border-slate-800 pt-8 text-white">
-            <p>© Diseño y Optimízación Online. Todos los derechos reservados.</p>
+            <p>© Diseño y Optimización Online. Todos los derechos reservados.</p>
           </div>
 
           {/* Social Media Links */}
