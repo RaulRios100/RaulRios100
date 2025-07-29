@@ -314,83 +314,108 @@ export default function AIPositioningLanding() {
 
         {/* Animated Lion Silhouette */}
         <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
-          <div className="animate-lion-float opacity-20">
-            <svg
-              width="600"
-              height="400"
-              viewBox="0 0 600 400"
-              className="animate-lion-pulse"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="lionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#fb923c" />
-                  <stop offset="50%" stopColor="#f97316" />
-                  <stop offset="100%" stopColor="#ea580c" />
-                </linearGradient>
-              </defs>
+          {/* Abstract Orange Shapes */}
+          <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
+            {/* Abstract Shape 1 - Flowing Blob */}
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 animate-float opacity-20">
+              <svg width="256" height="256" viewBox="0 0 256 256" fill="none">
+                <path
+                  d="M50 128 C50 80, 80 50, 128 50 C176 50, 206 80, 206 128 C206 176, 176 206, 128 206 C80 206, 50 176, 50 128 Z"
+                  fill="url(#orangeGradient1)"
+                  className="animate-blob"
+                />
+                <defs>
+                  <linearGradient id="orangeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fb923c" />
+                    <stop offset="50%" stopColor="#f97316" />
+                    <stop offset="100%" stopColor="#ea580c" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
 
-              {/* Lion Head Base */}
-              <path
-                d="M200 180 C180 160, 180 140, 200 120 C220 100, 260 100, 280 120 C300 140, 320 160, 340 180 C360 200, 360 220, 340 240 C320 260, 280 280, 240 280 C200 280, 180 260, 180 240 C180 220, 180 200, 200 180 Z"
-                fill="url(#lionGradient)"
-                className="animate-lion-breathe"
-              />
+            {/* Abstract Shape 2 - Twisted Ring */}
+            <div className="absolute top-1/3 right-1/3 w-48 h-48 animate-float-delayed opacity-25">
+              <svg width="192" height="192" viewBox="0 0 192 192" fill="none">
+                <path
+                  d="M96 20 C140 20, 172 52, 172 96 C172 140, 140 172, 96 172 C52 172, 20 140, 20 96 C20 52, 52 20, 96 20 Z M96 60 C116 60, 132 76, 132 96 C132 116, 116 132, 96 132 C76 132, 60 116, 60 96 C60 76, 76 60, 96 60 Z"
+                  fill="url(#orangeGradient2)"
+                  fillRule="evenodd"
+                  className="animate-pyramid-spin"
+                />
+                <defs>
+                  <linearGradient id="orangeGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#f97316" />
+                    <stop offset="50%" stopColor="#fb923c" />
+                    <stop offset="100%" stopColor="#fdba74" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
 
-              {/* Mane - Multiple flowing curves */}
-              <path
-                d="M160 140 C140 120, 120 100, 100 80 C80 60, 60 40, 80 20 C100 0, 140 20, 160 40 C180 60, 200 80, 220 100 C200 120, 180 140, 160 140 Z"
-                fill="url(#lionGradient)"
-                className="animate-mane-flow-1"
-                opacity="0.8"
-              />
+            {/* Abstract Shape 3 - Organic Wave */}
+            <div className="absolute bottom-1/3 left-1/2 w-56 h-32 animate-float-slow opacity-30">
+              <svg width="224" height="128" viewBox="0 0 224 128" fill="none">
+                <path
+                  d="M0 64 C56 20, 112 20, 168 64 C224 108, 168 108, 112 64 C56 108, 0 108, 0 64 Z"
+                  fill="url(#orangeGradient3)"
+                  className="animate-hexagon-pulse"
+                />
+                <defs>
+                  <linearGradient id="orangeGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ea580c" />
+                    <stop offset="50%" stopColor="#f97316" />
+                    <stop offset="100%" stopColor="#fb923c" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
 
-              <path
-                d="M120 180 C100 160, 80 140, 60 120 C40 100, 20 80, 40 60 C60 40, 100 60, 120 80 C140 100, 160 120, 180 140 C160 160, 140 180, 120 180 Z"
-                fill="url(#lionGradient)"
-                className="animate-mane-flow-2"
-                opacity="0.7"
-              />
+            {/* Abstract Shape 4 - Geometric Crystal */}
+            <div className="absolute top-1/2 right-1/4 w-40 h-40 animate-float-reverse opacity-25">
+              <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
+                <path
+                  d="M80 10 L140 50 L120 120 L40 120 L20 50 Z"
+                  fill="url(#orangeGradient4)"
+                  className="animate-cube-rotate"
+                />
+                <path
+                  d="M80 10 L140 50 L80 80 Z"
+                  fill="url(#orangeGradient5)"
+                  opacity="0.8"
+                  className="animate-cube-rotate"
+                />
+                <defs>
+                  <linearGradient id="orangeGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fdba74" />
+                    <stop offset="50%" stopColor="#fb923c" />
+                    <stop offset="100%" stopColor="#ea580c" />
+                  </linearGradient>
+                  <linearGradient id="orangeGradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#f97316" />
+                    <stop offset="100%" stopColor="#fb923c" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
 
-              <path
-                d="M140 220 C120 200, 100 180, 80 160 C60 140, 40 120, 60 100 C80 80, 120 100, 140 120 C160 140, 180 160, 200 180 C180 200, 160 220, 140 220 Z"
-                fill="url(#lionGradient)"
-                className="animate-mane-flow-3"
-                opacity="0.6"
-              />
-
-              {/* More mane sections */}
-              <path
-                d="M180 100 C200 80, 220 60, 240 40 C260 20, 280 0, 300 20 C320 40, 300 80, 280 100 C260 120, 240 140, 220 160 C200 140, 180 120, 180 100 Z"
-                fill="url(#lionGradient)"
-                className="animate-mane-flow-4"
-                opacity="0.8"
-              />
-
-              <path
-                d="M220 80 C240 60, 260 40, 280 20 C300 0, 320 -20, 340 0 C360 20, 340 60, 320 80 C300 100, 280 120, 260 140 C240 120, 220 100, 220 80 Z"
-                fill="url(#lionGradient)"
-                className="animate-mane-flow-5"
-                opacity="0.7"
-              />
-
-              {/* Snout and facial features */}
-              <path
-                d="M320 200 C340 200, 360 220, 380 240 C400 260, 420 280, 400 300 C380 320, 340 300, 320 280 C300 260, 300 240, 320 220 C320 210, 320 200, 320 200 Z"
-                fill="url(#lionGradient)"
-                className="animate-lion-breathe"
-              />
-
-              {/* Eye */}
-              <circle cx="280" cy="160" r="8" fill="#1f2937" className="animate-lion-blink" />
-
-              {/* Nose */}
-              <path
-                d="M350 220 C360 220, 370 230, 370 240 C370 250, 360 260, 350 260 C340 260, 330 250, 330 240 C330 230, 340 220, 350 220 Z"
-                fill="#1f2937"
-              />
-            </svg>
+            {/* Abstract Shape 5 - Flowing Ribbon */}
+            <div className="absolute bottom-1/4 right-1/3 w-72 h-24 animate-sphere-float opacity-20">
+              <svg width="288" height="96" viewBox="0 0 288 96" fill="none">
+                <path
+                  d="M0 48 C72 12, 144 84, 216 48 C288 12, 216 84, 144 48 C72 84, 0 12, 0 48 Z"
+                  fill="url(#orangeGradient6)"
+                  className="animate-mane-flow-1"
+                />
+                <defs>
+                  <linearGradient id="orangeGradient6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fb923c" />
+                    <stop offset="50%" stopColor="#fdba74" />
+                    <stop offset="100%" stopColor="#f97316" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           </div>
         </div>
 
