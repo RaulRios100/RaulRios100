@@ -151,7 +151,7 @@ export default function CasosDeExito() {
             <Button
               size="lg"
               className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4"
-              onClick={() => window.open("/agendar-sesion", "_self")}
+              onClick={() => (window.location.href = "/agendar-sesion")}
             >
               Agendar mi sesión estratégica
             </Button>

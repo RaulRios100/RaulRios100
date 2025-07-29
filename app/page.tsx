@@ -152,7 +152,7 @@ export default function AIPositioningLanding() {
         {/* Hero Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/hero-ai-positioning.png"
+            src="/placeholder.svg?height=800&width=1200"
             alt="AI Positioning Technology"
             className="w-full h-full object-cover opacity-30 animate-fade-in"
             onError={(e) => {

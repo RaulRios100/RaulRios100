@@ -3,10 +3,12 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Clock, CheckCircle, Users, Video, Moon, Sun } from "lucide-react"
+import { Calendar, Clock, CheckCircle, Video } from "lucide-react"
 import { useState, useEffect } from "react"
+import { Moon, Sun } from "lucide-react"
+import NavigationHeader from "@/components/navigation-header"
 
-export default function CalendarioPage() {
+export default function Calendario() {
   const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
@@ -40,212 +42,120 @@ export default function CalendarioPage() {
     </button>
   )
 
-  const horarios = [
-    { dia: "Lunes", fecha: "27 Enero", slots: ["09:00", "11:00", "14:00", "16:00"] },
-    { dia: "Martes", fecha: "28 Enero", slots: ["10:00", "12:00", "15:00", "17:00"] },
-    { dia: "Miércoles", fecha: "29 Enero", slots: ["09:00", "11:30", "14:30", "16:30"] },
-    { dia: "Jueves", fecha: "30 Enero", slots: ["10:30", "13:00", "15:30", "17:30"] },
-    { dia: "Viernes", fecha: "31 Enero", slots: ["09:30", "12:30", "14:00", "16:00"] },
-  ]
-
-  const handleScheduleClick = (dia: string, hora: string) => {
-    // URL de Google Calendar con parámetros pre-llenados
-    const startDate = new Date()
-    startDate.setHours(Number.parseInt(hora.split(":")[0]), Number.parseInt(hora.split(":")[1]))
-
-    const endDate = new Date(startDate)
-    endDate.setMinutes(endDate.getMinutes() + 30)
-
-    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Auditoría%20Gratuita%20-%20Posicionamiento%20AIO&dates=${startDate.toISOString().replace(/[-:]/g, "").split(".")[0]}Z/${endDate.toISOString().replace(/[-:]/g, "").split(".")[0]}Z&details=Sesión%20estratégica%20gratuita%20para%20analizar%20tu%20posicionamiento%20en%20motores%20de%20IA&location=Videollamada%20(enlace%20se%20enviará%20por%20email)&sf=true&output=xml`
-
-    window.open(googleCalendarUrl, "_blank")
-  }
-
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
       <DarkModeToggle />
+      <NavigationHeader title="Agenda tu Consulta" />
+
       {/* Header */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Button
-            variant="outline"
-            className="mb-6 bg-transparent border-white text-white hover:bg-white hover:text-slate-900"
-            onClick={() => window.close()}
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Volver
-          </Button>
+        <div className="max-w-6xl mx-auto text-center">
+          <Badge className="mb-6 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 text-sm font-medium">
+            📅 Consulta Estratégica Gratuita
+          </Badge>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Agenda tu <span className="text-orange-400">Auditoría Gratuita</span>
           </h1>
-          <p className="text-xl text-slate-300 max-w-3xl">
-            Selecciona el horario que mejor te convenga para tu sesión estratégica de 30 minutos. Analizaremos tu
-            presencia actual en motores de IA.
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            Descubre cómo tu negocio puede dominar los motores de IA en una sesión personalizada de 30 minutos
           </p>
-        </div>
-      </section>
-
-      {/* Benefits Banner */}
-      <section className="py-8 px-4 bg-green-50 border-b border-green-200">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-4 text-center">
-            <div className="flex items-center justify-center gap-2">
-              <CheckCircle className="h-5 w-5 text-green-600" />
-              <span className="text-green-800 font-medium">100% Gratuita</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <Clock className="h-5 w-5 text-green-600" />
-              <span className="text-green-800 font-medium">30 minutos</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <Video className="h-5 w-5 text-green-600" />
-              <span className="text-green-800 font-medium">Por videollamada</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <Users className="h-5 w-5 text-green-600" />
-              <span className="text-green-800 font-medium">Sin compromiso</span>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Calendar Section */}
       <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Elige tu <span className="text-orange-500">horario preferido</span>
-            </h2>
-            <p className="text-lg text-slate-600">Todos los horarios están en zona horaria de México (GMT-6)</p>
-          </div>
-
-          <div className="grid md:grid-cols-5 gap-6">
-            {horarios.map((dia, index) => (
-              <Card
-                key={index}
-                className="border-2 border-slate-200 hover:border-orange-300 transition-all duration-300"
-              >
-                <CardHeader className="text-center pb-4">
-                  <Badge className="w-fit mx-auto mb-2 bg-slate-100 text-slate-700">{dia.dia}</Badge>
-                  <CardTitle className="text-lg text-slate-900">{dia.fecha}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  {dia.slots.map((hora, slotIndex) => (
-                    <Button
-                      key={slotIndex}
-                      variant="outline"
-                      size="sm"
-                      className="w-full hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700"
-                      onClick={() => handleScheduleClick(dia.dia, hora)}
-                    >
-                      <Clock className="mr-2 h-4 w-4" />
-                      {hora}
-                    </Button>
-                  ))}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* What to Expect */}
-          <div className="mt-16">
-            <Card className="bg-white border-2 border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-2xl text-center text-slate-900">
-                  ¿Qué incluye tu auditoría gratuita?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="bg-orange-100 p-2 rounded-full">
-                        <CheckCircle className="h-5 w-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-slate-900 mb-1">Análisis de presencia en IA</h3>
-                        <p className="text-slate-600 text-sm">
-                          Revisamos si apareces en Google AI Overviews, ChatGPT, Perplexity y otros motores de IA
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="bg-orange-100 p-2 rounded-full">
-                        <CheckCircle className="h-5 w-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-slate-900 mb-1">Evaluación de competencia</h3>
-                        <p className="text-slate-600 text-sm">
-                          Analizamos cómo se posicionan tus competidores en las respuestas de IA
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="bg-orange-100 p-2 rounded-full">
-                        <CheckCircle className="h-5 w-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-slate-900 mb-1">Oportunidades identificadas</h3>
-                        <p className="text-slate-600 text-sm">
-                          Te mostramos gaps específicos que puedes aprovechar inmediatamente
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="bg-orange-100 p-2 rounded-full">
-                        <CheckCircle className="h-5 w-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-slate-900 mb-1">Estrategia personalizada</h3>
-                        <p className="text-slate-600 text-sm">
-                          Plan específico para tu sector con acciones prioritarias
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="bg-orange-100 p-2 rounded-full">
-                        <CheckCircle className="h-5 w-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-slate-900 mb-1">Proyección de ROI</h3>
-                        <p className="text-slate-600 text-sm">
-                          Estimación realista de resultados y retorno de inversión
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="bg-orange-100 p-2 rounded-full">
-                        <CheckCircle className="h-5 w-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-slate-900 mb-1">Reporte ejecutivo</h3>
-                        <p className="text-slate-600 text-sm">
-                          Documento PDF con hallazgos y recomendaciones para tu equipo
-                        </p>
-                      </div>
-                    </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+                ¿Qué incluye tu consulta gratuita?
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-slate-900 dark:text-white">Análisis de tu situación actual</h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Revisamos tu presencia actual en motores de IA y identificamos oportunidades
+                    </p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-slate-900 dark:text-white">Estrategia personalizada</h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Plan específico para tu industria y objetivos de negocio
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-slate-900 dark:text-white">Roadmap de implementación</h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Pasos claros para comenzar a aparecer en respuestas de IA
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-          {/* Contact Info */}
-          <div className="mt-12 text-center">
-            <p className="text-slate-600 mb-4">¿Necesitas un horario diferente o tienes alguna pregunta?</p>
-            <Button
-              variant="outline"
-              onClick={() =>
-                window.open(
-                  "mailto:contacto@posicionamientoaio.com?subject=Consulta sobre auditoría gratuita",
-                  "_blank",
-                )
-              }
-            >
-              Contáctanos directamente
-            </Button>
+              <div className="mt-8 p-6 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
+                <h3 className="font-semibold text-orange-900 dark:text-orange-300 mb-2">
+                  Sin compromiso, 100% gratuito
+                </h3>
+                <p className="text-orange-800 dark:text-orange-200 text-sm">
+                  Esta consulta es completamente gratuita y sin compromiso. Solo queremos ayudarte a entender el
+                  potencial de tu negocio en la era de la IA.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <Card className="border-2 border-orange-200 dark:border-orange-700">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-2xl text-slate-900 dark:text-white">Selecciona tu horario</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-center p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                      <Clock className="h-8 w-8 text-orange-500 mx-auto mb-2" />
+                      <div className="font-semibold text-slate-900 dark:text-white">30 minutos</div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">Duración</div>
+                    </div>
+                    <div className="text-center p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                      <Video className="h-8 w-8 text-blue-500 mx-auto mb-2" />
+                      <div className="font-semibold text-slate-900 dark:text-white">Video llamada</div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">Google Meet</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-slate-900 dark:text-white">Horarios disponibles:</h4>
+                    <Button className="w-full justify-start bg-white dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 hover:bg-orange-50 dark:hover:bg-orange-900/20">
+                      <Calendar className="mr-2 h-4 w-4" />
+                      Lunes a Viernes: 9:00 AM - 6:00 PM
+                    </Button>
+                    <Button className="w-full justify-start bg-white dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 hover:bg-orange-50 dark:hover:bg-orange-900/20">
+                      <Calendar className="mr-2 h-4 w-4" />
+                      Sábados: 10:00 AM - 2:00 PM
+                    </Button>
+                  </div>
+
+                  <Button
+                    size="lg"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                    onClick={() => window.open("https://calendly.com/tu-calendario", "_blank")}
+                  >
+                    Agendar mi consulta gratuita
+                  </Button>
+
+                  <p className="text-center text-sm text-slate-600 dark:text-slate-400">
+                    Recibirás un email de confirmación con el enlace de la videollamada
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

@@ -2,11 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { ArrowLeft, Calendar, Clock, CheckCircle } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Calendar, Clock, CheckCircle, Users, Video, Star } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Moon, Sun } from "lucide-react"
+import NavigationHeader from "@/components/navigation-header"
 
 export default function AgendarSesion() {
   const [isDarkMode, setIsDarkMode] = useState(true)
@@ -43,133 +43,147 @@ export default function AgendarSesion() {
   )
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
       <DarkModeToggle />
+      <NavigationHeader title="Sesión Estratégica" />
+
       {/* Header */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Button
-            variant="outline"
-            className="mb-6 bg-transparent border-white text-white hover:bg-white hover:text-slate-900"
-            onClick={() => window.close()}
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Volver
-          </Button>
+        <div className="max-w-6xl mx-auto text-center">
+          <Badge className="mb-6 bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm font-medium">
+            🎯 Sesión Estratégica Premium
+          </Badge>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Agenda tu <span className="text-orange-400">Sesión Estratégica</span>
+            Sesión Estratégica <span className="text-green-400">Personalizada</span>
           </h1>
-          <p className="text-xl text-slate-300">
-            Descubre cómo posicionar tu marca en los motores de IA. Sesión gratuita de 30 minutos.
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            Una sesión profunda de 60 minutos para crear tu estrategia completa de posicionamiento en IA
           </p>
         </div>
       </section>
 
-      {/* Form Section */}
+      {/* Session Details */}
       <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
-            {/* Benefits */}
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">En esta sesión descubrirás:</h2>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0 mt-1" />
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">Tu sesión estratégica incluye:</h2>
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 dark:bg-green-700 p-2 rounded-full">
+                    <Star className="h-6 w-6 text-green-600 dark:text-green-300" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900">Auditoría gratuita de tu presencia en IA</h3>
-                    <p className="text-slate-600">Analizamos si apareces en Google AI Overviews y ChatGPT</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white text-lg mb-2">
+                      Auditoría completa en vivo
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Analizamos tu sitio web en tiempo real, identificando oportunidades específicas para aparecer en
+                      AI Overviews y respuestas generativas.
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0 mt-1" />
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-blue-100 dark:bg-blue-700 p-2 rounded-full">
+                    <Users className="h-6 w-6 text-blue-600 dark:text-blue-300" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900">Estrategia personalizada</h3>
-                    <p className="text-slate-600">Plan específico para tu sector y competencia</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white text-lg mb-2">
+                      Estrategia de competencia
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Analizamos qué están haciendo tus competidores en motores de IA y cómo puedes superarlos.
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0 mt-1" />
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-purple-100 dark:bg-purple-700 p-2 rounded-full">
+                    <Calendar className="h-6 w-6 text-purple-600 dark:text-purple-300" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900">Oportunidades de crecimiento</h3>
-                    <p className="text-slate-600">Identificamos gaps que puedes aprovechar inmediatamente</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white text-lg mb-2">
+                      Plan de acción de 90 días
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Roadmap detallado con tareas específicas, prioridades y cronograma para los próximos 3 meses.
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0 mt-1" />
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-orange-100 dark:bg-orange-700 p-2 rounded-full">
+                    <CheckCircle className="h-6 w-6 text-orange-600 dark:text-orange-300" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900">ROI proyectado</h3>
-                    <p className="text-slate-600">Estimación de resultados y retorno de inversión</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white text-lg mb-2">
+                      Recomendaciones de herramientas
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Lista personalizada de herramientas y recursos específicos para tu industria y presupuesto.
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 p-6 bg-green-50 rounded-lg border border-green-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Clock className="h-5 w-5 text-green-600" />
-                  <span className="font-semibold text-green-800">Sesión de 30 minutos</span>
-                </div>
-                <p className="text-green-700 text-sm">Sin compromiso • Totalmente gratuita • Resultados inmediatos</p>
+              <div className="mt-8 p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                <h3 className="font-semibold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2">
+                  <Clock className="h-5 w-5" />
+                  Inversión: $2,500 MXN (Valor: $8,000 MXN)
+                </h3>
+                <p className="text-green-800 dark:text-green-200 text-sm">
+                  Esta sesión tiene un valor real de $8,000 MXN, pero la ofrecemos a precio especial para empresarios
+                  comprometidos con el crecimiento.
+                </p>
               </div>
             </div>
 
-            {/* Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5 text-orange-500" />
-                  Reserva tu sesión
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-4">
+            <div>
+              <Card className="border-2 border-green-200 dark:border-green-700 sticky top-8">
+                <CardHeader className="text-center bg-green-50 dark:bg-green-900/20">
+                  <CardTitle className="text-2xl text-slate-900 dark:text-white">Agenda tu sesión</CardTitle>
+                  <p className="text-slate-600 dark:text-slate-400">60 minutos que cambiarán tu negocio</p>
+                </CardHeader>
+                <CardContent className="p-6 space-y-6">
                   <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">Nombre *</label>
-                      <Input placeholder="Tu nombre" required />
+                    <div className="text-center p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                      <Clock className="h-8 w-8 text-green-500 mx-auto mb-2" />
+                      <div className="font-semibold text-slate-900 dark:text-white">60 minutos</div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">Sesión completa</div>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">Apellido *</label>
-                      <Input placeholder="Tu apellido" required />
+                    <div className="text-center p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                      <Video className="h-8 w-8 text-blue-500 mx-auto mb-2" />
+                      <div className="font-semibold text-slate-900 dark:text-white">Online</div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">Zoom/Meet</div>
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Email *</label>
-                    <Input type="email" placeholder="tu@email.com" required />
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-green-600 mb-2">$2,500 MXN</div>
+                    <div className="text-sm text-slate-600 dark:text-slate-400 line-through">
+                      Valor regular: $8,000 MXN
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Teléfono *</label>
-                    <Input type="tel" placeholder="+52 55 1234 5678" required />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Empresa</label>
-                    <Input placeholder="Nombre de tu empresa" />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Sitio web</label>
-                    <Input placeholder="https://tuempresa.com" />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      ¿Cuál es tu principal desafío digital?
-                    </label>
-                    <Textarea placeholder="Cuéntanos brevemente sobre tu situación actual..." rows={3} />
-                  </div>
-
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3">
-                    Agendar mi sesión gratuita
+                  <Button
+                    size="lg"
+                    className="w-full bg-green-500 hover:bg-green-600 text-white"
+                    onClick={() => window.open("https://calendly.com/sesion-estrategica", "_blank")}
+                  >
+                    Agendar mi sesión estratégica
                   </Button>
 
-                  <p className="text-xs text-slate-500 text-center">
-                    Al enviar este formulario aceptas nuestros términos de privacidad
-                  </p>
-                </form>
-              </CardContent>
-            </Card>
+                  <div className="text-center space-y-2">
+                    <p className="text-sm text-slate-600 dark:text-slate-400">✅ Garantía de satisfacción 100%</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      ✅ Pago seguro con tarjeta o transferencia
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
