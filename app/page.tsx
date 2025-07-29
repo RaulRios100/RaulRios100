@@ -1,609 +1,808 @@
 "use client"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
+  Search,
+  TrendingDown,
+  Bot,
   CheckCircle,
-  Home,
   Shield,
+  BarChart3,
   Users,
-  Heart,
+  Zap,
   ArrowRight,
-  Phone,
-  FileText,
-  HelpCircle,
-  AlertTriangle,
+  Brain,
+  Target,
+  Award,
+  Clock,
+  BookOpen,
+  Facebook,
+  Instagram,
+  Linkedin,
 } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { AnimatedCounter } from "@/components/animated-counter"
-import { FloatingElements } from "@/components/floating-elements"
-import { useEffect, useState } from "react"
-import { ContactButtons } from "@/components/contact-buttons"
-import { SocialLinks } from "@/components/social-links"
-import { FloatingContact } from "@/components/floating-contact"
-import { QuestionnaireForm } from "@/components/questionnaire-form"
+import { useState, useEffect } from "react"
+import { Moon, Sun } from "lucide-react"
 
-export default function RescateViviendaModern() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  }
+export default function AIPositioningLanding() {
+  const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
-    setIsVisible(true)
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme === "light") {
+      setIsDarkMode(false)
+      document.documentElement.classList.remove("dark")
+    } else {
+      setIsDarkMode(true)
+      document.documentElement.classList.add("dark")
+    }
   }, [])
 
-  const faqs = [
-    {
-      question: "¿Cuánto tiempo toma resolver mi situación?",
-      answer:
-        "En promedio, resolvemos casos en 15-30 días. El tiempo depende de la complejidad de las deudas y la documentación disponible. Casos simples pueden resolverse en una semana.",
-    },
-    {
-      question: "¿Qué pasa si no tengo escrituras o documentos?",
-      answer:
-        "No te preocupes. Nosotros nos encargamos de regularizar la documentación. Podemos trabajar con intestados, herencias no regularizadas y problemas de título.",
-    },
-    {
-      question: "¿Ustedes pagan todas mis deudas?",
-      answer:
-        "Sí, nos hacemos cargo de deudas con INFONAVIT, servicios (luz, agua, predial) y otros adeudos relacionados con la propiedad. Todo queda saldado.",
-    },
-    {
-      question: "¿Cuánto dinero recibiré por mi casa?",
-      answer:
-        "El monto depende del valor de la propiedad, las deudas pendientes y el estado del inmueble. Hacemos una evaluación gratuita y te damos una oferta transparente.",
-    },
-    {
-      question: "¿Qué pasa si mi casa está ocupada por terceros?",
-      answer:
-        "Manejamos situaciones de ocupación irregular. Tenemos experiencia en desalojos legales y procesos de recuperación de inmuebles.",
-    },
-    {
-      question: "¿Es seguro trabajar con ustedes?",
-      answer:
-        "Absolutamente. Todos nuestros procesos son legales y transparentes. Trabajamos con notarios públicos y cumplimos con todas las regulaciones.",
-    },
-  ]
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode)
+    if (!isDarkMode) {
+      document.documentElement.classList.add("dark")
+      localStorage.setItem("theme", "dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+      localStorage.setItem("theme", "light")
+    }
+  }
+
+  const DarkModeToggle = () => (
+    <button
+      onClick={toggleDarkMode}
+      className="fixed bottom-6 right-6 z-50 bg-white dark:bg-slate-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
+    >
+      {isDarkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-slate-600" />}
+    </button>
+  )
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <ThemeToggle />
-      <FloatingElements />
+    <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
+      <DarkModeToggle />
 
-      {/* Header */}
-      <header className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3" onClick={scrollToTop} style={{ cursor: "pointer" }}>
-              <Image
-                src="/images/logo-rescate-vivienda.png"
-                alt="Rescate Vivienda"
-                width={200}
-                height={60}
-                className="h-12 w-auto"
-              />
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <Link
-                href="#servicios"
-                className="text-sm font-medium hover:text-green-500 transition-colors"
-                onClick={scrollToTop}
-              >
-                Servicios
-              </Link>
-              <Link
-                href="/nosotros"
-                className="text-sm font-medium hover:text-green-500 transition-colors"
-                onClick={scrollToTop}
-              >
-                Nosotros
-              </Link>
-              <Link
-                href="#requisitos"
-                className="text-sm font-medium hover:text-green-500 transition-colors"
-                onClick={scrollToTop}
-              >
-                Requisitos
-              </Link>
-              <Link
-                href="#faqs"
-                className="text-sm font-medium hover:text-green-500 transition-colors"
-                onClick={scrollToTop}
-              >
-                FAQs
-              </Link>
-              <Link
-                href="#cuestionario"
-                className="text-sm font-medium hover:text-green-500 transition-colors"
-                onClick={scrollToTop}
-              >
-                Cuestionario
-              </Link>
-              <Link
-                href="#contacto"
-                className="text-sm font-medium hover:text-green-500 transition-colors"
-                onClick={scrollToTop}
-              >
-                Contacto
-              </Link>
-            </nav>
-            <ContactButtons variant="default" />
-          </div>
-        </div>
-      </header>
+      {/* Estilos CSS para animaciones */}
+      <style jsx>{`
+        @keyframes blob {
+          0% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+          100% { transform: translate(0px, 0px) scale(1); }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes float-delayed {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes float-reverse {
+          0%, 100% { transform: translateY(-10px); }
+          50% { transform: translateY(0px); }
+        }
+        
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 0.3; }
+        }
+        
+        @keyframes slide-down {
+          from { opacity: 0; transform: translateY(-30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slide-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse-glow {
+          0%, 100% { text-shadow: 0 0 5px rgba(251, 146, 60, 0.5); }
+          50% { text-shadow: 0 0 20px rgba(251, 146, 60, 0.8), 0 0 30px rgba(251, 146, 60, 0.6); }
+        }
+        
+        @keyframes bounce-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-2px); }
+        }
+        
+        @keyframes scroll-indicator {
+          0% { opacity: 0; transform: translateY(0); }
+          50% { opacity: 1; }
+          100% { opacity: 0; transform: translateY(15px); }
+        }
+        
+        .animate-blob { animation: blob 7s infinite; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delayed 8s ease-in-out infinite; animation-delay: 2s; }
+        .animate-float-slow { animation: float-slow 10s ease-in-out infinite; animation-delay: 4s; }
+        .animate-float-reverse { animation: float-reverse 7s ease-in-out infinite; animation-delay: 1s; }
+        .animate-fade-in { animation: fade-in 2s ease-out; }
+        .animate-slide-down { animation: slide-down 1s ease-out; }
+        .animate-slide-up { animation: slide-up 1s ease-out 0.3s both; }
+        .animate-slide-up-delayed { animation: slide-up 1s ease-out 0.6s both; }
+        .animate-slide-up-delayed-2 { animation: slide-up 1s ease-out 0.9s both; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
+        .animate-scroll-indicator { animation: scroll-indicator 2s ease-in-out infinite; }
+      `}</style>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-600/10 via-transparent to-green-800/10"></div>
+      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white py-20 px-4 overflow-hidden">
+        {/* Animated Background Blobs */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+          <div className="absolute top-10 right-10 w-72 h-72 bg-green-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+        </div>
 
-        <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          <div className={`space-y-8 ${isVisible ? "animate-in slide-in-from-left duration-1000" : "opacity-0"}`}>
-            <div className="space-y-4">
-              <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-4 py-2 text-sm font-medium">
-                ✨ Especialistas en INFONAVIT
-              </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                <span className="text-green-600">Libérate</span>
-                <br />
-                del peso de
-                <br />
-                <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
-                  tu deuda
-                </span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
-                Rescatamos tu casa, liberamos tu futuro. Soluciones rápidas y transparentes para tus deudas INFONAVIT.
-              </p>
-            </div>
+        {/* Hero Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/hero-ai-positioning.png"
+            alt="AI Positioning Technology"
+            className="w-full h-full object-cover opacity-30 animate-fade-in"
+            onError={(e) => {
+              e.currentTarget.style.display = "none"
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/80"></div>
+        </div>
 
-            <ContactButtons variant="hero" />
+        {/* Floating Elements */}
+        <div className="absolute inset-0 z-10">
+          <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-orange-400 rounded-full animate-float"></div>
+          <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-green-400 rounded-full animate-float-delayed"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-blue-400 rounded-full animate-float-slow"></div>
+          <div className="absolute top-1/2 right-1/4 w-5 h-5 bg-purple-400 rounded-full animate-float-reverse"></div>
+        </div>
 
-            <div className="flex items-center space-x-8 pt-4">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">
-                  <AnimatedCounter end={50} suffix="+" />
-                </div>
-                <div className="text-sm text-muted-foreground">Casas Rescatadas</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">
-                  <AnimatedCounter end={95} suffix="%" />
-                </div>
-                <div className="text-sm text-muted-foreground">Éxito Garantizado</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">24/7</div>
-                <div className="text-sm text-muted-foreground">Atención Disponible</div>
-              </div>
-            </div>
+        <div className="relative z-20 max-w-6xl mx-auto text-center">
+          <Badge className="mb-6 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 text-sm font-medium animate-slide-down">
+            🚀 Posicionamiento en IA - Nueva Era Digital
+          </Badge>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-slide-up">
+            ¿Estás apareciendo en las{" "}
+            <span className="text-orange-400 animate-pulse-glow">respuestas de Google con IA</span>?
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 text-slate-300 max-w-4xl mx-auto leading-relaxed animate-slide-up-delayed">
+            Si la IA no menciona tu marca, estás fuera del juego digital. Te ayudamos a recuperar visibilidad con
+            contenido optimizado para motores de inteligencia artificial.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up-delayed-2">
+            <Button
+              size="lg"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-bounce-subtle"
+              onClick={() => (window.location.href = "/calendario")}
+            >
+              Agenda tu auditoría gratuita
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg transform hover:scale-105 transition-all duration-300"
+              onClick={() => (window.location.href = "/aprende-mas")}
+            >
+              <BookOpen className="mr-2 h-5 w-5" />
+              Aprende más
+            </Button>
           </div>
+        </div>
 
-          <div
-            className={`relative ${isVisible ? "animate-in slide-in-from-right duration-1000 delay-300" : "opacity-0"}`}
-          >
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-green-600 to-green-800 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
-              <Image
-                src="/images/hero-transformation.png"
-                alt="Transformación de casa - Antes y Después"
-                width={600}
-                height={400}
-                className="relative rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
-              />
-            </div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-scroll-indicator"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Navigation Buttons */}
+      <section className="py-4 px-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-slate-700 dark:text-slate-300 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20"
+              onClick={() => document.getElementById("problema")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              El Problema
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-slate-700 dark:text-slate-300 hover:text-green-500 hover:bg-green-50 dark:hover:bg-green-900/20"
+              onClick={() => document.getElementById("solucion")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              Nuestra Solución
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-slate-700 dark:text-slate-300 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+              onClick={() => document.getElementById("paquetes")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              Paquetes
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-slate-700 dark:text-slate-300 hover:text-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+              onClick={() => document.getElementById("garantias")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              Garantías
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-slate-700 dark:text-slate-300 hover:text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
+              onClick={() => document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              FAQ
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Problem Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              ¿Tu casa está <span className="text-red-500">abandonada</span>, vandalizada o te ahoga con{" "}
-              <span className="text-red-500">deudas INFONAVIT</span>? 😣
-            </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              En México, más de <strong className="text-green-600">200,000 casas</strong> están en el olvido, afectando
-              a miles de familias. Nosotros resolvemos tu bronca.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Home, title: "Deudas de Créditos", color: "red" },
-              { icon: Shield, title: "Deterioro de Casa", color: "orange" },
-              { icon: Users, title: "Historial Crediticio", color: "yellow" },
-              { icon: Heart, title: "Futuro Financiero", color: "green" },
-            ].map((item, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="pt-6 text-center">
-                  <div
-                    className={`bg-${item.color}-100 dark:bg-${item.color}-900/30 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform`}
-                  >
-                    <item.icon className={`h-8 w-8 text-${item.color}-600`} />
-                  </div>
-                  <h3 className="font-semibold text-lg">{item.title}</h3>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="servicios" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              ¿Qué Hacemos por <span className="text-green-600">Ti</span>?
-            </h2>
-            <p className="text-xl text-muted-foreground">Soluciones integrales para todos tus problemas de vivienda</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                emoji: "💰",
-                title: "Deudas fuera",
-                desc: "Nos encargamos de deudas con INFONAVIT, luz, agua o predial.",
-                color: "green",
-              },
-              {
-                emoji: "🏠",
-                title: "Casas rescatadas",
-                desc: "Revivimos propiedades abandonadas o vandalizadas.",
-                color: "orange",
-              },
-              {
-                emoji: "📄",
-                title: "Papeles en orden",
-                desc: "Arreglamos títulos, escrituras y trámites legales.",
-                color: "red",
-              },
-              {
-                emoji: "💵",
-                title: "Dinero en mano",
-                desc: "Te ofrecemos efectivo para dejar atrás tu casa sin broncas.",
-                color: "yellow",
-              },
-              {
-                emoji: "✨",
-                title: "Buró limpio",
-                desc: "Te ayudamos a limpiar tu crédito para nuevos proyectos.",
-                color: "purple",
-              },
-              {
-                emoji: "🤝",
-                title: "Asesoría completa",
-                desc: "Te acompañamos en todo el proceso paso a paso.",
-                color: "blue",
-              },
-            ].map((service, index) => (
-              <Card
-                key={index}
-                className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 hover:border-green-500/50"
-              >
-                <CardHeader>
-                  <div className="text-4xl mb-2">{service.emoji}</div>
-                  <CardTitle className={`text-${service.color}-600 text-xl`}>{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Requirements Section */}
-      <section id="requisitos" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <FileText className="h-12 w-12 text-green-600 mx-auto mb-4" />
-              <span className="text-green-600">Requisitos</span> para Evaluar tu Caso
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Antes de comenzar, necesitamos verificar algunos puntos importantes
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="border-l-4 border-l-green-500">
-                <CardHeader>
-                  <CardTitle className="text-green-600">📋 Documentación Básica</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Eres el propietario legal del inmueble?</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Está escriturado y registrado a tu nombre?</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Tienes acceso al estado de cuenta del crédito?</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-orange-500">
-                <CardHeader>
-                  <CardTitle className="text-orange-600">🏠 Estado de la Propiedad</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Cuánto tiempo lleva deshabitada?</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Ha sido vandalizada o dañada?</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Está ocupada por terceros?</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-red-500">
-                <CardHeader>
-                  <CardTitle className="text-red-600">💼 Historial de Venta</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Has intentado vender antes?</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Conoces el valor comercial actual?</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Cuál es tu objetivo principal?</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-purple-500">
-                <CardHeader>
-                  <CardTitle className="text-purple-600">🤝 Compromiso Legal</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Estás dispuesto a firmar acuerdo de intención?</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Puedes compartir documentos legales?</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">¿Entiendes que todo está sujeto a verificación?</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+      <section id="problema" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 animate-slide-up">
+                El problema que está <span className="text-orange-500">matando tu negocio</span>
+              </h2>
+              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed animate-slide-up-delayed">
+                Más del <strong className="text-orange-500">40% de los clics ya no llegan a sitios web</strong>. La IA
+                generativa de Google responde directamente. Las marcas que no aparecen ahí están perdiendo autoridad,
+                tráfico y clientes potenciales.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 animate-slide-up-delayed-2">
+                  <TrendingDown className="h-6 w-6 text-orange-500" />
+                  <span className="text-slate-700 dark:text-slate-300">Pérdida masiva de tráfico orgánico</span>
+                </div>
+                <div className="flex items-center gap-3 animate-slide-up-delayed-2" style={{ animationDelay: "1.1s" }}>
+                  <Users className="h-6 w-6 text-orange-500" />
+                  <span className="text-slate-700 dark:text-slate-300">Clientes que no te encuentran</span>
+                </div>
+                <div className="flex items-center gap-3 animate-slide-up-delayed-2" style={{ animationDelay: "1.2s" }}>
+                  <Target className="h-6 w-6 text-orange-500" />
+                  <span className="text-slate-700 dark:text-slate-300">Competencia dominando las respuestas de IA</span>
+                </div>
+              </div>
             </div>
-
-            <Card className="mt-8 border-2 border-yellow-500/50 bg-yellow-50 dark:bg-yellow-950/20">
-              <CardContent className="p-6">
-                <div className="flex items-start space-x-3">
-                  <AlertTriangle className="h-6 w-6 text-yellow-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
-                      Nota Importante de Seguridad
-                    </h4>
-                    <p className="text-sm text-yellow-700 dark:text-yellow-300 leading-relaxed">
-                      Esta evaluación es únicamente de pre-calificación. Todo proceso de negociación quedará sujeto a
-                      revisión legal de escrituras, historial registral, validación con INFONAVIT o institución
-                      financiera correspondiente, y verificación de identidad del propietario.
-                    </p>
+            <div className="bg-white dark:bg-slate-700 p-8 rounded-2xl shadow-lg animate-fade-in">
+              <div className="text-center">
+                <div className="bg-orange-100 dark:bg-orange-700 p-6 rounded-full w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                  <Search className="h-12 w-12 text-orange-500" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Desvío de Clics hacia SGE</h3>
+                <div className="space-y-3">
+                  <div className="bg-slate-100 dark:bg-slate-600 p-3 rounded-lg">
+                    <div className="text-sm text-slate-600 dark:text-slate-300">Búsquedas tradicionales</div>
+                    <div className="text-2xl font-bold text-slate-900 dark:text-white">60%</div>
+                  </div>
+                  <ArrowRight className="h-6 w-6 text-slate-400 mx-auto" />
+                  <div className="bg-orange-100 dark:bg-orange-700 p-3 rounded-lg">
+                    <div className="text-sm text-orange-800 dark:text-orange-200">Respuestas de IA</div>
+                    <div className="text-2xl font-bold text-orange-500">40%</div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Solution Section */}
+      <section id="solucion" className="py-20 px-4 dark:bg-slate-900 transition-colors duration-300">
+        <div className="max-w-6xl mx-auto text-center">
+          <Badge className="mb-6 bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm font-medium">
+            💡 Nuestra Solución Exclusiva
+          </Badge>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+            Posicionamiento <span className="text-green-500">AIO + LLM</span>
+          </h2>
+          <p className="text-xl text-slate-700 dark:text-slate-300 mb-12 max-w-4xl mx-auto">
+            Optimización completa para motores de IA (Search Generative Experience) y modelos de lenguaje como ChatGPT,
+            Perplexity, Gemini y más.
+          </p>
+
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+              <Brain className="h-12 w-12 text-green-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">AI Overviews</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Optimización para SGE</p>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+              <Bot className="h-12 w-12 text-blue-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Schema Avanzado</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300">FAQ, productos, negocio local</p>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+              <Zap className="h-12 w-12 text-purple-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Contenido IA</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Conversacional y entrenado</p>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+              <Users className="h-12 w-12 text-orange-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Agentes de IA</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Integración y capacitación</p>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+              <Award className="h-12 w-12 text-red-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Estrategia EEAT</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Autoridad reconocida por IA</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Packages Section */}
+      <section id="paquetes" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
+              Elige tu <span className="text-green-500">paquete de posicionamiento</span>
+            </h2>
+            <p className="text-xl text-slate-700 dark:text-slate-300">
+              Soluciones adaptadas a cada etapa de tu negocio
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Launchpad Package */}
+            <Card className="relative border-2 border-slate-200 dark:border-slate-700 hover:border-green-300 transition-all duration-300">
+              <CardHeader className="text-center pb-8">
+                <Badge className="w-fit mx-auto mb-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600">
+                  PARA EMPEZAR
+                </Badge>
+                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO LAUNCHPAD</CardTitle>
+                <div className="mt-4">
+                  <div className="text-3xl font-bold text-slate-900 dark:text-white">$10,000 MXN</div>
+                  <div className="text-lg text-slate-600 dark:text-slate-300">o $555 USD</div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Auditoría inicial completa</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Optimización de 5 páginas clave</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">
+                      Datos estructurados (FAQPage y LocalBusiness)
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">5 contenidos conversacionales mensuales</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Reporte mensual de visibilidad</span>
+                  </div>
+                </div>
+                <Button
+                  className="w-full mt-6 bg-slate-900 hover:bg-slate-800 text-white"
+                  onClick={() => (window.location.href = "/contratar/launchpad")}
+                >
+                  Comenzar ahora
+                </Button>
               </CardContent>
             </Card>
 
-            <div className="text-center mt-8">
-              <Button
-                size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg group"
-                onClick={() => {
-                  const message = encodeURIComponent(
-                    "¡Hola! Quiero evaluar mi caso. Tengo una propiedad con problemas y me gustaría conocer sus servicios.",
-                  )
-                  window.open(`https://wa.me/524775780721?text=${message}`, "_blank")
-                }}
-              >
-                <FileText className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
-                Evaluar Mi Caso Ahora
-                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
+            {/* Accelerator Package */}
+            <Card className="relative border-2 border-green-300 dark:border-green-700 hover:border-green-400 transition-all duration-300 transform scale-105">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-green-500 hover:bg-green-600 text-white px-4 py-2">MÁS POPULAR</Badge>
+              </div>
+              <CardHeader className="text-center pb-8 pt-8">
+                <Badge className="w-fit mx-auto mb-4 bg-green-100 dark:bg-green-700 text-green-700 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-600">
+                  CRECIMIENTO
+                </Badge>
+                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO ACCELERATOR</CardTitle>
+                <div className="mt-4">
+                  <div className="text-3xl font-bold text-green-600">$15,000 MXN</div>
+                  <div className="text-lg text-slate-600 dark:text-slate-300">o $810 USD</div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Optimización de 10 URLs</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Integración de chatbot LLM simple</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">10 contenidos por mes</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Análisis de competencia en SGE</span>
+                  </div>
+                </div>
+                <Button
+                  className="w-full mt-6 bg-green-500 hover:bg-green-600 text-white"
+                  onClick={() => (window.location.href = "/contratar/accelerator")}
+                >
+                  Acelerar mi crecimiento
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Dominator Package */}
+            <Card className="relative border-2 border-orange-300 dark:border-orange-700 hover:border-orange-400 transition-all duration-300">
+              <CardHeader className="text-center pb-8">
+                <Badge className="w-fit mx-auto mb-4 bg-orange-100 dark:bg-orange-700 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-600">
+                  DOMINACIÓN TOTAL
+                </Badge>
+                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO DOMINATOR</CardTitle>
+                <div className="mt-4">
+                  <div className="text-3xl font-bold text-orange-600">$30,000 MXN</div>
+                  <div className="text-lg text-slate-600 dark:text-slate-300">o $1,666 USD</div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Sitio completo optimizado</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">PR digital y enlaces EEAT</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">20 contenidos por mes + chatbot experto</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Coaching mensual 1:1</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Dashboard de rendimiento</span>
+                  </div>
+                </div>
+                <Button
+                  className="w-full mt-6 bg-orange-500 hover:bg-orange-600 text-white"
+                  onClick={() => (window.location.href = "/contratar/dominator")}
+                >
+                  Dominar mi mercado
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Guarantees Section */}
+      <section id="garantias" className="py-20 px-4 dark:bg-slate-900 transition-colors duration-300">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
+              Nuestras <span className="text-green-500">garantías</span>
+            </h2>
+            <p className="text-xl text-slate-700 dark:text-slate-300">
+              Trabajamos con total transparencia y resultados medibles
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-green-100 dark:bg-green-700 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                <Shield className="h-10 w-10 text-green-500" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Visibilidad Garantizada</h3>
+              <p className="text-slate-700 dark:text-slate-300">
+                Visibilidad garantizada en AI Overviews o se extiende el servicio sin costo adicional
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-blue-100 dark:bg-blue-700 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                <BarChart3 className="h-10 w-10 text-blue-500" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Dashboard en Tiempo Real</h3>
+              <p className="text-slate-700 dark:text-slate-300">
+                Monitoreo constante de tu posicionamiento en motores de IA con reportes detallados
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-purple-100 dark:bg-purple-700 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                <CheckCircle className="h-10 w-10 text-purple-500" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Técnicas Seguras</h3>
+              <p className="text-slate-700 dark:text-slate-300">
+                Sin penalizaciones ni técnicas dudosas. Solo estrategias white-hat aprobadas por Google
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Questionnaire Section */}
-      <section id="cuestionario" className="py-20">
-        <div className="container mx-auto px-4">
-          <QuestionnaireForm />
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section id="faqs" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <HelpCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
-              Preguntas <span className="text-green-600">Frecuentes</span>
-            </h2>
-            <p className="text-xl text-muted-foreground">Resolvemos tus dudas más comunes</p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-4">
-            {faqs.map((faq, index) => (
-              <Card key={index} className="border-2 hover:border-green-500/50 transition-colors">
-                <CardHeader className="cursor-pointer" onClick={() => setOpenFaq(openFaq === index ? null : index)}>
-                  <CardTitle className="flex items-center justify-between text-lg">
-                    <span>{faq.question}</span>
-                    <div className={`transform transition-transform ${openFaq === index ? "rotate-180" : ""}`}>
-                      <ArrowRight className="h-5 w-5 text-green-600" />
-                    </div>
-                  </CardTitle>
-                </CardHeader>
-                {openFaq === index && (
-                  <CardContent className="pt-0">
-                    <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
-                  </CardContent>
-                )}
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-muted-foreground mb-6">¿No encontraste la respuesta que buscabas?</p>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-950 bg-transparent"
-              onClick={() => {
-                const message = encodeURIComponent(
-                  "Hola, tengo una pregunta específica sobre sus servicios que no está en las FAQs.",
-                )
-                window.open(`https://wa.me/524775780721?text=${message}`, "_blank")
-              }}
+            <h2
+              className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6
+"
             >
-              <HelpCircle className="h-5 w-5 mr-2" />
-              Hacer Otra Pregunta
-            </Button>
+              Preguntas <span className="text-green-500">frecuentes</span>
+            </h2>
           </div>
+
+          <Accordion type="single" collapsible className="space-y-4">
+            <AccordionItem value="item-1" className="bg-white dark:bg-slate-700 rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
+                ¿Es esto lo mismo que SEO tradicional?
+              </AccordionTrigger>
+              <AccordionContent className="text-slate-700 dark:text-slate-300">
+                No, el posicionamiento AIO va más allá del SEO tradicional. Mientras el SEO se enfoca en rankings en
+                resultados de búsqueda, nosotros optimizamos para que aparezcas directamente en las respuestas generadas
+                por IA, que es donde está el futuro del tráfico web.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" className="bg-white dark:bg-slate-700 rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
+                ¿Cuándo empiezo a ver resultados?
+              </AccordionTrigger>
+              <AccordionContent className="text-slate-700 dark:text-slate-300">
+                Los primeros resultados en AI Overviews pueden verse entre 4-8 semanas, dependiendo de la competencia de
+                tu sector. El posicionamiento en LLMs como ChatGPT puede tomar 2-3 meses para consolidarse
+                completamente.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" className="bg-white dark:bg-slate-700 rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
+                ¿Puedo usar esto junto con campañas pagadas?
+              </AccordionTrigger>
+              <AccordionContent className="text-slate-700 dark:text-slate-300">
+                Absolutamente. De hecho, es la combinación perfecta. Mientras las campañas pagadas te dan visibilidad
+                inmediata, el posicionamiento AIO te asegura presencia orgánica a largo plazo en las respuestas de IA,
+                reduciendo tu dependencia de la publicidad pagada.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" className="bg-white dark:bg-slate-700 rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
+                ¿Qué pasa si mi sector es muy competido?
+              </AccordionTrigger>
+              <AccordionContent className="text-slate-700 dark:text-slate-300">
+                Los sectores competidos son precisamente donde más se nota la diferencia. Implementamos estrategias de
+                nicho y long-tail específicas para IA, además de fortalecer tu autoridad EEAT para que los modelos de IA
+                te reconozcan como fuente confiable.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-green-800 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            ¡Vamos <span className="text-yellow-300">Juntos</span>!
+      {/* Final CTA Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            No te quedes fuera de los motores que <span className="text-orange-400">dominan el presente</span>
           </h2>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Tu casa no es un problema, ¡es nuestra misión! Déjanos pelear por ti y convierte ese dolor de cabeza en un
-            nuevo capítulo.
+          <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto">
+            Cada día que pasa sin posicionamiento en IA es tráfico, autoridad y clientes que pierdes para siempre. El
+            momento de actuar es ahora.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Button
               size="lg"
-              className="bg-white text-green-600 hover:bg-gray-100 px-8 py-4 text-lg font-bold group"
-              onClick={() => {
-                scrollToTop()
-                const message = encodeURIComponent(
-                  "¡Hola! Quiero liberar mi casa del peso de las deudas. ¿Pueden ayudarme?",
-                )
-                window.open(`https://wa.me/524775780721?text=${message}`, "_blank")
-              }}
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold"
+              onClick={() => (window.location.href = "/agendar-sesion")}
             >
-              <Phone className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
-              +52 4775780721
+              <Clock className="mr-2 h-5 w-5" />
+              Agendar sesión estratégica
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
+              onClick={() => (window.location.href = "/aprende-mas")}
+            >
+              <BookOpen className="mr-2 h-5 w-5" />
+              Aprende más
             </Button>
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-lg opacity-90">⚡ Atención 24/7 • 🏆 +50 casas rescatadas • ✅ Respuestas rápidas</p>
+          <div className="mt-12 flex items-center justify-center gap-8 text-sm text-slate-400 dark:text-slate-500">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-400" />
+              <span>Sin compromiso</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-400" />
+              <span>Consulta gratuita</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-400" />
+              <span>Resultados garantizados</span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer id="contacto" className="bg-background border-t border-border py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <Image
-                src="/images/logo-rescate-vivienda.png"
-                alt="Rescate Vivienda"
-                width={200}
-                height={60}
-                className="h-12 w-auto"
-              />
-              <p className="text-muted-foreground">Rescatamos tu casa, liberamos tu futuro.</p>
-            </div>
+      <footer className="bg-orange-500 dark:bg-orange-600 text-white py-12 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold mb-2">{"Diseño y Optimización Online "}</h3>
+            <p className="text-white">La agencia líder en posicionamiento para motores de IA</p>
+          </div>
 
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h4 className="text-lg font-semibold mb-4">Contacto</h4>
-              <ContactButtons variant="footer" />
-              <div className="mt-6">
-                <h5 className="text-sm font-medium mb-3 text-muted-foreground">Síguenos</h5>
-                <SocialLinks variant="footer" />
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Servicios</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• Liquidación INFONAVIT</li>
-                <li>• Rescate de propiedades</li>
-                <li>• Trámites legales</li>
-                <li>• Limpieza de buró</li>
+              <h4 className="font-semibold mb-4">Servicios</h4>
+              <ul className="space-y-2 text-white">
+                <li>
+                  <a href="/servicios/ai-overviews" className="text-white hover:text-orange-200 transition-colors">
+                    AI Overviews (SGE)
+                  </a>
+                </li>
+                <li>
+                  <a href="/servicios/optimizacion-llm" className="text-white hover:text-orange-200 transition-colors">
+                    Optimización LLM
+                  </a>
+                </li>
+                <li>
+                  <a href="/servicios/schema-markup" className="text-white hover:text-orange-200 transition-colors">
+                    Schema Markup
+                  </a>
+                </li>
+                <li>
+                  <a href="/servicios/chatbots-ia" className="text-white hover:text-orange-200 transition-colors">
+                    Chatbots IA
+                  </a>
+                </li>
               </ul>
             </div>
-
             <div>
-              <h4 className="text-lg font-semibold mb-4">Zonas de Servicio</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• León, Guanajuato</li>
-                <li>• Ciudad de México</li>
-                <li>• Veracruz</li>
-                <li>• Todo México</li>
+              <h4 className="font-semibold mb-4">Empresa</h4>
+              <ul className="space-y-2 text-white">
+                <li>
+                  <a href="/sobre-nosotros" className="text-white hover:text-orange-200 transition-colors">
+                    Sobre nosotros
+                  </a>
+                </li>
+                <li>
+                  <a href="/casos-de-exito" className="text-white hover:text-orange-200 transition-colors">
+                    Casos de éxito
+                  </a>
+                </li>
+                <li>
+                  <a href="/blog" className="text-white hover:text-orange-200 transition-colors">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="/contacto" className="text-white hover:text-orange-200 transition-colors">
+                    Contacto
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Soporte</h4>
+              <ul className="space-y-2 text-white">
+                <li>
+                  <a href="/centro-de-ayuda" className="text-white hover:text-orange-200 transition-colors">
+                    Centro de ayuda
+                  </a>
+                </li>
+                <li>
+                  <a href="/documentacion" className="text-white hover:text-orange-200 transition-colors">
+                    Documentación
+                  </a>
+                </li>
+                <li>
+                  <a href="/terminos-de-servicio" className="text-white hover:text-orange-200 transition-colors">
+                    Términos de servicio
+                  </a>
+                </li>
+                <li>
+                  <a href="/privacidad" className="text-white hover:text-orange-200 transition-colors">
+                    Privacidad
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-border mt-12 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-muted-foreground">
-                <Link href="/politica-privacidad" className="hover:text-green-600 transition-colors">
-                  Política de Privacidad
-                </Link>
-                <Link href="/terminos-condiciones" className="hover:text-green-600 transition-colors">
-                  Términos y Condiciones
-                </Link>
-              </div>
-              <p className="text-muted-foreground text-sm">
-                &copy; 2024 Rescate Vivienda. Todos los derechos reservados.
-              </p>
-            </div>
+          <div className="border-t border-slate-800 pt-8 text-white">
+            <p>© Diseño y Optimízación Online. Todos los derechos reservados.</p>
+          </div>
+
+          {/* Social Media Links */}
+          <div className="mt-8 flex justify-center space-x-6">
+            <a
+              href="https://www.facebook.com/optimizaciononline1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              <Facebook className="h-6 w-6" />
+            </a>
+            <a
+              href="https://www.instagram.com/optimizaciononline/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              <Instagram className="h-6 w-6" />
+            </a>
+            <a
+              href="https://x.com/optimizaciononl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/optimización-online/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              <Linkedin className="h-6 w-6" />
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UCNjfW4DkjCUwXLFDSWLpYpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
           </div>
         </div>
       </footer>
-      <FloatingContact />
     </div>
   )
 }
