@@ -1,956 +1,325 @@
-"use client"
 import { NavigationHeader } from "@/components/navigation-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import {
-  Search,
-  TrendingDown,
-  Bot,
-  CheckCircle,
-  Shield,
-  BarChart3,
-  Users,
-  Zap,
-  ArrowRight,
-  Brain,
-  Target,
-  Award,
-  Clock,
-  BookOpen,
-} from "lucide-react"
-import { useState, useEffect } from "react"
-import { Moon, Sun } from "lucide-react"
+import { ArrowRight, Bot, Search, TrendingUp, Star, CheckCircle } from "lucide-react"
 import Link from "next/link"
 
-export default function AIPositioningLanding() {
-  const [isDarkMode, setIsDarkMode] = useState(true)
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    if (savedTheme === "light") {
-      setIsDarkMode(false)
-      document.documentElement.classList.remove("dark")
-    } else {
-      setIsDarkMode(true)
-      document.documentElement.classList.add("dark")
-    }
-  }, [])
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-    if (!isDarkMode) {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
-    }
-  }
-
-  const DarkModeToggle = () => (
-    <button
-      onClick={toggleDarkMode}
-      className="fixed bottom-6 right-6 z-50 bg-white dark:bg-slate-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
-    >
-      {isDarkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-slate-600" />}
-    </button>
-  )
-
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
-      <DarkModeToggle />
-
-      {/* Estilos CSS para animaciones */}
-      <style jsx>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes float-delayed {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-        }
-        
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes float-reverse {
-          0%, 100% { transform: translateY(-10px); }
-          50% { transform: translateY(0px); }
-        }
-        
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 0.3; }
-        }
-        
-        @keyframes slide-down {
-          from { opacity: 0; transform: translateY(-30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slide-up {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes pulse-glow {
-          0%, 100% { text-shadow: 0 0 5px rgba(251, 146, 60, 0.5); }
-          50% { text-shadow: 0 0 20px rgba(251, 146, 60, 0.8), 0 0 30px rgba(251, 146, 60, 0.6); }
-        }
-        
-        @keyframes bounce-subtle {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-2px); }
-        }
-        
-        @keyframes scroll-indicator {
-          0% { opacity: 0; transform: translateY(0); }
-          50% { opacity: 1; }
-          100% { opacity: 0; transform: translateY(15px); }
-        }
-        
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-float-delayed { animation: float-delayed 8s ease-in-out infinite; animation-delay: 2s; }
-        .animate-float-slow { animation: float-slow 10s ease-in-out infinite; animation-delay: 4s; }
-        .animate-float-reverse { animation: float-reverse 7s ease-in-out infinite; animation-delay: 1s; }
-        .animate-fade-in { animation: fade-in 2s ease-out; }
-        .animate-slide-down { animation: slide-down 1s ease-out; }
-        .animate-slide-up { animation: slide-up 1s ease-out 0.3s both; }
-        .animate-slide-up-delayed { animation: slide-up 1s ease-out 0.6s both; }
-        .animate-slide-up-delayed-2 { animation: slide-up 1s ease-out 0.9s both; }
-        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-        .animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
-        .animate-scroll-indicator { animation: scroll-indicator 2s ease-in-out infinite; }
-
-        @keyframes cube-rotate {
-          0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-          100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
-        }
-
-        @keyframes sphere-float {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-30px) scale(1.1); }
-        }
-
-        @keyframes pyramid-spin {
-          0% { transform: rotateY(0deg) rotateX(15deg); }
-          100% { transform: rotateY(360deg) rotateX(15deg); }
-        }
-
-        @keyframes hexagon-pulse {
-          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
-          50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
-        }
-
-        .animate-cube-rotate { animation: cube-rotate 20s linear infinite; }
-        .animate-sphere-float { animation: sphere-float 6s ease-in-out infinite; }
-        .animate-pyramid-spin { animation: pyramid-spin 15s linear infinite; }
-        .animate-hexagon-pulse { animation: hexagon-pulse 8s ease-in-out infinite; }
-
-        .cube-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-        }
-
-        .cube-face {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          opacity: 0.8;
-          border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cube-front { transform: rotateY(0deg) translateZ(64px); }
-        .cube-back { transform: rotateY(180deg) translateZ(64px); }
-        .cube-right { transform: rotateY(90deg) translateZ(64px); }
-        .cube-left { transform: rotateY(-90deg) translateZ(64px); }
-        .cube-top { transform: rotateX(90deg) translateZ(64px); }
-        .cube-bottom { transform: rotateX(-90deg) translateZ(64px); }
-
-        .sphere {
-          box-shadow: 0 0 50px rgba(6, 182, 212, 0.5);
-        }
-
-        .pyramid-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-        }
-
-        .pyramid-face {
-          position: absolute;
-          opacity: 0.8;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .pyramid-front {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: translateZ(40px);
-        }
-
-        .pyramid-right {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(90deg) translateZ(40px);
-        }
-
-        .pyramid-back {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(180deg) translateZ(40px);
-        }
-
-        .pyramid-left {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(-90deg) translateZ(40px);
-        }
-
-        .hexagon {
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, #f43f5e, #ec4899);
-          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-          box-shadow: 0 0 40px rgba(244, 63, 94, 0.6);
-        }
-
-        @keyframes lion-float {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-20px) scale(1.02); }
-        }
-
-        @keyframes lion-pulse {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.3; }
-        }
-
-        @keyframes lion-breathe {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-        }
-
-        @keyframes mane-flow-1 {
-          0%, 100% { transform: translateX(0px) rotate(0deg); }
-          50% { transform: translateX(-10px) rotate(-2deg); }
-        }
-
-        @keyframes mane-flow-2 {
-          0%, 100% { transform: translateX(0px) rotate(0deg); }
-          50% { transform: translateX(-8px) rotate(-1deg); }
-        }
-
-        @keyframes mane-flow-3 {
-          0%, 100% { transform: translateX(0px) rotate(0deg); }
-          50% { transform: translateX(-6px) rotate(-1.5deg); }
-        }
-
-        @keyframes mane-flow-4 {
-          0%, 100% { transform: translateX(0px) rotate(0deg); }
-          50% { transform: translateX(8px) rotate(1deg); }
-        }
-
-        @keyframes mane-flow-5 {
-          0%, 100% { transform: translateX(0px) rotate(0deg); }
-          50% { transform: translateX(10px) rotate(2deg); }
-        }
-
-        @keyframes lion-blink {
-          0%, 90%, 100% { transform: scaleY(1); }
-          95% { transform: scaleY(0.1); }
-        }
-
-        .animate-lion-float { animation: lion-float 8s ease-in-out infinite; }
-        .animate-lion-pulse { animation: lion-pulse 4s ease-in-out infinite; }
-        .animate-lion-breathe { animation: lion-breathe 6s ease-in-out infinite; }
-        .animate-mane-flow-1 { animation: mane-flow-1 10s ease-in-out infinite; }
-        .animate-mane-flow-2 { animation: mane-flow-2 12s ease-in-out infinite 1s; }
-        .animate-mane-flow-3 { animation: mane-flow-3 14s ease-in-out infinite 2s; }
-        .animate-mane-flow-4 { animation: mane-flow-4 11s ease-in-out infinite 0.5s; }
-        .animate-mane-flow-5 { animation: mane-flow-5 13s ease-in-out infinite 1.5s; }
-        .animate-lion-blink { animation: lion-blink 8s ease-in-out infinite; }
-      `}</style>
-
+    <div className="min-h-screen bg-background">
       <NavigationHeader />
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <Badge variant="secondary" className="mb-4">
-            🚀 Especialistas en Posicionamiento IA
+      <section className="relative py-20 px-4 text-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
+        <div className="container mx-auto max-w-4xl">
+          <Badge variant="secondary" className="mb-6 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+            🚀 Revoluciona tu presencia digital con IA
           </Badge>
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
-            Aparece en las respuestas de{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Google AI, ChatGPT y más
-            </span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Posicionamiento Web con Inteligencia Artificial
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Optimización AIO (AI Overviews) + LLM para que tu negocio sea la respuesta que buscan tus clientes en
-            motores de inteligencia artificial.
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Domina Google con estrategias de SEO potenciadas por IA. Aumenta tu visibilidad, genera más leads y
+            convierte visitantes en clientes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
+            <Button
+              size="lg"
+              asChild
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            >
               <Link href="/agendar-sesion">
-                Agendar Sesión Gratuita <ArrowRight className="ml-2 h-4 w-4" />
+                Agendar Consulta Gratuita
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="/aprende-mas">Aprende Más</Link>
+              <Link href="/aprende-mas">Ver Casos de Éxito</Link>
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Nuestros Servicios</h2>
-            <p className="text-xl text-muted-foreground">Soluciones completas para el posicionamiento en IA</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card>
-              <CardHeader>
-                <Search className="h-8 w-8 text-blue-600 mb-2" />
-                <CardTitle>AI Overviews</CardTitle>
-                <CardDescription>Optimización para aparecer en Google AI Overviews</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="/servicios/ai-overviews">Ver más</Link>
-                </Button>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <Bot className="h-8 w-8 text-purple-600 mb-2" />
-                <CardTitle>Chatbots IA</CardTitle>
-                <CardDescription>Optimización para ChatGPT, Claude y otros LLMs</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="/servicios/chatbots-ia">Ver más</Link>
-                </Button>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <Zap className="h-8 w-8 text-green-600 mb-2" />
-                <CardTitle>Optimización LLM</CardTitle>
-                <CardDescription>Mejora tu presencia en modelos de lenguaje</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="/servicios/optimizacion-llm">Ver más</Link>
-                </Button>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <Target className="h-8 w-8 text-red-600 mb-2" />
-                <CardTitle>Schema Markup</CardTitle>
-                <CardDescription>Estructuración de datos para IA</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="/servicios/schema-markup">Ver más</Link>
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
+      <section className="py-16 px-4 bg-white dark:bg-slate-900">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">95%</div>
-              <div className="text-lg font-semibold mb-1">Tasa de Éxito</div>
-              <div className="text-muted-foreground">En posicionamiento IA</div>
+              <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
+              <div className="text-muted-foreground">Clientes Satisfechos</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-purple-600 mb-2">500+</div>
-              <div className="text-lg font-semibold mb-1">Clientes</div>
-              <div className="text-muted-foreground">Posicionados exitosamente</div>
+              <div className="text-3xl font-bold text-purple-600 mb-2">300%</div>
+              <div className="text-muted-foreground">Aumento Promedio en Tráfico</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">24h</div>
-              <div className="text-lg font-semibold mb-1">Tiempo Promedio</div>
-              <div className="text-muted-foreground">Para ver resultados</div>
+              <div className="text-3xl font-bold text-green-600 mb-2">95%</div>
+              <div className="text-muted-foreground">Tasa de Éxito</div>
             </div>
+            <div>
+              <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
+              <div className="text-muted-foreground">Monitoreo Automático</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Servicios de Posicionamiento IA</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Soluciones integrales para dominar los resultados de búsqueda
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <Search className="h-12 w-12 text-blue-600 mb-4" />
+                <CardTitle>AI Overviews</CardTitle>
+                <CardDescription>Optimización para aparecer en las respuestas de IA de Google</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Análisis de contenido con IA
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Optimización para SGE
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Monitoreo continuo
+                  </li>
+                </ul>
+                <Button className="w-full mt-4 bg-transparent" variant="outline" asChild>
+                  <Link href="/servicios/ai-overviews">Más Información</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <Bot className="h-12 w-12 text-purple-600 mb-4" />
+                <CardTitle>Chatbots IA</CardTitle>
+                <CardDescription>Asistentes virtuales que convierten visitantes en clientes</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Respuestas inteligentes 24/7
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Integración con CRM
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Análisis de conversaciones
+                  </li>
+                </ul>
+                <Button className="w-full mt-4 bg-transparent" variant="outline" asChild>
+                  <Link href="/servicios/chatbots-ia">Más Información</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <TrendingUp className="h-12 w-12 text-green-600 mb-4" />
+                <CardTitle>Optimización LLM</CardTitle>
+                <CardDescription>Posicionamiento en modelos de lenguaje como ChatGPT</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Optimización para ChatGPT
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Estrategias de contenido IA
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                    Monitoreo de menciones
+                  </li>
+                </ul>
+                <Button className="w-full mt-4 bg-transparent" variant="outline" asChild>
+                  <Link href="/servicios/optimizacion-llm">Más Información</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Lo que dicen nuestros clientes</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  "Increíble aumento en nuestro tráfico orgánico. Los resultados superaron nuestras expectativas."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></div>
+                  <div>
+                    <div className="font-semibold">María González</div>
+                    <div className="text-sm text-muted-foreground">CEO, TechStart</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  "El chatbot IA ha revolucionado nuestra atención al cliente. Conversiones aumentaron 200%."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-full mr-3"></div>
+                  <div>
+                    <div className="font-semibold">Carlos Ruiz</div>
+                    <div className="text-sm text-muted-foreground">Director, EcomPlus</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">¿Listo para dominar el futuro del SEO?</h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Agenda una sesión gratuita y descubre cómo posicionar tu negocio en la era de la IA
+      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">¿Listo para dominar Google con IA?</h2>
+          <p className="text-xl mb-8 opacity-90">
+            Agenda una consulta gratuita y descubre cómo podemos transformar tu presencia digital
           </p>
-          <Button size="lg" asChild>
+          <Button size="lg" variant="secondary" asChild>
             <Link href="/agendar-sesion">
-              Comenzar Ahora <ArrowRight className="ml-2 h-4 w-4" />
+              Agendar Consulta Gratuita
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
       </section>
 
-      {/* Navigation Buttons */}
-      <section className="py-4 px-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-slate-700 dark:text-slate-300 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20"
-              onClick={() => document.getElementById("problema")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              El Problema
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-slate-700 dark:text-slate-300 hover:text-green-500 hover:bg-green-50 dark:hover:bg-green-900/20"
-              onClick={() => document.getElementById("solucion")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Nuestra Solución
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-slate-700 dark:text-slate-300 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20"
-              onClick={() => document.getElementById("paquetes")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Paquetes
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-slate-700 dark:text-slate-300 hover:text-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/20"
-              onClick={() => document.getElementById("garantias")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Garantías
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-slate-700 dark:text-slate-300 hover:text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
-              onClick={() => document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              FAQ
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Problem Section */}
-      <section id="problema" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 animate-slide-up">
-                El problema que está <span className="text-orange-500">matando tu negocio</span>
-              </h2>
-              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed animate-slide-up-delayed">
-                Más del <strong className="text-orange-500">40% de los clics ya no llegan a sitios web</strong>. La IA
-                generativa de Google responde directamente. Las marcas que no aparecen ahí están perdiendo autoridad,
-                tráfico y clientes potenciales.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 animate-slide-up-delayed-2">
-                  <TrendingDown className="h-6 w-6 text-orange-500" />
-                  <span className="text-slate-700 dark:text-slate-300">Pérdida masiva de tráfico orgánico</span>
-                </div>
-                <div className="flex items-center gap-3 animate-slide-up-delayed-2" style={{ animationDelay: "1.1s" }}>
-                  <Users className="h-6 w-6 text-orange-500" />
-                  <span className="text-slate-700 dark:text-slate-300">Clientes que no te encuentran</span>
-                </div>
-                <div className="flex items-center gap-3 animate-slide-up-delayed-2" style={{ animationDelay: "1.2s" }}>
-                  <Target className="h-6 w-6 text-orange-500" />
-                  <span className="text-slate-700 dark:text-slate-300">Competencia dominando las respuestas de IA</span>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white dark:bg-slate-700 p-8 rounded-2xl shadow-lg animate-fade-in">
-              <div className="text-center">
-                <div className="bg-orange-100 dark:bg-orange-700 p-6 rounded-full w-24 h-24 mx-auto mb-4 flex items-center justify-center">
-                  <Search className="h-12 w-12 text-orange-500" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Desvío de Clics hacia SGE</h3>
-                <div className="space-y-3">
-                  <div className="bg-slate-100 dark:bg-slate-600 p-3 rounded-lg">
-                    <div className="text-sm text-slate-600 dark:text-slate-300">Búsquedas tradicionales</div>
-                    <div className="text-2xl font-bold text-slate-900 dark:text-white">60%</div>
-                  </div>
-                  <ArrowRight className="h-6 w-6 text-slate-400 mx-auto" />
-                  <div className="bg-orange-100 dark:bg-orange-700 p-3 rounded-lg">
-                    <div className="text-sm text-orange-800 dark:text-orange-200">Respuestas de IA</div>
-                    <div className="text-2xl font-bold text-orange-500">40%</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section */}
-      <section id="solucion" className="py-20 px-4 dark:bg-slate-900 transition-colors duration-300">
-        <div className="max-w-6xl mx-auto text-center">
-          <Badge className="mb-6 bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm font-medium">
-            💡 Nuestra Solución Exclusiva
-          </Badge>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-            Posicionamiento <span className="text-green-500">AIO + LLM</span>
-          </h2>
-          <p className="text-xl text-slate-700 dark:text-slate-300 mb-12 max-w-4xl mx-auto">
-            Optimización completa para motores de IA (Search Generative Experience) y modelos de lenguaje como ChatGPT,
-            Perplexity, Gemini y más.
-          </p>
-
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
-              <Brain className="h-12 w-12 text-green-500 mx-auto mb-4" />
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">AI Overviews</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Optimización para SGE</p>
-            </div>
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
-              <Bot className="h-12 w-12 text-blue-500 mx-auto mb-4" />
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Schema Avanzado</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300">FAQ, productos, negocio local</p>
-            </div>
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
-              <Zap className="h-12 w-12 text-purple-500 mx-auto mb-4" />
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Contenido IA</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Conversacional y entrenado</p>
-            </div>
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
-              <Users className="h-12 w-12 text-orange-500 mx-auto mb-4" />
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Agentes de IA</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Integración y capacitación</p>
-            </div>
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
-              <Award className="h-12 w-12 text-red-500 mx-auto mb-4" />
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Estrategia EEAT</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Autoridad reconocida por IA</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Packages Section */}
-      <section id="paquetes" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-              Elige tu <span className="text-green-500">paquete de posicionamiento</span>
-            </h2>
-            <p className="text-xl text-slate-700 dark:text-slate-300">
-              Soluciones adaptadas a cada etapa de tu negocio
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Launchpad Package */}
-            <Card className="relative border-2 border-slate-200 dark:border-slate-700 hover:border-green-300 transition-all duration-300">
-              <CardHeader className="text-center pb-8">
-                <Badge className="w-fit mx-auto mb-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600">
-                  PARA EMPEZAR
-                </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO LAUNCHPAD</CardTitle>
-                <div className="mt-4">
-                  <div className="text-3xl font-bold text-slate-900 dark:text-white">$10,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $555 USD</div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Auditoría inicial completa</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Optimización de 5 páginas clave</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">
-                      Datos estructurados (FAQPage y LocalBusiness)
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">5 contenidos conversacionales mensuales</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Reporte mensual de visibilidad</span>
-                  </div>
-                </div>
-                <Button
-                  className="w-full mt-6 bg-slate-900 hover:bg-slate-800 text-white"
-                  onClick={() => (window.location.href = "/contratar/launchpad")}
-                >
-                  Comenzar ahora
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Accelerator Package */}
-            <Card className="relative border-2 border-green-300 dark:border-green-700 hover:border-green-400 transition-all duration-300 transform scale-105">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-green-500 hover:bg-green-600 text-white px-4 py-2">MÁS POPULAR</Badge>
-              </div>
-              <CardHeader className="text-center pb-8 pt-8">
-                <Badge className="w-fit mx-auto mb-4 bg-green-100 dark:bg-green-700 text-green-700 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-600">
-                  CRECIMIENTO
-                </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO ACCELERATOR</CardTitle>
-                <div className="mt-4">
-                  <div className="text-3xl font-bold text-green-600">$15,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $810 USD</div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Optimización de 10 URLs</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Integración de chatbot LLM simple</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">10 contenidos por mes</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Análisis de competencia en SGE</span>
-                  </div>
-                </div>
-                <Button
-                  className="w-full mt-6 bg-green-500 hover:bg-green-600 text-white"
-                  onClick={() => (window.location.href = "/contratar/accelerator")}
-                >
-                  Acelerar mi crecimiento
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Dominator Package */}
-            <Card className="relative border-2 border-orange-300 dark:border-orange-700 hover:border-orange-400 transition-all duration-300">
-              <CardHeader className="text-center pb-8">
-                <Badge className="w-fit mx-auto mb-4 bg-orange-100 dark:bg-orange-700 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-600">
-                  DOMINACIÓN TOTAL
-                </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO DOMINATOR</CardTitle>
-                <div className="mt-4">
-                  <div className="text-3xl font-bold text-orange-600">$30,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $1,666 USD</div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Sitio completo optimizado</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">PR digital y enlaces EEAT</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">20 contenidos por mes + chatbot experto</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Coaching mensual 1:1</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Dashboard de rendimiento</span>
-                  </div>
-                </div>
-                <Button
-                  className="w-full mt-6 bg-orange-500 hover:bg-orange-600 text-white"
-                  onClick={() => (window.location.href = "/contratar/dominator")}
-                >
-                  Dominar mi mercado
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Guarantees Section */}
-      <section id="garantias" className="py-20 px-4 dark:bg-slate-900 transition-colors duration-300">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-              Nuestras <span className="text-green-500">garantías</span>
-            </h2>
-            <p className="text-xl text-slate-700 dark:text-slate-300">
-              Trabajamos con total transparencia y resultados medibles
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-700 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                <Shield className="h-10 w-10 text-green-500" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Visibilidad Garantizada</h3>
-              <p className="text-slate-700 dark:text-slate-300">
-                Visibilidad garantizada en AI Overviews o se extiende el servicio sin costo adicional
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-blue-100 dark:bg-blue-700 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                <BarChart3 className="h-10 w-10 text-blue-500" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Dashboard en Tiempo Real</h3>
-              <p className="text-slate-700 dark:text-slate-300">
-                Monitoreo constante de tu posicionamiento en motores de IA con reportes detallados
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-700 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                <CheckCircle className="h-10 w-10 text-purple-500" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Técnicas Seguras</h3>
-              <p className="text-slate-700 dark:text-slate-300">
-                Sin penalizaciones ni técnicas dudosas. Solo estrategias white-hat aprobadas por Google
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section id="faq" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6
-"
-            >
-              Preguntas <span className="text-green-500">frecuentes</span>
-            </h2>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="item-1" className="bg-white dark:bg-slate-700 rounded-lg px-6">
-              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
-                ¿Es esto lo mismo que SEO tradicional?
-              </AccordionTrigger>
-              <AccordionContent className="text-slate-700 dark:text-slate-300">
-                No, el posicionamiento AIO va más allá del SEO tradicional. Mientras el SEO se enfoca en rankings en
-                resultados de búsqueda, nosotros optimizamos para que aparezcas directamente en las respuestas generadas
-                por IA, que es donde está el futuro del tráfico web.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-2" className="bg-white dark:bg-slate-700 rounded-lg px-6">
-              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
-                ¿Cuándo empiezo a ver resultados?
-              </AccordionTrigger>
-              <AccordionContent className="text-slate-700 dark:text-slate-300">
-                Los primeros resultados en AI Overviews pueden verse entre 4-8 semanas, dependiendo de la competencia de
-                tu sector. El posicionamiento en LLMs como ChatGPT puede tomar 2-3 meses para consolidarse
-                completamente.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-3" className="bg-white dark:bg-slate-700 rounded-lg px-6">
-              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
-                ¿Puedo usar esto junto con campañas pagadas?
-              </AccordionTrigger>
-              <AccordionContent className="text-slate-700 dark:text-slate-300">
-                Absolutamente. De hecho, es la combinación perfecta. Mientras las campañas pagadas te dan visibilidad
-                inmediata, el posicionamiento AIO te asegura presencia orgánica a largo plazo en las respuestas de IA,
-                reduciendo tu dependencia de la publicidad pagada.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-4" className="bg-white dark:bg-slate-700 rounded-lg px-6">
-              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
-                ¿Qué pasa si mi sector es muy competido?
-              </AccordionTrigger>
-              <AccordionContent className="text-slate-700 dark:text-slate-300">
-                Los sectores competidos son precisamente donde más se nota la diferencia. Implementamos estrategias de
-                nicho y long-tail específicas para IA, además de fortalecer tu autoridad EEAT para que los modelos de IA
-                te reconozcan como fuente confiable.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            No te quedes fuera de los motores que <span className="text-orange-400">dominan el presente</span>
-          </h2>
-          <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto">
-            Cada día que pasa sin posicionamiento en IA es tráfico, autoridad y clientes que pierdes para siempre. El
-            momento de actuar es ahora.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button
-              size="lg"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold"
-              onClick={() => (window.location.href = "/agendar-sesion")}
-            >
-              <Clock className="mr-2 h-5 w-5" />
-              Agendar sesión estratégica
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
-              onClick={() => (window.location.href = "/aprende-mas")}
-            >
-              <BookOpen className="mr-2 h-5 w-5" />
-              Aprende más
-            </Button>
-          </div>
-
-          <div className="mt-12 flex items-center justify-center gap-8 text-sm text-slate-400 dark:text-slate-500">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-400" />
-              <span>Sin compromiso</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-400" />
-              <span>Consulta gratuita</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-400" />
-              <span>Resultados garantizados</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
+      <footer className="py-12 px-4 bg-slate-900 text-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="h-8 w-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg"></div>
+                <span className="font-bold text-xl">Posicionamiento IA</span>
+              </div>
+              <p className="text-slate-400">Revolucionando el SEO con inteligencia artificial</p>
+            </div>
+
             <div>
               <h3 className="font-semibold mb-4">Servicios</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-slate-400">
                 <li>
-                  <Link href="/servicios/ai-overviews">AI Overviews</Link>
+                  <Link href="/servicios/ai-overviews" className="hover:text-white">
+                    AI Overviews
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/servicios/chatbots-ia">Chatbots IA</Link>
+                  <Link href="/servicios/chatbots-ia" className="hover:text-white">
+                    Chatbots IA
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/servicios/optimizacion-llm">Optimización LLM</Link>
+                  <Link href="/servicios/optimizacion-llm" className="hover:text-white">
+                    Optimización LLM
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/servicios/schema-markup">Schema Markup</Link>
+                  <Link href="/servicios/schema-markup" className="hover:text-white">
+                    Schema Markup
+                  </Link>
                 </li>
               </ul>
             </div>
+
             <div>
               <h3 className="font-semibold mb-4">Empresa</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-slate-400">
                 <li>
-                  <Link href="/sobre-nosotros">Sobre Nosotros</Link>
+                  <Link href="/sobre-nosotros" className="hover:text-white">
+                    Sobre Nosotros
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/casos-de-exito">Casos de Éxito</Link>
+                  <Link href="/casos-de-exito" className="hover:text-white">
+                    Casos de Éxito
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/blog">Blog</Link>
+                  <Link href="/blog" className="hover:text-white">
+                    Blog
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/contacto">Contacto</Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Recursos</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <Link href="/documentacion">Documentación</Link>
-                </li>
-                <li>
-                  <Link href="/centro-de-ayuda">Centro de Ayuda</Link>
-                </li>
-                <li>
-                  <Link href="/calendario">Calendario</Link>
+                  <Link href="/contacto" className="hover:text-white">
+                    Contacto
+                  </Link>
                 </li>
               </ul>
             </div>
+
             <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <h3 className="font-semibold mb-4">Soporte</h3>
+              <ul className="space-y-2 text-slate-400">
                 <li>
-                  <Link href="/privacidad">Privacidad</Link>
+                  <Link href="/centro-de-ayuda" className="hover:text-white">
+                    Centro de Ayuda
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/terminos-de-servicio">Términos</Link>
+                  <Link href="/documentacion" className="hover:text-white">
+                    Documentación
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacidad" className="hover:text-white">
+                    Privacidad
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terminos-de-servicio" className="hover:text-white">
+                    Términos
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-            © 2024 Posicionamiento IA. Todos los derechos reservados.
+
+          <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
+            <p>&copy; 2024 Posicionamiento IA. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>

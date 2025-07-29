@@ -10,7 +10,7 @@ export function NavigationHeader() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navigation = [
-    { name: "Servicios", href: "/servicios" },
+    { name: "Servicios", href: "/servicios/ai-overviews" },
     { name: "Casos de Éxito", href: "/casos-de-exito" },
     { name: "Blog", href: "/blog" },
     { name: "Sobre Nosotros", href: "/sobre-nosotros" },
@@ -81,3 +81,5 @@ export function NavigationHeader() {
     </header>
   )
 }
+
+export default NavigationHeader
