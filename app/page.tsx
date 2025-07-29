@@ -246,6 +246,61 @@ export default function AIPositioningLanding() {
           clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
           box-shadow: 0 0 40px rgba(244, 63, 94, 0.6);
         }
+
+        @keyframes lion-float {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(-20px) scale(1.02); }
+        }
+
+        @keyframes lion-pulse {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.3; }
+        }
+
+        @keyframes lion-breathe {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+
+        @keyframes mane-flow-1 {
+          0%, 100% { transform: translateX(0px) rotate(0deg); }
+          50% { transform: translateX(-10px) rotate(-2deg); }
+        }
+
+        @keyframes mane-flow-2 {
+          0%, 100% { transform: translateX(0px) rotate(0deg); }
+          50% { transform: translateX(-8px) rotate(-1deg); }
+        }
+
+        @keyframes mane-flow-3 {
+          0%, 100% { transform: translateX(0px) rotate(0deg); }
+          50% { transform: translateX(-6px) rotate(-1.5deg); }
+        }
+
+        @keyframes mane-flow-4 {
+          0%, 100% { transform: translateX(0px) rotate(0deg); }
+          50% { transform: translateX(8px) rotate(1deg); }
+        }
+
+        @keyframes mane-flow-5 {
+          0%, 100% { transform: translateX(0px) rotate(0deg); }
+          50% { transform: translateX(10px) rotate(2deg); }
+        }
+
+        @keyframes lion-blink {
+          0%, 90%, 100% { transform: scaleY(1); }
+          95% { transform: scaleY(0.1); }
+        }
+
+        .animate-lion-float { animation: lion-float 8s ease-in-out infinite; }
+        .animate-lion-pulse { animation: lion-pulse 4s ease-in-out infinite; }
+        .animate-lion-breathe { animation: lion-breathe 6s ease-in-out infinite; }
+        .animate-mane-flow-1 { animation: mane-flow-1 10s ease-in-out infinite; }
+        .animate-mane-flow-2 { animation: mane-flow-2 12s ease-in-out infinite 1s; }
+        .animate-mane-flow-3 { animation: mane-flow-3 14s ease-in-out infinite 2s; }
+        .animate-mane-flow-4 { animation: mane-flow-4 11s ease-in-out infinite 0.5s; }
+        .animate-mane-flow-5 { animation: mane-flow-5 13s ease-in-out infinite 1.5s; }
+        .animate-lion-blink { animation: lion-blink 8s ease-in-out infinite; }
       `}</style>
 
       {/* Hero Section */}
@@ -257,34 +312,85 @@ export default function AIPositioningLanding() {
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
 
-        {/* 3D Animated Elements */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 animate-cube-rotate">
-            <div className="cube-container">
-              <div className="cube-face cube-front bg-gradient-to-br from-orange-400 to-orange-600"></div>
-              <div className="cube-face cube-back bg-gradient-to-br from-green-400 to-green-600"></div>
-              <div className="cube-face cube-right bg-gradient-to-br from-blue-400 to-blue-600"></div>
-              <div className="cube-face cube-left bg-gradient-to-br from-purple-400 to-purple-600"></div>
-              <div className="cube-face cube-top bg-gradient-to-br from-pink-400 to-pink-600"></div>
-              <div className="cube-face cube-bottom bg-gradient-to-br from-yellow-400 to-yellow-600"></div>
-            </div>
-          </div>
+        {/* Animated Lion Silhouette */}
+        <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
+          <div className="animate-lion-float opacity-20">
+            <svg
+              width="600"
+              height="400"
+              viewBox="0 0 600 400"
+              className="animate-lion-pulse"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="lionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fb923c" />
+                  <stop offset="50%" stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#ea580c" />
+                </linearGradient>
+              </defs>
 
-          <div className="absolute top-1/3 right-1/3 w-24 h-24 animate-sphere-float">
-            <div className="sphere bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full w-full h-full shadow-2xl"></div>
-          </div>
+              {/* Lion Head Base */}
+              <path
+                d="M200 180 C180 160, 180 140, 200 120 C220 100, 260 100, 280 120 C300 140, 320 160, 340 180 C360 200, 360 220, 340 240 C320 260, 280 280, 240 280 C200 280, 180 260, 180 240 C180 220, 180 200, 200 180 Z"
+                fill="url(#lionGradient)"
+                className="animate-lion-breathe"
+              />
 
-          <div className="absolute bottom-1/3 left-1/2 w-20 h-20 animate-pyramid-spin">
-            <div className="pyramid-container">
-              <div className="pyramid-face pyramid-front bg-gradient-to-b from-emerald-400 to-emerald-600"></div>
-              <div className="pyramid-face pyramid-right bg-gradient-to-b from-teal-400 to-teal-600"></div>
-              <div className="pyramid-face pyramid-back bg-gradient-to-b from-indigo-400 to-indigo-600"></div>
-              <div className="pyramid-face pyramid-left bg-gradient-to-b from-violet-400 to-violet-600"></div>
-            </div>
-          </div>
+              {/* Mane - Multiple flowing curves */}
+              <path
+                d="M160 140 C140 120, 120 100, 100 80 C80 60, 60 40, 80 20 C100 0, 140 20, 160 40 C180 60, 200 80, 220 100 C200 120, 180 140, 160 140 Z"
+                fill="url(#lionGradient)"
+                className="animate-mane-flow-1"
+                opacity="0.8"
+              />
 
-          <div className="absolute top-1/2 right-1/4 w-28 h-28 animate-hexagon-pulse">
-            <div className="hexagon bg-gradient-to-br from-rose-400 to-pink-600"></div>
+              <path
+                d="M120 180 C100 160, 80 140, 60 120 C40 100, 20 80, 40 60 C60 40, 100 60, 120 80 C140 100, 160 120, 180 140 C160 160, 140 180, 120 180 Z"
+                fill="url(#lionGradient)"
+                className="animate-mane-flow-2"
+                opacity="0.7"
+              />
+
+              <path
+                d="M140 220 C120 200, 100 180, 80 160 C60 140, 40 120, 60 100 C80 80, 120 100, 140 120 C160 140, 180 160, 200 180 C180 200, 160 220, 140 220 Z"
+                fill="url(#lionGradient)"
+                className="animate-mane-flow-3"
+                opacity="0.6"
+              />
+
+              {/* More mane sections */}
+              <path
+                d="M180 100 C200 80, 220 60, 240 40 C260 20, 280 0, 300 20 C320 40, 300 80, 280 100 C260 120, 240 140, 220 160 C200 140, 180 120, 180 100 Z"
+                fill="url(#lionGradient)"
+                className="animate-mane-flow-4"
+                opacity="0.8"
+              />
+
+              <path
+                d="M220 80 C240 60, 260 40, 280 20 C300 0, 320 -20, 340 0 C360 20, 340 60, 320 80 C300 100, 280 120, 260 140 C240 120, 220 100, 220 80 Z"
+                fill="url(#lionGradient)"
+                className="animate-mane-flow-5"
+                opacity="0.7"
+              />
+
+              {/* Snout and facial features */}
+              <path
+                d="M320 200 C340 200, 360 220, 380 240 C400 260, 420 280, 400 300 C380 320, 340 300, 320 280 C300 260, 300 240, 320 220 C320 210, 320 200, 320 200 Z"
+                fill="url(#lionGradient)"
+                className="animate-lion-breathe"
+              />
+
+              {/* Eye */}
+              <circle cx="280" cy="160" r="8" fill="#1f2937" className="animate-lion-blink" />
+
+              {/* Nose */}
+              <path
+                d="M350 220 C360 220, 370 230, 370 240 C370 250, 360 260, 350 260 C340 260, 330 250, 330 240 C330 230, 340 220, 350 220 Z"
+                fill="#1f2937"
+              />
+            </svg>
           </div>
         </div>
 
