@@ -138,6 +138,114 @@ export default function AIPositioningLanding() {
         .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
         .animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
         .animate-scroll-indicator { animation: scroll-indicator 2s ease-in-out infinite; }
+
+        @keyframes cube-rotate {
+          0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+          100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        @keyframes sphere-float {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        @keyframes pyramid-spin {
+          0% { transform: rotateY(0deg) rotateX(15deg); }
+          100% { transform: rotateY(360deg) rotateX(15deg); }
+        }
+
+        @keyframes hexagon-pulse {
+          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+          50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .animate-cube-rotate { animation: cube-rotate 20s linear infinite; }
+        .animate-sphere-float { animation: sphere-float 6s ease-in-out infinite; }
+        .animate-pyramid-spin { animation: pyramid-spin 15s linear infinite; }
+        .animate-hexagon-pulse { animation: hexagon-pulse 8s ease-in-out infinite; }
+
+        .cube-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+        }
+
+        .cube-face {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0.8;
+          border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cube-front { transform: rotateY(0deg) translateZ(64px); }
+        .cube-back { transform: rotateY(180deg) translateZ(64px); }
+        .cube-right { transform: rotateY(90deg) translateZ(64px); }
+        .cube-left { transform: rotateY(-90deg) translateZ(64px); }
+        .cube-top { transform: rotateX(90deg) translateZ(64px); }
+        .cube-bottom { transform: rotateX(-90deg) translateZ(64px); }
+
+        .sphere {
+          box-shadow: 0 0 50px rgba(6, 182, 212, 0.5);
+        }
+
+        .pyramid-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+        }
+
+        .pyramid-face {
+          position: absolute;
+          opacity: 0.8;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .pyramid-front {
+          width: 0;
+          height: 0;
+          border-left: 40px solid transparent;
+          border-right: 40px solid transparent;
+          border-bottom: 80px solid;
+          transform: translateZ(40px);
+        }
+
+        .pyramid-right {
+          width: 0;
+          height: 0;
+          border-left: 40px solid transparent;
+          border-right: 40px solid transparent;
+          border-bottom: 80px solid;
+          transform: rotateY(90deg) translateZ(40px);
+        }
+
+        .pyramid-back {
+          width: 0;
+          height: 0;
+          border-left: 40px solid transparent;
+          border-right: 40px solid transparent;
+          border-bottom: 80px solid;
+          transform: rotateY(180deg) translateZ(40px);
+        }
+
+        .pyramid-left {
+          width: 0;
+          height: 0;
+          border-left: 40px solid transparent;
+          border-right: 40px solid transparent;
+          border-bottom: 80px solid;
+          transform: rotateY(-90deg) translateZ(40px);
+        }
+
+        .hexagon {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #f43f5e, #ec4899);
+          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+          box-shadow: 0 0 40px rgba(244, 63, 94, 0.6);
+        }
       `}</style>
 
       {/* Hero Section */}
@@ -149,17 +257,35 @@ export default function AIPositioningLanding() {
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
 
-        {/* Hero Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/placeholder.svg?height=800&width=1200"
-            alt="AI Positioning Technology"
-            className="w-full h-full object-cover opacity-30 animate-fade-in"
-            onError={(e) => {
-              e.currentTarget.style.display = "none"
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/80"></div>
+        {/* 3D Animated Elements */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 animate-cube-rotate">
+            <div className="cube-container">
+              <div className="cube-face cube-front bg-gradient-to-br from-orange-400 to-orange-600"></div>
+              <div className="cube-face cube-back bg-gradient-to-br from-green-400 to-green-600"></div>
+              <div className="cube-face cube-right bg-gradient-to-br from-blue-400 to-blue-600"></div>
+              <div className="cube-face cube-left bg-gradient-to-br from-purple-400 to-purple-600"></div>
+              <div className="cube-face cube-top bg-gradient-to-br from-pink-400 to-pink-600"></div>
+              <div className="cube-face cube-bottom bg-gradient-to-br from-yellow-400 to-yellow-600"></div>
+            </div>
+          </div>
+
+          <div className="absolute top-1/3 right-1/3 w-24 h-24 animate-sphere-float">
+            <div className="sphere bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full w-full h-full shadow-2xl"></div>
+          </div>
+
+          <div className="absolute bottom-1/3 left-1/2 w-20 h-20 animate-pyramid-spin">
+            <div className="pyramid-container">
+              <div className="pyramid-face pyramid-front bg-gradient-to-b from-emerald-400 to-emerald-600"></div>
+              <div className="pyramid-face pyramid-right bg-gradient-to-b from-teal-400 to-teal-600"></div>
+              <div className="pyramid-face pyramid-back bg-gradient-to-b from-indigo-400 to-indigo-600"></div>
+              <div className="pyramid-face pyramid-left bg-gradient-to-b from-violet-400 to-violet-600"></div>
+            </div>
+          </div>
+
+          <div className="absolute top-1/2 right-1/4 w-28 h-28 animate-hexagon-pulse">
+            <div className="hexagon bg-gradient-to-br from-rose-400 to-pink-600"></div>
+          </div>
         </div>
 
         {/* Floating Elements */}
