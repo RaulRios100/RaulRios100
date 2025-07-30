@@ -69,7 +69,7 @@ export default function AIPositioningLanding() {
     const message = encodeURIComponent(
       "Hola, me interesa agendar una consulta sobre posicionamiento en IA para mi negocio.",
     )
-    window.open(`https://wa.me/5351234567?text=${message}`, "_blank")
+    window.open(`https://wa.me/5256202022210?text=${message}`, "_blank")
   }
 
   const handleCalendarBooking = () => {
@@ -120,16 +120,6 @@ export default function AIPositioningLanding() {
         }
         
         @keyframes slide-up {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slide-up-delayed {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slide-up-delayed-2 {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
