@@ -16,7 +16,6 @@ import {
   Brain,
   Target,
   Award,
-  Clock,
   BookOpen,
   Facebook,
   Instagram,
@@ -27,6 +26,7 @@ import {
   Smartphone,
   Monitor,
   Crown,
+  Calendar,
 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Moon, Sun } from "lucide-react"
@@ -72,8 +72,8 @@ export default function AIPositioningLanding() {
     window.open(`https://wa.me/5215512345678?text=${message}`, "_blank")
   }
 
-  const handleZoomMeeting = () => {
-    window.open("https://zoom.us/j/9343315428", "_blank")
+  const handleCalendarBooking = () => {
+    window.open("/calendario", "_blank")
   }
 
   return (
@@ -941,9 +941,9 @@ export default function AIPositioningLanding() {
             <Button
               size="lg"
               className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold"
-              onClick={handleZoomMeeting}
+              onClick={handleCalendarBooking}
             >
-              <Clock className="mr-2 h-5 w-5" />
+              <Calendar className="mr-2 h-5 w-5" />
               Agendar sesión estratégica
             </Button>
             <Button
