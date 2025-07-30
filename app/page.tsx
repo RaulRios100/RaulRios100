@@ -26,6 +26,7 @@ import {
   Gauge,
   Smartphone,
   Monitor,
+  Crown,
 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Moon, Sun } from "lucide-react"
@@ -210,6 +211,13 @@ export default function AIPositioningLanding() {
         .animate-mane-flow-3 { animation: mane-flow-3 14s ease-in-out infinite 2s; }
         .animate-mane-flow-4 { animation: mane-flow-4 11s ease-in-out infinite 0.5s; }
         .animate-mane-flow-5 { animation: mane-flow-5 13s ease-in-out infinite 1.5s; }
+
+        @keyframes premium-glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+          50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8), 0 0 60px rgba(168, 85, 247, 0.4); }
+        }
+
+        .animate-premium-glow { animation: premium-glow 3s ease-in-out infinite; }
       `}</style>
 
       {/* Hero Section */}
@@ -588,42 +596,44 @@ export default function AIPositioningLanding() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Launchpad Package */}
             <Card className="relative border-2 border-slate-200 dark:border-slate-700 hover:border-green-300 transition-all duration-300">
-              <CardHeader className="text-center pb-8">
+              <CardHeader className="text-center pb-6">
                 <Badge className="w-fit mx-auto mb-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600">
                   PARA EMPEZAR
                 </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO LAUNCHPAD</CardTitle>
+                <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">AIO LAUNCHPAD</CardTitle>
                 <div className="mt-4">
-                  <div className="text-3xl font-bold text-slate-900 dark:text-white">$10,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $555 USD</div>
+                  <div className="text-2xl font-bold text-slate-900 dark:text-white">$10,000 MXN</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-300">o $555 USD</div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Auditoría inicial completa</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Auditoría inicial completa</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Optimización de 5 páginas clave</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Optimización de 5 páginas clave</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
                       Datos estructurados (FAQPage y LocalBusiness)
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">5 contenidos conversacionales mensuales</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
+                      5 contenidos conversacionales mensuales
+                    </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Reporte mensual de visibilidad</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Reporte mensual de visibilidad</span>
                   </div>
                 </div>
                 <Button
@@ -640,37 +650,39 @@ export default function AIPositioningLanding() {
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <Badge className="bg-green-500 hover:bg-green-600 text-white px-4 py-2">MÁS POPULAR</Badge>
               </div>
-              <CardHeader className="text-center pb-8 pt-8">
+              <CardHeader className="text-center pb-6 pt-8">
                 <Badge className="w-fit mx-auto mb-4 bg-green-100 dark:bg-green-700 text-green-700 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-600">
                   CRECIMIENTO
                 </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO ACCELERATOR</CardTitle>
+                <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">AIO ACCELERATOR</CardTitle>
                 <div className="mt-4">
-                  <div className="text-3xl font-bold text-green-600">$15,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $810 USD</div>
+                  <div className="text-2xl font-bold text-green-600">$15,000 MXN</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-300">o $810 USD</div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Optimización de 10 URLs</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Optimización de 10 URLs</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Integración de chatbot LLM simple</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
+                      Integración de chatbot LLM simple
+                    </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">10 contenidos por mes</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">10 contenidos por mes</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Análisis de competencia en SGE</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Análisis de competencia en SGE</span>
                   </div>
                 </div>
                 <Button
@@ -684,41 +696,43 @@ export default function AIPositioningLanding() {
 
             {/* Dominator Package */}
             <Card className="relative border-2 border-orange-300 dark:border-orange-700 hover:border-orange-400 transition-all duration-300">
-              <CardHeader className="text-center pb-8">
+              <CardHeader className="text-center pb-6">
                 <Badge className="w-fit mx-auto mb-4 bg-orange-100 dark:bg-orange-700 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-600">
                   DOMINACIÓN TOTAL
                 </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO DOMINATOR</CardTitle>
+                <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">AIO DOMINATOR</CardTitle>
                 <div className="mt-4">
-                  <div className="text-3xl font-bold text-orange-600">$30,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $1,666 USD</div>
+                  <div className="text-2xl font-bold text-orange-600">$30,000 MXN</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-300">o $1,666 USD</div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Sitio completo optimizado</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Sitio completo optimizado</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">PR digital y enlaces EEAT</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">PR digital y enlaces EEAT</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">20 contenidos por mes + chatbot experto</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
+                      20 contenidos por mes + chatbot experto
+                    </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Coaching mensual 1:1</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Coaching mensual 1:1</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Dashboard de rendimiento</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Dashboard de rendimiento</span>
                   </div>
                 </div>
                 <Button
@@ -726,6 +740,71 @@ export default function AIPositioningLanding() {
                   onClick={() => (window.location.href = "/contratar/dominator")}
                 >
                   Dominar mi mercado
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Package */}
+            <Card className="relative border-2 border-purple-400 dark:border-purple-600 hover:border-purple-500 transition-all duration-300 animate-premium-glow">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 shadow-lg">
+                  <Crown className="w-4 h-4 mr-1" />
+                  PREMIUM
+                </Badge>
+              </div>
+              <CardHeader className="text-center pb-6 pt-8">
+                <Badge className="w-fit mx-auto mb-4 bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-800 dark:to-purple-700 text-purple-800 dark:text-purple-200 hover:from-purple-200 hover:to-purple-300 dark:hover:from-purple-700 dark:hover:to-purple-600">
+                  ENTERPRISE
+                </Badge>
+                <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">AIO ENTERPRISE</CardTitle>
+                <div className="mt-4">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+                    $70,000 MXN
+                  </div>
+                  <div className="text-sm text-slate-600 dark:text-slate-300">o $3,888 USD</div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Múltiples sitios web optimizados</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
+                      Estrategia internacional multiidioma
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">50+ contenidos mensuales</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Soporte 24/7 dedicado</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Account Manager exclusivo</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">
+                      API personalizada y integraciones
+                    </span>
+                  </div>
+                </div>
+                <Button
+                  className="w-full mt-6 bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white shadow-lg"
+                  onClick={() => (window.location.href = "/contratar/enterprise")}
+                >
+                  <Crown className="mr-2 h-4 w-4" />
+                  Solución Enterprise
                 </Button>
               </CardContent>
             </Card>
@@ -830,6 +909,17 @@ export default function AIPositioningLanding() {
                 Los sectores competidos son precisamente donde más se nota la diferencia. Implementamos estrategias de
                 nicho y long-tail específicas para IA, además de fortalecer tu autoridad EEAT para que los modelos de IA
                 te reconozcan como fuente confiable.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5" className="bg-white dark:bg-slate-700 rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold text-slate-900 dark:text-white">
+                ¿Qué incluye el paquete Enterprise?
+              </AccordionTrigger>
+              <AccordionContent className="text-slate-700 dark:text-slate-300">
+                El paquete Enterprise está diseñado para grandes empresas y corporaciones que necesitan optimización a
+                gran escala. Incluye múltiples sitios web, estrategias internacionales, soporte 24/7, un account manager
+                dedicado, más de 50 contenidos mensuales y integraciones API personalizadas para sistemas empresariales.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
