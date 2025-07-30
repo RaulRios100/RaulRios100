@@ -69,7 +69,7 @@ export default function AIPositioningLanding() {
     const message = encodeURIComponent(
       "Hola, me interesa agendar una consulta sobre posicionamiento en IA para mi negocio.",
     )
-    window.open(`https://wa.me/5215512345678?text=${message}`, "_blank")
+    window.open(`https://wa.me/5351234567?text=${message}`, "_blank")
   }
 
   const handleCalendarBooking = () => {
@@ -120,6 +120,16 @@ export default function AIPositioningLanding() {
         }
         
         @keyframes slide-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slide-up-delayed {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slide-up-delayed-2 {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
@@ -829,7 +839,7 @@ export default function AIPositioningLanding() {
               <div className="bg-green-100 dark:bg-green-700 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
                 <Shield className="h-10 w-10 text-green-500" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Visibilidad en LLMs<br></h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Visibilidad en LLMs</h3>
               <p className="text-slate-700 dark:text-slate-300">
                 Visibilidad garantizada en AI Overviews o se extiende el servicio sin costo adicional
               </p>
