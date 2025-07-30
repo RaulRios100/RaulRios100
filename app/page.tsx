@@ -21,6 +21,11 @@ import {
   Facebook,
   Instagram,
   Linkedin,
+  MessageCircle,
+  Settings,
+  Gauge,
+  Smartphone,
+  Monitor,
 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Moon, Sun } from "lucide-react"
@@ -58,6 +63,17 @@ export default function AIPositioningLanding() {
       {isDarkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-slate-600" />}
     </button>
   )
+
+  const handleWhatsAppContact = () => {
+    const message = encodeURIComponent(
+      "Hola, me interesa agendar una consulta sobre posicionamiento en IA para mi negocio.",
+    )
+    window.open(`https://wa.me/5215512345678?text=${message}`, "_blank")
+  }
+
+  const handleZoomMeeting = () => {
+    window.open("https://zoom.us/j/9343315428", "_blank")
+  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
@@ -164,104 +180,6 @@ export default function AIPositioningLanding() {
         .animate-pyramid-spin { animation: pyramid-spin 15s linear infinite; }
         .animate-hexagon-pulse { animation: hexagon-pulse 8s ease-in-out infinite; }
 
-        .cube-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-        }
-
-        .cube-face {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          opacity: 0.8;
-          border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cube-front { transform: rotateY(0deg) translateZ(64px); }
-        .cube-back { transform: rotateY(180deg) translateZ(64px); }
-        .cube-right { transform: rotateY(90deg) translateZ(64px); }
-        .cube-left { transform: rotateY(-90deg) translateZ(64px); }
-        .cube-top { transform: rotateX(90deg) translateZ(64px); }
-        .cube-bottom { transform: rotateX(-90deg) translateZ(64px); }
-
-        .sphere {
-          box-shadow: 0 0 50px rgba(6, 182, 212, 0.5);
-        }
-
-        .pyramid-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-        }
-
-        .pyramid-face {
-          position: absolute;
-          opacity: 0.8;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .pyramid-front {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: translateZ(40px);
-        }
-
-        .pyramid-right {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(90deg) translateZ(40px);
-        }
-
-        .pyramid-back {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(180deg) translateZ(40px);
-        }
-
-        .pyramid-left {
-          width: 0;
-          height: 0;
-          border-left: 40px solid transparent;
-          border-right: 40px solid transparent;
-          border-bottom: 80px solid;
-          transform: rotateY(-90deg) translateZ(40px);
-        }
-
-        .hexagon {
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, #f43f5e, #ec4899);
-          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-          box-shadow: 0 0 40px rgba(244, 63, 94, 0.6);
-        }
-
-        @keyframes lion-float {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-20px) scale(1.02); }
-        }
-
-        @keyframes lion-pulse {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.3; }
-        }
-
-        @keyframes lion-breathe {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-        }
-
         @keyframes mane-flow-1 {
           0%, 100% { transform: translateX(0px) rotate(0deg); }
           50% { transform: translateX(-10px) rotate(-2deg); }
@@ -287,20 +205,11 @@ export default function AIPositioningLanding() {
           50% { transform: translateX(10px) rotate(2deg); }
         }
 
-        @keyframes lion-blink {
-          0%, 90%, 100% { transform: scaleY(1); }
-          95% { transform: scaleY(0.1); }
-        }
-
-        .animate-lion-float { animation: lion-float 8s ease-in-out infinite; }
-        .animate-lion-pulse { animation: lion-pulse 4s ease-in-out infinite; }
-        .animate-lion-breathe { animation: lion-breathe 6s ease-in-out infinite; }
         .animate-mane-flow-1 { animation: mane-flow-1 10s ease-in-out infinite; }
         .animate-mane-flow-2 { animation: mane-flow-2 12s ease-in-out infinite 1s; }
         .animate-mane-flow-3 { animation: mane-flow-3 14s ease-in-out infinite 2s; }
         .animate-mane-flow-4 { animation: mane-flow-4 11s ease-in-out infinite 0.5s; }
         .animate-mane-flow-5 { animation: mane-flow-5 13s ease-in-out infinite 1.5s; }
-        .animate-lion-blink { animation: lion-blink 8s ease-in-out infinite; }
       `}</style>
 
       {/* Hero Section */}
@@ -312,110 +221,107 @@ export default function AIPositioningLanding() {
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
 
-        {/* Animated Lion Silhouette */}
+        {/* Abstract Orange Shapes */}
         <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
-          {/* Abstract Orange Shapes */}
-          <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
-            {/* Abstract Shape 1 - Flowing Blob */}
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 animate-float opacity-20">
-              <svg width="256" height="256" viewBox="0 0 256 256" fill="none">
-                <path
-                  d="M50 128 C50 80, 80 50, 128 50 C176 50, 206 80, 206 128 C206 176, 176 206, 128 206 C80 206, 50 176, 50 128 Z"
-                  fill="url(#orangeGradient1)"
-                  className="animate-blob"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fb923c" />
-                    <stop offset="50%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#ea580c" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 1 - Flowing Blob */}
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 animate-float opacity-20">
+            <svg width="256" height="256" viewBox="0 0 256 256" fill="none">
+              <path
+                d="M50 128 C50 80, 80 50, 128 50 C176 50, 206 80, 206 128 C206 176, 176 206, 128 206 C80 206, 50 176, 50 128 Z"
+                fill="url(#orangeGradient1)"
+                className="animate-blob"
+              />
+              <defs>
+                <linearGradient id="orangeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fb923c" />
+                  <stop offset="50%" stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#ea580c" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
 
-            {/* Abstract Shape 2 - Twisted Ring */}
-            <div className="absolute top-1/3 right-1/3 w-48 h-48 animate-float-delayed opacity-25">
-              <svg width="192" height="192" viewBox="0 0 192 192" fill="none">
-                <path
-                  d="M96 20 C140 20, 172 52, 172 96 C172 140, 140 172, 96 172 C52 172, 20 140, 20 96 C20 52, 52 20, 96 20 Z M96 60 C116 60, 132 76, 132 96 C132 116, 116 132, 96 132 C76 132, 60 116, 60 96 C60 76, 76 60, 96 60 Z"
-                  fill="url(#orangeGradient2)"
-                  fillRule="evenodd"
-                  className="animate-pyramid-spin"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#f97316" />
-                    <stop offset="50%" stopColor="#fb923c" />
-                    <stop offset="100%" stopColor="#fdba74" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 2 - Twisted Ring */}
+          <div className="absolute top-1/3 right-1/3 w-48 h-48 animate-float-delayed opacity-25">
+            <svg width="192" height="192" viewBox="0 0 192 192" fill="none">
+              <path
+                d="M96 20 C140 20, 172 52, 172 96 C172 140, 140 172, 96 172 C52 172, 20 140, 20 96 C20 52, 52 20, 96 20 Z M96 60 C116 60, 132 76, 132 96 C132 116, 116 132, 96 132 C76 132, 60 116, 60 96 C60 76, 76 60, 96 60 Z"
+                fill="url(#orangeGradient2)"
+                fillRule="evenodd"
+                className="animate-pyramid-spin"
+              />
+              <defs>
+                <linearGradient id="orangeGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f97316" />
+                  <stop offset="50%" stopColor="#fb923c" />
+                  <stop offset="100%" stopColor="#fdba74" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
 
-            {/* Abstract Shape 3 - Organic Wave */}
-            <div className="absolute bottom-1/3 left-1/2 w-56 h-32 animate-float-slow opacity-30">
-              <svg width="224" height="128" viewBox="0 0 224 128" fill="none">
-                <path
-                  d="M0 64 C56 20, 112 20, 168 64 C224 108, 168 108, 112 64 C56 108, 0 108, 0 64 Z"
-                  fill="url(#orangeGradient3)"
-                  className="animate-hexagon-pulse"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#ea580c" />
-                    <stop offset="50%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#fb923c" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 3 - Organic Wave */}
+          <div className="absolute bottom-1/3 left-1/2 w-56 h-32 animate-float-slow opacity-30">
+            <svg width="224" height="128" viewBox="0 0 224 128" fill="none">
+              <path
+                d="M0 64 C56 20, 112 20, 168 64 C224 108, 168 108, 112 64 C56 108, 0 108, 0 64 Z"
+                fill="url(#orangeGradient3)"
+                className="animate-hexagon-pulse"
+              />
+              <defs>
+                <linearGradient id="orangeGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#ea580c" />
+                  <stop offset="50%" stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#fb923c" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
 
-            {/* Abstract Shape 4 - Geometric Crystal */}
-            <div className="absolute top-1/2 right-1/4 w-40 h-40 animate-float-reverse opacity-25">
-              <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
-                <path
-                  d="M80 10 L140 50 L120 120 L40 120 L20 50 Z"
-                  fill="url(#orangeGradient4)"
-                  className="animate-cube-rotate"
-                />
-                <path
-                  d="M80 10 L140 50 L80 80 Z"
-                  fill="url(#orangeGradient5)"
-                  opacity="0.8"
-                  className="animate-cube-rotate"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fdba74" />
-                    <stop offset="50%" stopColor="#fb923c" />
-                    <stop offset="100%" stopColor="#ea580c" />
-                  </linearGradient>
-                  <linearGradient id="orangeGradient5" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#fb923c" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 4 - Geometric Crystal */}
+          <div className="absolute top-1/2 right-1/4 w-40 h-40 animate-float-reverse opacity-25">
+            <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
+              <path
+                d="M80 10 L140 50 L120 120 L40 120 L20 50 Z"
+                fill="url(#orangeGradient4)"
+                className="animate-cube-rotate"
+              />
+              <path
+                d="M80 10 L140 50 L80 80 Z"
+                fill="url(#orangeGradient5)"
+                opacity="0.8"
+                className="animate-cube-rotate"
+              />
+              <defs>
+                <linearGradient id="orangeGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fdba74" />
+                  <stop offset="50%" stopColor="#fb923c" />
+                  <stop offset="100%" stopColor="#ea580c" />
+                </linearGradient>
+                <linearGradient id="orangeGradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#fb923c" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
 
-            {/* Abstract Shape 5 - Flowing Ribbon */}
-            <div className="absolute bottom-1/4 right-1/3 w-72 h-24 animate-sphere-float opacity-20">
-              <svg width="288" height="96" viewBox="0 0 288 96" fill="none">
-                <path
-                  d="M0 48 C72 12, 144 84, 216 48 C288 12, 216 84, 144 48 C72 84, 0 12, 0 48 Z"
-                  fill="url(#orangeGradient6)"
-                  className="animate-mane-flow-1"
-                />
-                <defs>
-                  <linearGradient id="orangeGradient6" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fb923c" />
-                    <stop offset="50%" stopColor="#fdba74" />
-                    <stop offset="100%" stopColor="#f97316" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+          {/* Abstract Shape 5 - Flowing Ribbon */}
+          <div className="absolute bottom-1/4 right-1/3 w-72 h-24 animate-sphere-float opacity-20">
+            <svg width="288" height="96" viewBox="0 0 288 96" fill="none">
+              <path
+                d="M0 48 C72 12, 144 84, 216 48 C288 12, 216 84, 144 48 C72 84, 0 12, 0 48 Z"
+                fill="url(#orangeGradient6)"
+                className="animate-mane-flow-1"
+              />
+              <defs>
+                <linearGradient id="orangeGradient6" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fb923c" />
+                  <stop offset="50%" stopColor="#fdba74" />
+                  <stop offset="100%" stopColor="#f97316" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
         </div>
 
@@ -444,15 +350,16 @@ export default function AIPositioningLanding() {
               <Button
                 size="lg"
                 className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-bounce-subtle"
-                onClick={() => (window.location.href = "/calendario")}
+                onClick={handleWhatsAppContact}
               >
-                Agenda tu auditoría gratuita
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Agenda mi consulta gratuita
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg transform hover:scale-105 transition-all duration-300"
-                onClick={() => (window.location.href = "/aprende-mas")}
+                onClick={() => document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <BookOpen className="mr-2 h-5 w-5" />
                 Aprende más
@@ -479,7 +386,7 @@ export default function AIPositioningLanding() {
               className="text-slate-700 dark:text-slate-300 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/20"
               onClick={() => document.getElementById("problema")?.scrollIntoView({ behavior: "smooth" })}
             >
-              El Problema
+              Análisis de Situación
             </Button>
             <Button
               variant="ghost"
@@ -517,19 +424,72 @@ export default function AIPositioningLanding() {
         </div>
       </section>
 
-      {/* Problem Section */}
+      {/* Analysis Section */}
       <section id="problema" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 animate-slide-up">
+              <span className="text-orange-500">Análisis de tu situación actual</span>
+            </h2>
+            <p className="text-xl text-slate-700 dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed animate-slide-up-delayed">
+              Todo inicia con una optimización total de código, velocidad y rendimiento en móviles y escritorio. Un
+              checklist exhaustivo de tu sitio web para el SEO (Search Engine Optimization) con más de 250 algoritmos
+              actualizándose 3 veces al día y con actualizaciones al núcleo cada 3 a 4 meses. Optimización ON y OFF
+              page.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-600">
+              <div className="bg-orange-100 dark:bg-orange-700 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <Gauge className="h-8 w-8 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 text-center">
+                Optimización de Velocidad
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 text-center">
+                Código, rendimiento móvil y escritorio
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-600">
+              <div className="bg-blue-100 dark:bg-blue-700 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <Settings className="h-8 w-8 text-blue-500" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 text-center">Checklist SEO</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 text-center">
+                Más de 250 algoritmos actualizándose 3 veces al día
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-600">
+              <div className="bg-green-100 dark:bg-green-700 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <Target className="h-8 w-8 text-green-500" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 text-center">SEO ON & OFF Page</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 text-center">
+                Optimización completa interna y externa
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-600">
+              <div className="bg-purple-100 dark:bg-purple-700 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <BarChart3 className="h-8 w-8 text-purple-500" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 text-center">
+                Actualizaciones Core
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 text-center">
+                Adaptación cada 3-4 meses a cambios del núcleo
+              </p>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 animate-slide-up">
-                El problema que está <span className="text-orange-500">matando tu negocio</span>
-              </h2>
-              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed animate-slide-up-delayed">
-                Más del <strong className="text-orange-500">40% de los clics ya no llegan a sitios web</strong>. La IA
-                generativa de Google responde directamente. Las marcas que no aparecen ahí están perdiendo autoridad,
-                tráfico y clientes potenciales.
-              </p>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+                El problema que está <span className="text-orange-500">afectando tu negocio</span>
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3 animate-slide-up-delayed-2">
                   <TrendingDown className="h-6 w-6 text-orange-500" />
@@ -540,7 +500,11 @@ export default function AIPositioningLanding() {
                   <span className="text-slate-700 dark:text-slate-300">Clientes que no te encuentran</span>
                 </div>
                 <div className="flex items-center gap-3 animate-slide-up-delayed-2" style={{ animationDelay: "1.2s" }}>
-                  <Target className="h-6 w-6 text-orange-500" />
+                  <Smartphone className="h-6 w-6 text-orange-500" />
+                  <span className="text-slate-700 dark:text-slate-300">Sitio web lento en dispositivos móviles</span>
+                </div>
+                <div className="flex items-center gap-3 animate-slide-up-delayed-2" style={{ animationDelay: "1.3s" }}>
+                  <Monitor className="h-6 w-6 text-orange-500" />
                   <span className="text-slate-700 dark:text-slate-300">Competencia dominando las respuestas de IA</span>
                 </div>
               </div>
@@ -819,10 +783,7 @@ export default function AIPositioningLanding() {
       <section id="faq" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2
-              className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6
-"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
               Preguntas <span className="text-green-500">frecuentes</span>
             </h2>
           </div>
@@ -890,7 +851,7 @@ export default function AIPositioningLanding() {
             <Button
               size="lg"
               className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold"
-              onClick={() => (window.location.href = "/agendar-sesion")}
+              onClick={handleZoomMeeting}
             >
               <Clock className="mr-2 h-5 w-5" />
               Agendar sesión estratégica
@@ -899,18 +860,14 @@ export default function AIPositioningLanding() {
               variant="outline"
               size="lg"
               className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
-              onClick={() => (window.location.href = "/aprende-mas")}
+              onClick={handleWhatsAppContact}
             >
-              <BookOpen className="mr-2 h-5 w-5" />
-              Aprende más
+              <MessageCircle className="mr-2 h-5 w-5" />
+              Contactar por WhatsApp
             </Button>
           </div>
 
           <div className="mt-12 flex items-center justify-center gap-8 text-sm text-slate-400 dark:text-slate-500">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-400" />
-              <span>Sin compromiso</span>
-            </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-green-400" />
               <span>Consulta gratuita</span>
@@ -927,7 +884,7 @@ export default function AIPositioningLanding() {
       <footer className="bg-orange-500 dark:bg-orange-600 text-white py-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
-            <h3 className="text-2xl font-bold mb-2">{"Diseño y Optimización Online "}</h3>
+            <h3 className="text-2xl font-bold mb-2">Diseño y Optimización Online</h3>
             <p className="text-white">La agencia líder en posicionamiento para motores de IA</p>
           </div>
 
@@ -1010,7 +967,7 @@ export default function AIPositioningLanding() {
           </div>
 
           <div className="border-t border-slate-800 pt-8 text-white">
-            <p>© Diseño y Optimízación Online. Todos los derechos reservados.</p>
+            <p>© Diseño y Optimización Online. Todos los derechos reservados.</p>
           </div>
 
           {/* Social Media Links */}
