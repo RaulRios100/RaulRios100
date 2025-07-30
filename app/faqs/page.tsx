@@ -1,299 +1,359 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { ArrowRight, Search, Brain, Target, TrendingUp, Zap, Eye, MessageCircle } from "lucide-react"
-import Link from "next/link"
+import { ArrowLeft, Brain, Target, Zap, TrendingUp, Search, Users, Moon, Sun } from "lucide-react"
+import { useState, useEffect } from "react"
 
 export default function FAQsPage() {
+  const [isDarkMode, setIsDarkMode] = useState(true)
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme === "light") {
+      setIsDarkMode(false)
+      document.documentElement.classList.remove("dark")
+    } else {
+      setIsDarkMode(true)
+      document.documentElement.classList.add("dark")
+    }
+  }, [])
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode)
+    if (!isDarkMode) {
+      document.documentElement.classList.add("dark")
+      localStorage.setItem("theme", "dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+      localStorage.setItem("theme", "light")
+    }
+  }
+
+  const DarkModeToggle = () => (
+    <button
+      onClick={toggleDarkMode}
+      className="fixed bottom-6 right-6 z-50 bg-white dark:bg-slate-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
+    >
+      {isDarkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-slate-600" />}
+    </button>
+  )
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+      <DarkModeToggle />
+
       {/* Header */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 text-blue-600 border-blue-200">
-            <Brain className="w-4 h-4 mr-2" />
-            GEO - Generative Engine Optimization
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">El Nuevo Google Ya Está Aquí</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Google está cambiando el juego, y la mayoría ni siquiera se ha dado cuenta. Sus nuevas funciones de IA están
-            robándose el momento más valioso del buscador.
-          </p>
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <Button
+            variant="outline"
+            className="mb-6 bg-transparent border-white text-white hover:bg-white hover:text-slate-900"
+            onClick={() => window.history.back()}
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Volver
+          </Button>
+          <div className="text-center">
+            <Badge className="mb-6 bg-orange-500 text-white px-4 py-2 text-sm font-medium">
+              🔥 LA NUEVA REALIDAD DEL MARKETING DIGITAL
+            </Badge>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              El <span className="text-orange-400">viejo Google está muerto</span>
+            </h1>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Google está cambiando el juego, y la mayoría ni siquiera se ha dado cuenta. Descubre por qué el SEO
+              tradicional ya no funciona y cómo adaptarte al nuevo mundo del GEO.
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* Alert Section */}
-        <Card className="mb-16 border-red-200 bg-red-50">
-          <CardContent className="p-8">
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0">
-                <Eye className="w-8 h-8 text-red-600" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-red-900 mb-4">
-                  Si tu marca no aparece en esos resultados generados por IA, olvídate de todo.
-                </h3>
-                <p className="text-red-800 text-lg">
-                  Eres invisible. Estás fuera de la conversación. Esto ya no es SEO clásico. Esto es una guerra por
-                  atención, posicionamiento y confianza en el nuevo Google.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Main Content Sections */}
-        <div className="grid gap-12">
-          {/* Section 1: El Viejo Google Está Muerto */}
-          <Card className="overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-gray-900 to-gray-700 text-white">
-              <CardTitle className="text-2xl flex items-center">
-                <Search className="w-6 h-6 mr-3" />
-                El Viejo Google Está Muerto
+      {/* Main Content */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          {/* Introduction */}
+          <Card className="mb-12 border-2 border-orange-200 dark:border-orange-700">
+            <CardHeader className="bg-orange-50 dark:bg-orange-900/20">
+              <CardTitle className="text-2xl text-orange-800 dark:text-orange-300 flex items-center gap-3">
+                <Brain className="h-8 w-8" />
+                La Revolución Silenciosa
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-8">
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 mb-6">
-                  Antes era una lista de enlaces. Ahora es un maldito motor de respuestas con criterio propio.
-                </p>
-                <p className="text-gray-700 mb-6">
-                  ¿Y de dónde saca esas respuestas? De la gente, de las marcas, del contenido en el que confía.
-                </p>
-                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 my-6">
-                  <p className="text-yellow-800 font-semibold text-lg">
-                    Y te tengo una bomba: puedes estar en la primera página… y aún así perder.
-                  </p>
-                  <p className="text-yellow-700 mt-2">
-                    Porque si no estás citado en esas respuestas de IA, simplemente no existes.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section 2: Cómo Ganar */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl flex items-center text-blue-900">
-                <Target className="w-6 h-6 mr-3" />
-                ¿Quieres Ganar en Esto?
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-8">
-              <p className="text-gray-700 text-lg mb-6">
-                Tienes que entrenar la IA para que te vea como una fuente confiable.
+            <CardContent className="pt-6">
+              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+                Google está cambiando el juego, y la mayoría ni siquiera se ha dado cuenta. Sus nuevas funciones de IA
+                están robándose el momento más valioso del buscador:{" "}
+                <strong className="text-orange-600">cuando el usuario ya está listo para comprar</strong>. Y si tu marca
+                no aparece en esos resultados generados por IA, olvídate de todo.
               </p>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-gray-900">❌ Ya NO es sobre:</h4>
-                  <ul className="space-y-2 text-gray-600">
+              <div className="bg-slate-100 dark:bg-slate-800 p-4 rounded-lg border-l-4 border-orange-500">
+                <p className="text-slate-800 dark:text-slate-200 font-semibold">
+                  Eres invisible. Estás fuera de la conversación.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* GEO vs SEO */}
+          <Card className="mb-12">
+            <CardHeader>
+              <CardTitle className="text-2xl text-slate-900 dark:text-white flex items-center gap-3">
+                <Target className="h-8 w-8 text-green-500" />
+                Bienvenido al GEO - Generative Engine Optimization
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+                Esto ya no es SEO clásico. Esto es una guerra por atención, posicionamiento y confianza en el nuevo
+                Google. Ahora lo llaman <strong className="text-green-600">GEO – Generative Engine Optimization</strong>
+                . Y si no empiezas a pensar como un jugador de este nuevo juego, te vas a quedar viendo cómo otros se
+                llevan toda la atención.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-lg border border-red-200 dark:border-red-800">
+                  <h3 className="font-bold text-red-800 dark:text-red-300 mb-3">❌ El Viejo Google (SEO)</h3>
+                  <ul className="space-y-2 text-red-700 dark:text-red-200">
+                    <li>• Lista de enlaces</li>
+                    <li>• Competencia por clics</li>
                     <li>• Keywords sueltas</li>
-                    <li>• Escribir artículos al azar</li>
-                    <li>• Obsesionarse con el clic</li>
+                    <li>• Artículos al azar</li>
                   </ul>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-gray-900">✅ Ahora ES sobre:</h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Dominar el contexto</li>
-                    <li>• Convertirte en fuente confiable</li>
-                    <li>• Obsesionarse con el momento</li>
+                <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg border border-green-200 dark:border-green-800">
+                  <h3 className="font-bold text-green-800 dark:text-green-300 mb-3">✅ El Nuevo Google (GEO)</h3>
+                  <ul className="space-y-2 text-green-700 dark:text-green-200">
+                    <li>• Motor de respuestas con criterio</li>
+                    <li>• Competencia por menciones</li>
+                    <li>• Dominio del contexto</li>
+                    <li>• Autoridad reconocida por IA</li>
                   </ul>
                 </div>
+              </div>
+
+              <div className="bg-slate-100 dark:bg-slate-800 p-6 rounded-lg">
+                <p className="text-slate-800 dark:text-slate-200 font-semibold mb-2">La bomba que debes saber:</p>
+                <p className="text-slate-700 dark:text-slate-300">
+                  Puedes estar en la primera página… y aún así perder. Porque si no estás citado en esas respuestas de
+                  IA, simplemente no existes.
+                </p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Section 3: Query Fan-Out */}
-          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50">
-            <CardHeader>
-              <CardTitle className="text-2xl flex items-center text-indigo-900">
-                <Zap className="w-6 h-6 mr-3" />
-                El Secreto: Query Fan-Out
+          {/* Query Fan-out */}
+          <Card className="mb-12 border-2 border-blue-200 dark:border-blue-700">
+            <CardHeader className="bg-blue-50 dark:bg-blue-900/20">
+              <CardTitle className="text-2xl text-blue-800 dark:text-blue-300 flex items-center gap-3">
+                <Search className="h-8 w-8" />
+                El Secreto del "Query Fan-out"
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-8">
-              <div className="space-y-6">
-                <p className="text-gray-700 text-lg">
-                  La gente ya no escribe "mejor CRM". Escriben:
-                  <span className="font-semibold text-indigo-700">
-                    "¿Cuál es el mejor CRM para una agencia chica con presupuesto limitado y equipo remoto?"
-                  </span>
+            <CardContent className="pt-6">
+              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+                ¿Qué está pasando en las búsquedas? La gente ya no escribe "mejor CRM". Escriben:{" "}
+                <em>"¿Cuál es el mejor CRM para una agencia chica con presupuesto limitado y equipo remoto?"</em>
+              </p>
+
+              <div className="bg-blue-100 dark:bg-blue-900/30 p-6 rounded-lg mb-6">
+                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-4">¿Y adivina qué?</h3>
+                <p className="text-blue-700 dark:text-blue-200 mb-4">
+                  Google lo contesta. Con IA. En segundos. No te manda a 10 links. Te da una respuesta completa, basada
+                  en contenido que ni siquiera ves.
                 </p>
-
-                <div className="bg-white rounded-lg p-6 border border-indigo-200">
-                  <h4 className="font-semibold text-indigo-900 mb-4">Lo que pasa detrás de escena:</h4>
-                  <div className="grid gap-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-semibold">
-                        1
-                      </div>
-                      <p>El usuario escribe una pregunta</p>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-semibold">
-                        2
-                      </div>
-                      <p>La IA hace 30 microbúsquedas ocultas</p>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-semibold">
-                        3
-                      </div>
-                      <p>Todo se fusiona en una respuesta brillante</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <p className="text-xl font-semibold text-gray-900">¿Tu marca fue parte de ese collage?</p>
-                  <p className="text-red-600 font-semibold mt-2">Si no… otra vez: eres invisible.</p>
-                </div>
+                <p className="text-blue-800 dark:text-blue-300 font-semibold">
+                  Y lo peor (o lo mejor, si eres listo): Ese contenido probablemente ni siquiera lo escribió el número 1
+                  del ranking.
+                </p>
               </div>
-            </CardContent>
-          </Card>
 
-          {/* Section 4: Cómo Ganar al Sistema */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl flex items-center text-green-900">
-                <TrendingUp className="w-6 h-6 mr-3" />
-                ¿Cómo Le Ganas al Sistema?
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-8">
-              <div className="space-y-6">
-                <p className="text-lg text-gray-700 font-semibold">
-                  Fácil (bueno, no fácil, pero claro): Reversa el proceso.
-                </p>
-
+              <div className="space-y-4">
+                <h4 className="font-bold text-slate-900 dark:text-white">Cómo funciona el Query Fan-out:</h4>
                 <div className="grid gap-4">
-                  {[
-                    "Mira qué contenido la IA ya está usando",
-                    "Ve qué marcas están apareciendo",
-                    "Detecta las brechas de contenido",
-                    "Crea contenido más profundo, más visual, más útil, más humano",
-                  ].map((step, index) => (
-                    <div key={index} className="flex items-start space-x-4 p-4 bg-green-50 rounded-lg">
-                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0">
-                        {index + 1}
-                      </div>
-                      <p className="text-green-800 font-medium">{step}</p>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                      1
                     </div>
-                  ))}
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-6 mt-8">
-                  <h4 className="font-semibold text-gray-900 mb-4">No escribas por escribir. Haz:</h4>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Videos explicativos</li>
-                      <li>• Infografías detalladas</li>
-                    </ul>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Contenido multimedia</li>
-                      <li>• Explicaciones con autoridad</li>
-                    </ul>
+                    <p className="text-slate-700 dark:text-slate-300">El usuario escribe una cosa</p>
                   </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section 5: La Nueva Realidad */}
-          <Card className="bg-gradient-to-br from-purple-50 to-pink-50">
-            <CardHeader>
-              <CardTitle className="text-2xl text-purple-900">La Nueva Realidad del SEO</CardTitle>
-            </CardHeader>
-            <CardContent className="p-8">
-              <div className="space-y-6">
-                <p className="text-lg text-gray-700">
-                  Esto no es sobre ganar clics. Es sobre ganar mente, atención, confianza.
-                </p>
-
-                <div className="bg-white rounded-lg p-6 border border-purple-200">
-                  <p className="text-purple-800 text-lg font-semibold mb-4">
-                    SEO ahora es como tener tu logo en un auto de Fórmula 1.
-                  </p>
-                  <p className="text-purple-700">
-                    Tal vez no te recuerden con detalle, pero te vieron 500 veces. Cuando llegue el momento de elegir,
-                    te van a elegir a ti.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Última Verdad:</h3>
-                  <p className="text-xl text-gray-700 mb-6">
-                    Google no está matando el SEO. Lo está reinventando y ahora es
-                    <span className="font-bold text-purple-600"> más importante que NUNCA.</span>
-                  </p>
-
-                  <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg p-6 mb-8">
-                    <p className="text-lg font-semibold">
-                      Ahora mismo hay una ventana brutal para que tú seas de los primeros en adaptarse y ganar
-                      visibilidad sin pagar anuncios, sin ser #1, sin siquiera ser clickeado.
+                  <div className="flex items-start gap-3">
+                    <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                      2
+                    </div>
+                    <p className="text-slate-700 dark:text-slate-300">
+                      La IA hace 30 microbúsquedas en segundo plano: clima, ubicación, comparaciones, datos, horarios,
+                      tips…
                     </p>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                      3
+                    </div>
+                    <p className="text-slate-700 dark:text-slate-300">Todo eso se fusiona en una respuesta brillante</p>
+                  </div>
+                </div>
+
+                <div className="bg-yellow-100 dark:bg-yellow-900/30 p-4 rounded-lg border-l-4 border-yellow-500">
+                  <p className="text-yellow-800 dark:text-yellow-200 font-semibold">
+                    ¿Tu marca fue parte de ese collage? Si no… otra vez: eres invisible.
+                  </p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Final Question */}
-          <Card className="border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">La Pregunta Es:</h3>
+          {/* Strategy */}
+          <Card className="mb-12">
+            <CardHeader>
+              <CardTitle className="text-2xl text-slate-900 dark:text-white flex items-center gap-3">
+                <Zap className="h-8 w-8 text-purple-500" />
+                Cómo Ganarle al Sistema
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+                Deja de obsesionarte con el clic. Empieza a obsesionarte con el momento. Ese instante en el que el
+                usuario dice: <strong>"Sí, eso quiero."</strong> Y si tú no estás citado en ese momento, ya perdiste.
+              </p>
 
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <div className="p-6 bg-red-100 rounded-lg border border-red-200">
-                  <h4 className="text-xl font-semibold text-red-800 mb-4">¿Vas a seguir compitiendo por:</h4>
-                  <ul className="text-red-700 space-y-2">
-                    <li>• Tráfico</li>
-                    <li>• Clics</li>
-                    <li>• Rankings tradicionales</li>
-                  </ul>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                Entonces, ¿cómo le ganas al sistema?
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 mb-6">
+                Fácil (bueno, no fácil, pero claro): <strong>Reversa el proceso.</strong>
+              </p>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                    1
+                  </div>
+                  <p className="text-slate-700 dark:text-slate-300">Mira qué contenido la IA ya está usando</p>
                 </div>
-
-                <div className="p-6 bg-green-100 rounded-lg border border-green-200">
-                  <h4 className="text-xl font-semibold text-green-800 mb-4">¿O vas a competir por:</h4>
-                  <ul className="text-green-700 space-y-2">
-                    <li>• Permanencia</li>
-                    <li>• Memoria</li>
-                    <li>• Relevancia</li>
-                    <li>• Menciones de tu marca</li>
-                  </ul>
+                <div className="flex items-start gap-3">
+                  <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                    2
+                  </div>
+                  <p className="text-slate-700 dark:text-slate-300">Ve qué marcas están apareciendo</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                    3
+                  </div>
+                  <p className="text-slate-700 dark:text-slate-300">
+                    Detecta las brechas de contenido: temas que ellos cubren y tú no
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                    4
+                  </div>
+                  <p className="text-slate-700 dark:text-slate-300">
+                    Crea contenido más profundo, más visual, más útil, más humano
+                  </p>
                 </div>
               </div>
 
-              <p className="text-2xl font-bold text-gray-900 mb-6">Tú eliges.</p>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg border border-purple-200 dark:border-purple-800">
+                <h4 className="font-bold text-purple-800 dark:text-purple-300 mb-3">No escribas por escribir:</h4>
+                <ul className="space-y-2 text-purple-700 dark:text-purple-200">
+                  <li>• Haz videos</li>
+                  <li>• Haz infografías</li>
+                  <li>• Haz explicaciones con gancho</li>
+                  <li>• Haz contenido que se vea y se sienta como una autoridad</li>
+                </ul>
+                <p className="text-purple-800 dark:text-purple-300 font-semibold mt-4">
+                  Así es como entrenas a la IA para decir: "Este es el tipo que sabe. Lo voy a citar."
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
-              <p className="text-lg text-gray-700 mb-8">Muchos de nuestros clientes ya empezaron.</p>
+          {/* New Reality */}
+          <Card className="mb-12 border-2 border-green-200 dark:border-green-700">
+            <CardHeader className="bg-green-50 dark:bg-green-900/20">
+              <CardTitle className="text-2xl text-green-800 dark:text-green-300 flex items-center gap-3">
+                <TrendingUp className="h-8 w-8" />
+                La Nueva Realidad del Marketing
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+                Esto no es sobre ganar clics. Es sobre ganar mente, atención, confianza. SEO ahora es como tener tu logo
+                en un auto de Fórmula 1. Tal vez no te recuerden con detalle, pero te vieron 500 veces.
+              </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-                >
-                  <Link href="https://wa.me/5256202022210?text=Hola,%20quiero%20empezar%20con%20GEO%20y%20posicionar%20mi%20marca%20en%20las%20respuestas%20de%20IA">
-                    <MessageCircle className="w-5 h-5 mr-2" />
-                    Empezar con GEO Ahora
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contacto">
-                    Más Información
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
+              <div className="bg-green-100 dark:bg-green-900/30 p-6 rounded-lg mb-6">
+                <p className="text-green-800 dark:text-green-300 font-semibold text-lg">
+                  Cuando llegue el momento de elegir, te van a elegir a ti.
+                </p>
+              </div>
+
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Última verdad:</h3>
+              <p className="text-slate-700 dark:text-slate-300 mb-4">
+                Google no está matando el SEO. Lo está reinventando y ahora es{" "}
+                <strong className="text-green-600">más importante que NUNCA</strong>.
+              </p>
+
+              <div className="bg-slate-100 dark:bg-slate-800 p-6 rounded-lg">
+                <p className="text-slate-800 dark:text-slate-200 mb-4">
+                  Y ahora mismo hay una ventana brutal para que tú seas de los primeros en adaptarse y ganar visibilidad
+                  sin pagar anuncios, sin ser #1, sin siquiera ser clickeado.
+                </p>
+                <p className="text-slate-900 dark:text-white font-bold text-lg">
+                  La pregunta es: ¿Vas a seguir compitiendo por tráfico? ¿O vas a competir por permanencia? Por memoria.
+                  Por relevancia. Por menciones de tu marca?
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* CTA */}
+          <Card className="border-2 border-orange-300 dark:border-orange-700 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20">
+            <CardContent className="pt-8">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+                  Muchos de nuestros clientes <span className="text-orange-600">ya empezaron</span>
+                </h2>
+                <p className="text-xl text-slate-700 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
+                  No te quedes atrás en esta revolución. El momento de actuar es ahora, antes de que tu competencia
+                  descubra estos secretos.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button
+                    size="lg"
+                    className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold"
+                    onClick={() =>
+                      window.open(
+                        "https://wa.me/5256202022210?text=Hola, quiero saber más sobre GEO y cómo adaptar mi negocio al nuevo Google con IA",
+                        "_blank",
+                      )
+                    }
+                  >
+                    <Users className="mr-2 h-5 w-5" />
+                    Quiero empezar ahora
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-orange-500 text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 px-8 py-4 text-lg bg-transparent"
+                    onClick={() => (window.location.href = "/")}
+                  >
+                    Ver nuestros paquetes
+                  </Button>
+                </div>
+
+                <div className="mt-8 text-sm text-slate-500 dark:text-slate-400">
+                  <p>✅ Consulta personalizada • ✅ Sin compromiso • ✅ Resultados garantizados</p>
+                </div>
               </div>
             </CardContent>
           </Card>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

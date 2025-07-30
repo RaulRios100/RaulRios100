@@ -21,6 +21,7 @@ import {
   Facebook,
   Instagram,
   Linkedin,
+  Crown,
 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Moon, Sun } from "lucide-react"
@@ -624,42 +625,36 @@ export default function AIPositioningLanding() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Launchpad Package */}
             <Card className="relative border-2 border-slate-200 dark:border-slate-700 hover:border-green-300 transition-all duration-300">
               <CardHeader className="text-center pb-8">
                 <Badge className="w-fit mx-auto mb-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600">
                   PARA EMPEZAR
                 </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO LAUNCHPAD</CardTitle>
+                <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">AIO LAUNCHPAD</CardTitle>
                 <div className="mt-4">
-                  <div className="text-3xl font-bold text-slate-900 dark:text-white">$10,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $555 USD</div>
+                  <div className="text-2xl font-bold text-slate-900 dark:text-white">$10,000 MXN</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-300">o $555 USD</div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Auditoría inicial completa</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Auditoría inicial completa</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Optimización de 5 páginas clave</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Optimización de 5 páginas</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">
-                      Datos estructurados (FAQPage y LocalBusiness)
-                    </span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Schema markup básico</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">5 contenidos conversacionales mensuales</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Reporte mensual de visibilidad</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">5 contenidos mensuales</span>
                   </div>
                 </div>
                 <Button
@@ -680,40 +675,36 @@ export default function AIPositioningLanding() {
                 <Badge className="w-fit mx-auto mb-4 bg-green-100 dark:bg-green-700 text-green-700 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-600">
                   CRECIMIENTO
                 </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO ACCELERATOR</CardTitle>
+                <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">AIO ACCELERATOR</CardTitle>
                 <div className="mt-4">
-                  <div className="text-3xl font-bold text-green-600">$15,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $810 USD</div>
+                  <div className="text-2xl font-bold text-green-600">$15,000 MXN</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-300">o $810 USD</div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Optimización de 10 URLs</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">10 URLs optimizadas</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Integración de chatbot LLM simple</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Chatbot LLM simple</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">10 contenidos por mes</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Análisis de competencia en SGE</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">10 contenidos mensuales</span>
                   </div>
                 </div>
                 <Button
                   className="w-full mt-6 bg-green-500 hover:bg-green-600 text-white"
                   onClick={() => (window.location.href = "/contratar/accelerator")}
                 >
-                  Acelerar mi crecimiento
+                  Acelerar crecimiento
                 </Button>
               </CardContent>
             </Card>
@@ -722,46 +713,85 @@ export default function AIPositioningLanding() {
             <Card className="relative border-2 border-orange-300 dark:border-orange-700 hover:border-orange-400 transition-all duration-300">
               <CardHeader className="text-center pb-8">
                 <Badge className="w-fit mx-auto mb-4 bg-orange-100 dark:bg-orange-700 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-600">
-                  DOMINACIÓN TOTAL
+                  DOMINACIÓN
                 </Badge>
-                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO DOMINATOR</CardTitle>
+                <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">AIO DOMINATOR</CardTitle>
                 <div className="mt-4">
-                  <div className="text-3xl font-bold text-orange-600">$30,000 MXN</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300">o $1,666 USD</div>
+                  <div className="text-2xl font-bold text-orange-600">$30,000 MXN</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-300">o $1,666 USD</div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Sitio completo optimizado</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Sitio completo optimizado</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">PR digital y enlaces EEAT</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">PR digital y enlaces</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">20 contenidos por mes + chatbot experto</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Coaching mensual 1:1</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Dashboard de rendimiento</span>
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">20 contenidos mensuales</span>
                   </div>
                 </div>
                 <Button
                   className="w-full mt-6 bg-orange-500 hover:bg-orange-600 text-white"
                   onClick={() => (window.location.href = "/contratar/dominator")}
                 >
-                  Dominar mi mercado
+                  Dominar mercado
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Package */}
+            <Card className="relative border-2 border-purple-300 dark:border-purple-700 hover:border-purple-400 transition-all duration-300">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2">ENTERPRISE</Badge>
+              </div>
+              <CardHeader className="text-center pb-8 pt-8">
+                <Badge className="w-fit mx-auto mb-4 bg-purple-100 dark:bg-purple-700 text-purple-700 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-600">
+                  CORPORATIVO
+                </Badge>
+                <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">AIO ENTERPRISE</CardTitle>
+                <div className="mt-4">
+                  <div className="text-2xl font-bold text-purple-600">$70,000 MXN</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-300">o $3,888 USD</div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Crown className="h-4 w-4 text-purple-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Optimización ilimitada</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Brain className="h-4 w-4 text-purple-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">IA personalizada</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Users className="h-4 w-4 text-purple-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Account Manager 24/7</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Zap className="h-4 w-4 text-purple-500 flex-shrink-0" />
+                    <span className="text-sm text-slate-700 dark:text-slate-300">50 contenidos mensuales</span>
+                  </div>
+                </div>
+                <Button
+                  className="w-full mt-6 bg-purple-500 hover:bg-purple-600 text-white"
+                  onClick={() => (window.location.href = "/contratar/enterprise")}
+                >
+                  Solución Enterprise
                 </Button>
               </CardContent>
             </Card>
