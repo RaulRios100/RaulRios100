@@ -92,8 +92,8 @@ export default function Contacto() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900 dark:text-white mb-1">Teléfono</h3>
+                    <p className="text-slate-700 dark:text-slate-300">+52 56 2020 2210</p>
                     <p className="text-slate-700 dark:text-slate-300">+52 55 1234 5678</p>
-                    <p className="text-slate-700 dark:text-slate-300">+1 (555) 123-4567</p>
                   </div>
                 </div>
 
@@ -126,14 +126,14 @@ export default function Contacto() {
                 <div className="space-y-3">
                   <Button
                     className="w-full justify-start bg-green-500 hover:bg-green-600 text-white"
-                    onClick={() => (window.location.href = "/calendario")}
+                    onClick={() => window.open("https://wa.me/5256202022210", "_blank")}
                   >
-                    📅 Agendar consulta gratuita
+                    📅 Agendar consulta
                   </Button>
                   <Button
                     variant="outline"
                     className="w-full justify-start bg-transparent"
-                    onClick={() => window.open("https://wa.me/5551234567", "_blank")}
+                    onClick={() => window.open("https://wa.me/5256202022210", "_blank")}
                   >
                     💬 WhatsApp directo
                   </Button>
