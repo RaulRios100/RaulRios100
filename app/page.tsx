@@ -829,7 +829,7 @@ export default function AIPositioningLanding() {
               <div className="bg-green-100 dark:bg-green-700 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
                 <Shield className="h-10 w-10 text-green-500" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Visibilidad Garantizada</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Visibilidad en LLMs<br></h3>
               <p className="text-slate-700 dark:text-slate-300">
                 Visibilidad garantizada en AI Overviews o se extiende el servicio sin costo adicional
               </p>
