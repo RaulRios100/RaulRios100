@@ -453,7 +453,7 @@ export default function AIPositioningLanding() {
                 variant="outline"
                 size="lg"
                 className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg transform hover:scale-105 transition-all duration-300"
-                onClick={() => (window.location.href = "/aprende-mas")}
+                onClick={() => document.getElementById("solucion")?.scrollIntoView({ behavior: "smooth" })}
               >
                 <BookOpen className="mr-2 h-5 w-5" />
                 Aprende más
@@ -659,7 +659,7 @@ export default function AIPositioningLanding() {
                 </div>
                 <Button
                   className="w-full mt-6 bg-slate-900 hover:bg-slate-800 text-white"
-                  onClick={() => (window.location.href = "/contratar/launchpad")}
+                  onClick={() => window.open("https://wa.me/5256202022210", "_blank")}
                 >
                   Comenzar ahora
                 </Button>
@@ -702,7 +702,7 @@ export default function AIPositioningLanding() {
                 </div>
                 <Button
                   className="w-full mt-6 bg-green-500 hover:bg-green-600 text-white"
-                  onClick={() => (window.location.href = "/contratar/accelerator")}
+                  onClick={() => window.open("https://wa.me/5256202022210", "_blank")}
                 >
                   Acelerar crecimiento
                 </Button>
@@ -742,7 +742,7 @@ export default function AIPositioningLanding() {
                 </div>
                 <Button
                   className="w-full mt-6 bg-orange-500 hover:bg-orange-600 text-white"
-                  onClick={() => (window.location.href = "/contratar/dominator")}
+                  onClick={() => window.open("https://wa.me/5256202022210", "_blank")}
                 >
                   Dominar mercado
                 </Button>
@@ -789,7 +789,7 @@ export default function AIPositioningLanding() {
                 </div>
                 <Button
                   className="w-full mt-6 bg-purple-500 hover:bg-purple-600 text-white"
-                  onClick={() => (window.location.href = "/contratar/enterprise")}
+                  onClick={() => window.open("https://wa.me/5256202022210", "_blank")}
                 >
                   Solución Enterprise
                 </Button>
@@ -929,7 +929,7 @@ export default function AIPositioningLanding() {
               variant="outline"
               size="lg"
               className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
-              onClick={() => (window.location.href = "/aprende-mas")}
+              onClick={() => document.getElementById("solucion")?.scrollIntoView({ behavior: "smooth" })}
             >
               <BookOpen className="mr-2 h-5 w-5" />
               Aprende más
@@ -993,11 +993,6 @@ export default function AIPositioningLanding() {
                 <li>
                   <a href="/sobre-nosotros" className="text-white hover:text-orange-200 transition-colors">
                     Sobre nosotros
-                  </a>
-                </li>
-                <li>
-                  <a href="/casos-de-exito" className="text-white hover:text-orange-200 transition-colors">
-                    Casos de éxito
                   </a>
                 </li>
                 <li>
