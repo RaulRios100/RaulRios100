@@ -1,63 +1,65 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 
 interface SocialLinksProps {
   variant?: "default" | "footer"
+  className?: string
 }
 
-export function SocialLinks({ variant = "default" }: SocialLinksProps) {
-  const socialLinks = [
-    {
-      name: "Facebook",
-      icon: Facebook,
-      url: "https://facebook.com/rescatevivienda",
-    },
-    {
-      name: "Instagram",
-      icon: Instagram,
-      url: "https://instagram.com/rescatevivienda",
-    },
-    {
-      name: "Twitter",
-      icon: Twitter,
-      url: "https://twitter.com/rescatevivienda",
-    },
-    {
-      name: "YouTube",
-      icon: Youtube,
-      url: "https://youtube.com/@rescatevivienda",
-    },
-  ]
+export function SocialLinks({ variant = "default", className = "" }: SocialLinksProps) {
+  const socialLinks = {
+    facebook: "https://www.facebook.com/LiberaCreditoDeTuCasaOficial/",
+    instagram: "https://www.instagram.com/liberacreditodetucasaoficial/",
+    youtube: "https://www.youtube.com/@LiberaCreditoDeTuCasa",
+    twitter: "https://twitter.com/LiberaCredito_Casa",
+  }
+
+  const openSocialLink = (url: string) => {
+    window.open(url, "_blank")
+  }
 
   if (variant === "footer") {
     return (
-      <div className="flex space-x-2">
-        {socialLinks.map((social) => (
-          <Button
-            key={social.name}
-            variant="ghost"
-            size="sm"
-            className="h-8 w-8 p-0 hover:bg-green-100 dark:hover:bg-green-900"
-            onClick={() => window.open(social.url, "_blank")}
-          >
-            <social.icon className="h-4 w-4" />
-            <span className="sr-only">{social.name}</span>
-          </Button>
-        ))}
+      <div className={`flex space-x-4 ${className}`}>
+        <Facebook
+          className="h-5 w-5 cursor-pointer text-muted-foreground hover:text-blue-500 transition-colors"
+          onClick={() => openSocialLink(socialLinks.facebook)}
+        />
+        <Instagram
+          className="h-5 w-5 cursor-pointer text-muted-foreground hover:text-purple-500 transition-colors"
+          onClick={() => openSocialLink(socialLinks.instagram)}
+        />
+        <Youtube
+          className="h-5 w-5 cursor-pointer text-muted-foreground hover:text-red-500 transition-colors"
+          onClick={() => openSocialLink(socialLinks.youtube)}
+        />
+        <Twitter
+          className="h-5 w-5 cursor-pointer text-muted-foreground hover:text-blue-500 transition-colors"
+          onClick={() => openSocialLink(socialLinks.twitter)}
+        />
       </div>
     )
   }
 
   return (
-    <div className="flex space-x-4">
-      {socialLinks.map((social) => (
-        <Button key={social.name} variant="outline" size="sm" onClick={() => window.open(social.url, "_blank")}>
-          <social.icon className="h-4 w-4 mr-2" />
-          {social.name}
-        </Button>
-      ))}
+    <div className={`flex space-x-4 ${className}`}>
+      <Facebook
+        className="h-4 w-4 cursor-pointer hover:text-blue-500 transition-colors"
+        onClick={() => openSocialLink(socialLinks.facebook)}
+      />
+      <Instagram
+        className="h-4 w-4 cursor-pointer hover:text-purple-500 transition-colors"
+        onClick={() => openSocialLink(socialLinks.instagram)}
+      />
+      <Youtube
+        className="h-4 w-4 cursor-pointer hover:text-red-500 transition-colors"
+        onClick={() => openSocialLink(socialLinks.youtube)}
+      />
+      <Twitter
+        className="h-4 w-4 cursor-pointer hover:text-blue-500 transition-colors"
+        onClick={() => openSocialLink(socialLinks.twitter)}
+      />
     </div>
   )
 }

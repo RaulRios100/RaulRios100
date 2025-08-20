@@ -61,10 +61,17 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply antialiased border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto w-full;
   }
 }
 
@@ -132,4 +139,29 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--foreground));
+}
+
+/* Floating WhatsApp Button */
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+}
+
+.float:hover {
+  background-color: #128c7e;
+  transition: all 0.3s ease-in-out;
+}
+
+.my-float {
+  margin-top: 16px;
 }

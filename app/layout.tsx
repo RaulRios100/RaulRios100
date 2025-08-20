@@ -1,32 +1,30 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
+import { Analytics } from "@vercel/analytics/react"
+import { Suspense } from "react"
+
+import "@/app/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Rescate Vivienda - Libérate de tus Deudas INFONAVIT",
-  description:
-    "Especialistas en rescate de propiedades INFONAVIT. Liquidamos tus deudas, rescatamos tu casa y liberamos tu futuro. Evaluación gratuita en 24 horas.",
-  keywords: "INFONAVIT, rescate vivienda, liquidación deudas, casa abandonada, crédito hipotecario, México",
-    generator: 'v0.dev'
+  title: "LiberaCréditoDeTuCasa - Libérate de tus Deudas Hipotecarias",
+  description: "Liberamos tu casa, rescatamos tu futuro. Especialistas en liquidación de deudas hipotecarias.",
+    generator: 'v0.app'
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <Suspense fallback={null}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+            <Analytics />
+          </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   )

@@ -26,7 +26,7 @@ import { SocialLinks } from "@/components/social-links"
 import { FloatingContact } from "@/components/floating-contact"
 import { QuestionnaireForm } from "@/components/questionnaire-form"
 
-export default function RescateViviendaModern() {
+export default function LiberaCreditoDeTuCasaModern() {
   const [isVisible, setIsVisible] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
@@ -55,7 +55,7 @@ export default function RescateViviendaModern() {
     {
       question: "¿Ustedes pagan todas mis deudas?",
       answer:
-        "Sí, nos hacemos cargo de deudas con INFONAVIT, servicios (luz, agua, predial) y otros adeudos relacionados con la propiedad. Todo queda saldado.",
+        "Sí, nos hacemos cargo de deudas hipotecarias, servicios (luz, agua, predial) y otros adeudos relacionados con la propiedad. Todo queda saldado.",
     },
     {
       question: "¿Cuánto dinero recibiré por mi casa?",
@@ -85,8 +85,8 @@ export default function RescateViviendaModern() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3" onClick={scrollToTop} style={{ cursor: "pointer" }}>
               <Image
-                src="/images/logo-rescate-vivienda.png"
-                alt="Rescate Vivienda"
+                src="/images/libera-credito-logo.png"
+                alt="LiberaCréditoDeTuCasa"
                 width={200}
                 height={60}
                 className="h-12 w-auto"
@@ -149,7 +149,7 @@ export default function RescateViviendaModern() {
           <div className={`space-y-8 ${isVisible ? "animate-in slide-in-from-left duration-1000" : "opacity-0"}`}>
             <div className="space-y-4">
               <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-4 py-2 text-sm font-medium">
-                ✨ Especialistas en INFONAVIT
+                ✨ Especialistas en deudas hipotecarias
               </Badge>
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 <span className="text-green-600">Libérate</span>
@@ -161,7 +161,8 @@ export default function RescateViviendaModern() {
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
-                Rescatamos tu casa, liberamos tu futuro. Soluciones rápidas y transparentes para tus deudas INFONAVIT.
+                Liberamos tu casa, rescatamos tu futuro. Soluciones rápidas y transparentes para tus deudas
+                hipotecarias.
               </p>
             </div>
 
@@ -172,13 +173,7 @@ export default function RescateViviendaModern() {
                 <div className="text-3xl font-bold text-green-600">
                   <AnimatedCounter end={50} suffix="+" />
                 </div>
-                <div className="text-sm text-muted-foreground">Casas Rescatadas</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">
-                  <AnimatedCounter end={95} suffix="%" />
-                </div>
-                <div className="text-sm text-muted-foreground">Éxito Garantizado</div>
+                <div className="text-sm text-muted-foreground">Casas Liberadas</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-600">24/7</div>
@@ -193,8 +188,8 @@ export default function RescateViviendaModern() {
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-green-600 to-green-800 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
               <Image
-                src="/images/hero-transformation.png"
-                alt="Transformación de casa - Antes y Después"
+                src="/images/libera-credito-hero.png"
+                alt="LiberaCréditoDeTuCasa - Transformación de casa abandonada a casa moderna"
                 width={600}
                 height={400}
                 className="relative rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
@@ -210,7 +205,7 @@ export default function RescateViviendaModern() {
           <div className="text-center max-w-4xl mx-auto mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               ¿Tu casa está <span className="text-red-500">abandonada</span>, vandalizada o te ahoga con{" "}
-              <span className="text-red-500">deudas INFONAVIT</span>? 😣
+              <span className="text-red-500">deudas hipotecarias</span>? 😣
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed">
               En México, más de <strong className="text-green-600">200,000 casas</strong> están en el olvido, afectando
@@ -255,12 +250,12 @@ export default function RescateViviendaModern() {
               {
                 emoji: "💰",
                 title: "Deudas fuera",
-                desc: "Nos encargamos de deudas con INFONAVIT, luz, agua o predial.",
+                desc: "Nos encargamos de deudas hipotecarias, luz, agua o predial.",
                 color: "green",
               },
               {
                 emoji: "🏠",
-                title: "Casas rescatadas",
+                title: "Casas liberadas",
                 desc: "Revivimos propiedades abandonadas o vandalizadas.",
                 color: "orange",
               },
@@ -420,8 +415,8 @@ export default function RescateViviendaModern() {
                     </h4>
                     <p className="text-sm text-yellow-700 dark:text-yellow-300 leading-relaxed">
                       Esta evaluación es únicamente de pre-calificación. Todo proceso de negociación quedará sujeto a
-                      revisión legal de escrituras, historial registral, validación con INFONAVIT o institución
-                      financiera correspondiente, y verificación de identidad del propietario.
+                      revisión legal de escrituras, historial registral, validación con instituciones de crédito
+                      hipotecario o institución financiera correspondiente, y verificación de identidad del propietario.
                     </p>
                   </div>
                 </div>
@@ -436,7 +431,7 @@ export default function RescateViviendaModern() {
                   const message = encodeURIComponent(
                     "¡Hola! Quiero evaluar mi caso. Tengo una propiedad con problemas y me gustaría conocer sus servicios.",
                   )
-                  window.open(`https://wa.me/524775780721?text=${message}`, "_blank")
+                  window.open(`https://wa.me/524791080098?text=${message}`, "_blank")
                 }}
               >
                 <FileText className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
@@ -496,7 +491,7 @@ export default function RescateViviendaModern() {
                 const message = encodeURIComponent(
                   "Hola, tengo una pregunta específica sobre sus servicios que no está en las FAQs.",
                 )
-                window.open(`https://wa.me/524775780721?text=${message}`, "_blank")
+                window.open(`https://wa.me/524791080098?text=${message}`, "_blank")
               }}
             >
               <HelpCircle className="h-5 w-5 mr-2" />
@@ -527,16 +522,18 @@ export default function RescateViviendaModern() {
                 const message = encodeURIComponent(
                   "¡Hola! Quiero liberar mi casa del peso de las deudas. ¿Pueden ayudarme?",
                 )
-                window.open(`https://wa.me/524775780721?text=${message}`, "_blank")
+                window.open(`https://wa.me/524791080098?text=${message}`, "_blank")
               }}
             >
               <Phone className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
-              +52 4775780721
+              +52 479 108 0098
             </Button>
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-lg opacity-90">⚡ Atención 24/7 • 🏆 +50 casas rescatadas • ✅ Respuestas rápidas</p>
+            <p className="text-lg opacity-90">
+              ⚡ Respuesta en menos de 1 hora • 🏆 +50 casas liberadas • ✅ 95% de éxito
+            </p>
           </div>
         </div>
       </section>
@@ -547,13 +544,13 @@ export default function RescateViviendaModern() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="space-y-4">
               <Image
-                src="/images/logo-rescate-vivienda.png"
-                alt="Rescate Vivienda"
+                src="/images/libera-credito-logo.png"
+                alt="LiberaCréditoDeTuCasa"
                 width={200}
                 height={60}
                 className="h-12 w-auto"
               />
-              <p className="text-muted-foreground">Rescatamos tu casa, liberamos tu futuro.</p>
+              <p className="text-muted-foreground">Liberamos tu casa, rescatamos tu futuro.</p>
             </div>
 
             <div>
@@ -568,8 +565,8 @@ export default function RescateViviendaModern() {
             <div>
               <h4 className="text-lg font-semibold mb-4">Servicios</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li>• Liquidación INFONAVIT</li>
-                <li>• Rescate de propiedades</li>
+                <li>• Liquidación de deudas hipotecarias</li>
+                <li>• Liberación de propiedades</li>
                 <li>• Trámites legales</li>
                 <li>• Limpieza de buró</li>
               </ul>
@@ -597,7 +594,7 @@ export default function RescateViviendaModern() {
                 </Link>
               </div>
               <p className="text-muted-foreground text-sm">
-                &copy; 2024 Rescate Vivienda. Todos los derechos reservados.
+                &copy; 2024 LiberaCréditoDeTuCasa. Todos los derechos reservados.
               </p>
             </div>
           </div>

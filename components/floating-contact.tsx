@@ -20,14 +20,14 @@ export function FloatingContact() {
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      "¡Hola! Me interesa conocer más sobre sus servicios de rescate de vivienda. ¿Pueden ayudarme?",
+      "¡Hola! Me interesa conocer más sobre sus servicios de liberación de vivienda. ¿Pueden ayudarme?",
     )
-    window.open(`https://wa.me/524775780721?text=${message}`, "_blank")
+    window.open(`https://wa.me/524791080098?text=${message}`, "_blank")
     setIsOpen(false)
   }
 
   const handlePhoneClick = () => {
-    window.open("tel:+524775780721", "_self")
+    window.open("tel:+524791080098", "_self")
     setIsOpen(false)
   }
 

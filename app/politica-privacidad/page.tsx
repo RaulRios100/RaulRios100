@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, Shield, Eye, Lock, Database, UserCheck, AlertTriangle, FileText } from "lucide-react"
+import { ArrowLeft, Shield, Eye, Lock, Database, UserCheck, AlertTriangle } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -17,7 +17,7 @@ export default function PoliticaPrivacidad() {
             <Link href="/" className="flex items-center space-x-3">
               <Image
                 src="/images/logo-rescate-vivienda.png"
-                alt="Rescate Vivienda"
+                alt="LiberaCréditoDeTuCasa"
                 width={200}
                 height={60}
                 className="h-12 w-auto"
@@ -46,7 +46,7 @@ export default function PoliticaPrivacidad() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Aviso de <span className="text-green-600">Privacidad Integral</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">de www.rescatevivienda.com</p>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">de www.liberacreditodetucasa.com</p>
             <div className="mt-6 text-sm text-muted-foreground">
               <p>Última actualización: 21 de enero de 2025</p>
             </div>
@@ -58,12 +58,11 @@ export default function PoliticaPrivacidad() {
               <div className="flex items-start space-x-3">
                 <AlertTriangle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Cumplimiento Legal</h3>
+                  <h3 className="font-semibold text-lg mb-2">Compromiso con tu Privacidad</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares
-                    (LFPDPPP) y su Reglamento, Rescate Vivienda S.A. de C.V., con domicilio en México (en adelante, "el
-                    Responsable"), pone a su disposición este Aviso de Privacidad, en el que se describe cómo se
-                    recaban, usan, protegen y, en su caso, transfieren sus datos personales.
+                    Esta Política de Privacidad describe cómo LiberaCréditoDeTuCasa recopila, utiliza, almacena y
+                    protege tu información personal cuando utilizas nuestros servicios de liberación y liquidación de
+                    propiedades con deudas hipotecarias.
                   </p>
                 </div>
               </div>
@@ -72,170 +71,300 @@ export default function PoliticaPrivacidad() {
 
           {/* Content Sections */}
           <div className="space-y-8">
-            {/* Datos Personales Recabados */}
+            {/* Información que Recopilamos */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Database className="h-6 w-6 mr-3 text-green-600" />
-                  1. Datos Personales Recabados
+                  1. Información que Recopilamos
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">
-                  Recabamos los siguientes datos personales para proporcionar nuestros servicios:
-                </p>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Datos de identificación:</h4>
-                    <p className="text-muted-foreground">Nombre completo, fecha de nacimiento, CURP, RFC.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Datos de contacto:</h4>
-                    <p className="text-muted-foreground">Teléfono, correo electrónico, domicilio.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Datos financieros y patrimoniales:</h4>
-                    <p className="text-muted-foreground">
-                      Información sobre deudas hipotecarias (Infonavit, Fovissste, bancos), detalles de la propiedad
-                      (dirección, estado, documentos relacionados).
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2 text-green-600">Otros:</h4>
-                    <p className="text-muted-foreground">
-                      Información sobre gastos públicos (agua, luz, etc.) y cualquier dato necesario para la gestión de
-                      trámites.
-                    </p>
-                  </div>
+              <CardContent className="space-y-6">
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Información Personal Directa</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>
+                      • <strong>Datos de Identificación:</strong> Nombre completo, CURP, RFC, fecha de nacimiento
+                    </li>
+                    <li>
+                      • <strong>Información de Contacto:</strong> Número telefónico, dirección física
+                    </li>
+                    <li>
+                      • <strong>Datos Financieros:</strong> Información sobre deudas hipotecarias, historial crediticio,
+                      ingresos
+                    </li>
+                    <li>
+                      • <strong>Documentación Legal:</strong> Escrituras, contratos de crédito, identificaciones
+                      oficiales
+                    </li>
+                  </ul>
                 </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  <strong>
-                    No recabamos datos sensibles (origen racial, salud, etc.) a menos que sea estrictamente necesario y
-                    con su consentimiento expreso.
-                  </strong>
-                </p>
+
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Información de la Propiedad</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Ubicación y características del inmueble</li>
+                    <li>• Estado actual de la propiedad (habitada, abandonada, vandalizada)</li>
+                    <li>• Historial de pagos y adeudos</li>
+                    <li>• Documentación registral y catastral</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Información Técnica</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Datos de navegación en nuestro sitio web</li>
+                    <li>• Información de dispositivos utilizados</li>
+                    <li>• Registros de comunicaciones (WhatsApp, llamadas telefónicas)</li>
+                    <li>• Geolocalización cuando sea necesario para inspecciones</li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
 
-            {/* Finalidades del Tratamiento */}
+            {/* Cómo Utilizamos tu Información */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Eye className="h-6 w-6 mr-3 text-green-600" />
-                  2. Finalidades del Tratamiento de Datos
+                  2. Cómo Utilizamos tu Información
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">Sus datos se utilizan para:</p>
-                <ul className="space-y-2 text-muted-foreground ml-4">
-                  <li>
-                    • Proporcionar asesoría y gestión en resolución de deudas hipotecarias, remodelación de propiedades
-                    y búsqueda de compradores.
-                  </li>
-                  <li>• Realizar trámites ante instituciones como Infonavit, Fovissste o bancos.</li>
-                  <li>• Gestionar pagos de servicios públicos asociados a la propiedad.</li>
-                  <li>• Enviar comunicaciones relacionadas con sus solicitudes.</li>
-                </ul>
-                <p className="text-muted-foreground leading-relaxed">
-                  <strong>
-                    Las finalidades son necesarias para los servicios solicitados. No usamos sus datos para fines
-                    secundarios sin su consentimiento.
-                  </strong>
-                </p>
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Servicios Principales</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Evaluar la viabilidad de liberación de tu propiedad</li>
+                    <li>• Gestionar la liquidación de deudas hipotecarias</li>
+                    <li>• Realizar trámites legales y notariales</li>
+                    <li>• Coordinar inspecciones y valuaciones</li>
+                    <li>• Procesar pagos y transferencias</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Comunicación y Soporte</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Responder a tus consultas y brindar asesoría</li>
+                    <li>• Enviarte actualizaciones sobre el progreso de tu caso</li>
+                    <li>• Programar citas y reuniones</li>
+                    <li>• Proporcionar soporte técnico y legal</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Cumplimiento Legal</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Cumplir con obligaciones fiscales y regulatorias</li>
+                    <li>• Verificar identidad y prevenir fraudes</li>
+                    <li>• Mantener registros contables y legales</li>
+                    <li>• Colaborar con autoridades cuando sea requerido por ley</li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
 
-            {/* Transferencia de Datos */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <UserCheck className="h-6 w-6 mr-3 text-green-600" />
-                  3. Transferencia de Datos
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">
-                  Sus datos no serán transferidos a terceros sin su consentimiento, salvo:
-                </p>
-                <ul className="space-y-2 text-muted-foreground ml-4">
-                  <li>
-                    • A instituciones financieras o gubernamentales (ej. Infonavit, Fovissste) para gestiones
-                    necesarias.
-                  </li>
-                  <li>• Por requerimiento de autoridad competente.</li>
-                </ul>
-                <p className="text-muted-foreground leading-relaxed">
-                  En caso de transferencia, se informará el propósito y se garantizará la protección de datos.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Medidas de Seguridad */}
+            {/* Protección de Datos */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Lock className="h-6 w-6 mr-3 text-green-600" />
-                  4. Medidas de Seguridad
+                  3. Protección y Seguridad de Datos
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Implementamos medidas administrativas, técnicas y físicas para proteger sus datos contra daño,
-                  pérdida, alteración, destrucción o uso no autorizado, conforme a la LFPDPPP.
-                </p>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Medidas de Seguridad Técnicas</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Encriptación de datos sensibles en tránsito y almacenamiento</li>
+                    <li>• Sistemas de autenticación multifactor</li>
+                    <li>• Firewalls y sistemas de detección de intrusiones</li>
+                    <li>• Respaldos seguros y redundantes</li>
+                    <li>• Monitoreo continuo de seguridad</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Medidas Organizacionales</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Acceso restringido solo a personal autorizado</li>
+                    <li>• Capacitación continua en protección de datos</li>
+                    <li>• Políticas internas de manejo de información</li>
+                    <li>• Auditorías regulares de seguridad</li>
+                    <li>• Acuerdos de confidencialidad con todo el personal</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Almacenamiento Seguro</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Servidores ubicados en centros de datos certificados en México</li>
+                    <li>• Cumplimiento con estándares internacionales de seguridad</li>
+                    <li>• Destrucción segura de documentos físicos</li>
+                    <li>• Retención de datos solo por el tiempo legalmente requerido</li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
 
-            {/* Derechos ARCO */}
+            {/* Compartir Información */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center text-xl">
+                  <UserCheck className="h-6 w-6 mr-3 text-green-600" />
+                  4. Compartir tu Información
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Terceros Autorizados</h4>
+                  <p className="text-muted-foreground mb-3">
+                    Compartimos tu información únicamente con terceros necesarios para completar nuestros servicios:
+                  </p>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>
+                      • <strong>Instituciones de crédito hipotecario:</strong> Para gestionar liquidaciones y trámites
+                      oficiales
+                    </li>
+                    <li>
+                      • <strong>Notarios Públicos:</strong> Para formalizar transferencias y escrituras
+                    </li>
+                    <li>
+                      • <strong>Instituciones Financieras:</strong> Para procesar pagos y transferencias
+                    </li>
+                    <li>
+                      • <strong>Valuadores Certificados:</strong> Para determinar el valor de propiedades
+                    </li>
+                    <li>
+                      • <strong>Autoridades Fiscales:</strong> Para cumplir obligaciones tributarias
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Nunca Compartimos</h4>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• Tu información con fines comerciales o publicitarios</li>
+                    <li>• Datos personales con empresas de marketing</li>
+                    <li>• Información financiera con terceros no autorizados</li>
+                    <li>• Detalles de tu caso con otras personas sin tu consentimiento</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Derechos del Usuario */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Shield className="h-6 w-6 mr-3 text-green-600" />
-                  5. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)
+                  5. Tus Derechos sobre tu Información
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">
-                  Usted tiene derecho a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos. Para
-                  ejercerlos, envíe una solicitud por escrito a{" "}
-                  <a href="mailto:contacto@rescatevivienda.com" className="text-green-600 hover:underline">
-                    contacto@rescatevivienda.com
-                  </a>{" "}
-                  o al domicilio indicado, incluyendo:
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Derechos ARCO</h4>
+                  <p className="text-muted-foreground mb-3">
+                    Conforme a la Ley Federal de Protección de Datos Personales, tienes derecho a:
+                  </p>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>
+                      • <strong>Acceso:</strong> Conocer qué datos personales tenemos sobre ti
+                    </li>
+                    <li>
+                      • <strong>Rectificación:</strong> Solicitar la corrección de datos inexactos
+                    </li>
+                    <li>
+                      • <strong>Cancelación:</strong> Pedir la eliminación de tus datos cuando sea procedente
+                    </li>
+                    <li>
+                      • <strong>Oposición:</strong> Oponerte al tratamiento de tus datos para fines específicos
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Cómo Ejercer tus Derechos</h4>
+                  <p className="text-muted-foreground mb-3">
+                    Para ejercer cualquiera de estos derechos, puedes contactarnos a través de:
+                  </p>
+                  <ul className="space-y-2 text-muted-foreground ml-4">
+                    <li>• WhatsApp: +52 479 108 0098</li>
+                    <li>• Teléfono: +52 479 108 0098</li>
+                    <li>• Presentándote en nuestras oficinas con identificación oficial</li>
+                  </ul>
+                  <p className="text-muted-foreground mt-3">
+                    Responderemos a tu solicitud en un plazo máximo de 20 días hábiles.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Cookies y Tecnologías */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">6. Cookies y Tecnologías de Seguimiento</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-muted-foreground">
+                  Nuestro sitio web utiliza cookies y tecnologías similares para mejorar tu experiencia:
                 </p>
                 <ul className="space-y-2 text-muted-foreground ml-4">
-                  <li>• Nombre y domicilio.</li>
-                  <li>• Descripción clara del derecho a ejercer.</li>
-                  <li>• Documentos que acrediten su identidad.</li>
+                  <li>
+                    • <strong>Cookies Esenciales:</strong> Necesarias para el funcionamiento básico del sitio
+                  </li>
+                  <li>
+                    • <strong>Cookies de Rendimiento:</strong> Para analizar cómo utilizas nuestro sitio
+                  </li>
+                  <li>
+                    • <strong>Cookies de Funcionalidad:</strong> Para recordar tus preferencias
+                  </li>
                 </ul>
-                <p className="text-muted-foreground leading-relaxed">
-                  Responderemos en un plazo máximo de 20 días hábiles. Para más información, consulte al Instituto
-                  Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI) en{" "}
-                  <a
-                    href="https://www.inai.org.mx"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-600 hover:underline"
-                  >
-                    www.inai.org.mx
-                  </a>
-                  .
+                <p className="text-muted-foreground">
+                  Puedes configurar tu navegador para rechazar cookies, aunque esto puede afectar la funcionalidad del
+                  sitio.
                 </p>
               </CardContent>
             </Card>
 
-            {/* Cambios al Aviso */}
+            {/* Menores de Edad */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center text-xl">
-                  <FileText className="h-6 w-6 mr-3 text-green-600" />
-                  6. Cambios al Aviso de Privacidad
-                </CardTitle>
+                <CardTitle className="text-xl">7. Protección de Menores</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nos reservamos el derecho de modificar este Aviso. Los cambios se publicarán en el Sitio con al menos
-                  15 días de anticipación. Le recomendamos revisar periódicamente esta sección.
+                <p className="text-muted-foreground">
+                  Nuestros servicios están dirigidos a personas mayores de 18 años. No recopilamos intencionalmente
+                  información personal de menores de edad. Si un menor ha proporcionado información personal, el padre o
+                  tutor debe contactarnos inmediatamente para su eliminación.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Transferencias Internacionales */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">8. Transferencias de Datos</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Todos tus datos personales se almacenan y procesan dentro del territorio mexicano. No realizamos
+                  transferencias internacionales de datos personales sin tu consentimiento expreso y las medidas de
+                  protección adecuadas.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Cambios a la Política */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">9. Cambios a esta Política</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Podemos actualizar esta Política de Privacidad ocasionalmente. Te notificaremos sobre cambios
+                  significativos a través de nuestros canales de comunicación habituales. La fecha de la última
+                  actualización aparece al inicio de este documento.
                 </p>
               </CardContent>
             </Card>
@@ -243,23 +372,26 @@ export default function PoliticaPrivacidad() {
             {/* Contacto */}
             <Card className="border-2 border-green-500/20 bg-green-50 dark:bg-green-950/20">
               <CardHeader>
-                <CardTitle className="text-xl text-green-700 dark:text-green-300">Contacto</CardTitle>
+                <CardTitle className="text-xl text-green-700 dark:text-green-300">10. Contacto y Consultas</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-green-700 dark:text-green-300 mb-4">Si tiene dudas, contáctenos en:</p>
+                <p className="text-green-700 dark:text-green-300 mb-4">
+                  Si tienes preguntas sobre esta Política de Privacidad o sobre el manejo de tus datos personales, no
+                  dudes en contactarnos:
+                </p>
                 <div className="space-y-2 text-green-700 dark:text-green-300">
                   <p>
-                    <strong>Rescate Vivienda S.A. de C.V.</strong>
+                    <strong>LiberaCréditoDeTuCasa S.A. de C.V.</strong>
                   </p>
-                  <p>WhatsApp: +52 4775780721</p>
-                  <p>Teléfono: +52 4775780721</p>
+                  <p>WhatsApp: +52 479 108 0098</p>
+                  <p>Teléfono: +52 479 108 0098</p>
                   <p>
                     Email:{" "}
-                    <a href="mailto:contacto@rescatevivienda.com" className="hover:underline">
-                      contacto@rescatevivienda.com
+                    <a href="mailto:contacto@liberacreditodetucasa.com" className="hover:underline">
+                      contacto@liberacreditodetucasa.com
                     </a>
                   </p>
-                  <p>Sitio web: www.rescatevivienda.com</p>
+                  <p>Sitio web: www.liberacreditodetucasa.com</p>
                 </div>
               </CardContent>
             </Card>
@@ -282,18 +414,18 @@ export default function PoliticaPrivacidad() {
               </CardContent>
             </Card>
           </div>
-
-          {/* Back to Home Button */}
-          <div className="text-center mt-12">
-            <Link href="/">
-              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white">
-                <ArrowLeft className="h-5 w-5 mr-2" />
-                Regresar al Inicio
-              </Button>
-            </Link>
-          </div>
         </div>
       </main>
+
+      {/* Back to Home Button */}
+      <div className="text-center mt-12">
+        <Link href="/">
+          <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white">
+            <ArrowLeft className="h-5 w-5 mr-2" />
+            Regresar al Inicio
+          </Button>
+        </Link>
+      </div>
     </div>
   )
 }

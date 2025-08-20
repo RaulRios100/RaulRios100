@@ -10,13 +10,13 @@ interface ContactButtonsProps {
 export function ContactButtons({ variant = "default" }: ContactButtonsProps) {
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      "¡Hola! Me interesa conocer más sobre sus servicios de rescate de vivienda. ¿Pueden ayudarme?",
+      "¡Hola! Me interesa conocer más sobre sus servicios de liberación de vivienda. ¿Pueden ayudarme?",
     )
-    window.open(`https://wa.me/524775780721?text=${message}`, "_blank")
+    window.open(`https://wa.me/524791080098?text=${message}`, "_blank")
   }
 
   const handlePhoneClick = () => {
-    window.open("tel:+524775780721", "_self")
+    window.open("tel:+524791080098", "_self")
   }
 
   if (variant === "hero") {
@@ -48,7 +48,7 @@ export function ContactButtons({ variant = "default" }: ContactButtonsProps) {
       <div className="space-y-3">
         <div className="flex items-center space-x-2 text-muted-foreground">
           <Phone className="h-4 w-4" />
-          <span className="text-sm">+52 4775780721</span>
+          <span className="text-sm">+52 479 108 0098</span>
         </div>
         <div className="flex space-x-2">
           <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white" onClick={handleWhatsAppClick}>
