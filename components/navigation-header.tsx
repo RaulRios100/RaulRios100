@@ -1,32 +1,33 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface NavigationHeaderProps {
-  title: string
-  showBackButton?: boolean
+  title?: string
 }
 
-export default function NavigationHeader({ title, showBackButton = true }: NavigationHeaderProps) {
+export default function NavigationHeader({ title }: NavigationHeaderProps) {
+  const handleBack = () => {
+    if (typeof window !== "undefined") {
+      window.history.back()
+    }
+  }
+
   return (
-    <header className="bg-slate-900 border-b border-slate-700 sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            {showBackButton && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-transparent border-slate-600 text-slate-300 hover:bg-slate-800"
-                onClick={() => window.history.back()}
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Volver
-              </Button>
-            )}
-            <h1 className="text-xl font-bold text-white">{title}</h1>
-          </div>
+    <header className="bg-slate-900 border-b border-slate-700 px-4 py-4">
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleBack}
+            className="text-slate-300 hover:text-white hover:bg-slate-800"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Volver
+          </Button>
+          {title && <h1 className="text-xl font-semibold text-white">{title}</h1>}
         </div>
       </div>
     </header>
