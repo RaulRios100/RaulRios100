@@ -15,7 +15,6 @@ export default function NavigationHeader({ title, showBackButton = true }: Navig
   const navigationItems = [
     { name: "Inicio", href: "/" },
     { name: "Servicios", href: "/servicios/ai-overviews" },
-    { name: "Casos de Éxito", href: "/casos-de-exito" },
     { name: "Blog", href: "/blog" },
     { name: "Contacto", href: "/contacto" },
     { name: "Calendario", href: "/calendario" },
