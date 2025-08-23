@@ -96,16 +96,10 @@ export default function Home() {
         <p className="text-lg mb-8">Descubre cómo podemos ayudarte a alcanzar tus objetivos de marketing digital.</p>
         <Button
           size="lg"
-          className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-          onClick={() =>
-            window.open(
-              "https://wa.me/5256202022210?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20de%20marketing%20digital%20con%20IA",
-              "_blank",
-            )
-          }
+          className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-bounce-subtle"
+          onClick={() => window.open("https://wa.me/5256202022210", "_blank")}
         >
-          <MessageCircle className="mr-2 h-5 w-5" />
-          Contactar por WhatsApp
+          Agenda tu auditoría
         </Button>
       </div>
     </div>
