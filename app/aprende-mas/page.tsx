@@ -150,35 +150,32 @@ export default function AprendeMasPage() {
   const currentStrategy = strategies.find((s) => s.id === activeTab)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+    <div className="min-h-screen bg-slate-950">
       <NavigationHeader title="Aprende Más" />
 
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <Badge
-            variant="outline"
-            className="mb-6 text-orange-600 border-orange-200 bg-orange-50 dark:bg-orange-950 dark:border-orange-800"
-          >
+          <Badge variant="outline" className="mb-6 text-orange-400 border-orange-800 bg-orange-950/20">
             <Lightbulb className="mr-2 h-4 w-4" />
             Centro de Conocimiento
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Domina el <span className="text-orange-500">SEO con IA</span>
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
             Aprende las estrategias más avanzadas para posicionar tu negocio en la era de la inteligencia artificial.
             Contenido actualizado y técnicas probadas por expertos.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
               <Play className="mr-2 h-5 w-5" />
-              Ver Webinar Gratuito
+              Ver Webinar Exclusivo
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-orange-200 text-orange-600 hover:bg-orange-50 dark:border-orange-800 dark:text-orange-400 bg-transparent"
+              className="border-orange-400 text-orange-400 hover:bg-orange-950/20 bg-transparent"
             >
               <Calendar className="mr-2 h-5 w-5" />
               Agendar Consulta
@@ -191,12 +188,12 @@ export default function AprendeMasPage() {
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8 bg-slate-800 border-slate-700">
               {strategies.map((strategy) => (
                 <TabsTrigger
                   key={strategy.id}
                   value={strategy.id}
-                  className="flex items-center gap-2 data-[state=active]:bg-orange-500 data-[state=active]:text-white"
+                  className="flex items-center gap-2 data-[state=active]:bg-orange-500 data-[state=active]:text-white text-slate-300"
                 >
                   {strategy.icon}
                   <span className="hidden sm:inline">{strategy.title}</span>
@@ -207,28 +204,28 @@ export default function AprendeMasPage() {
             {strategies.map((strategy) => (
               <TabsContent key={strategy.id} value={strategy.id} className="space-y-8">
                 <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{strategy.title}</h2>
-                  <p className="text-lg text-slate-600 dark:text-slate-300">{strategy.description}</p>
+                  <h2 className="text-3xl font-bold text-white mb-4">{strategy.title}</h2>
+                  <p className="text-lg text-slate-300">{strategy.description}</p>
                 </div>
 
                 <div className="grid lg:grid-cols-3 gap-8">
                   {/* Overview */}
-                  <Card className="lg:col-span-2">
+                  <Card className="lg:col-span-2 bg-slate-900 border-slate-700">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
+                      <CardTitle className="flex items-center gap-2 text-white">
                         <Globe className="h-5 w-5 text-orange-500" />
                         Visión General
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-slate-600 dark:text-slate-300 mb-6">{strategy.content.overview}</p>
+                      <p className="text-slate-300 mb-6">{strategy.content.overview}</p>
 
-                      <h4 className="font-semibold text-slate-900 dark:text-white mb-4">Puntos Clave:</h4>
+                      <h4 className="font-semibold text-white mb-4">Puntos Clave:</h4>
                       <ul className="space-y-2">
                         {strategy.content.keyPoints.map((point, index) => (
                           <li key={index} className="flex items-start gap-2">
                             <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-slate-600 dark:text-slate-300">{point}</span>
+                            <span className="text-slate-300">{point}</span>
                           </li>
                         ))}
                       </ul>
@@ -236,18 +233,18 @@ export default function AprendeMasPage() {
                   </Card>
 
                   {/* Tools */}
-                  <Card>
+                  <Card className="bg-slate-900 border-slate-700">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
+                      <CardTitle className="flex items-center gap-2 text-white">
                         <Zap className="h-5 w-5 text-orange-500" />
                         Herramientas
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {strategy.content.tools.map((tool, index) => (
-                        <div key={index} className="border-l-4 border-orange-200 pl-4">
-                          <h5 className="font-medium text-slate-900 dark:text-white">{tool.name}</h5>
-                          <p className="text-sm text-slate-600 dark:text-slate-300">{tool.description}</p>
+                        <div key={index} className="border-l-4 border-orange-500 pl-4">
+                          <h5 className="font-medium text-white">{tool.name}</h5>
+                          <p className="text-sm text-slate-300">{tool.description}</p>
                         </div>
                       ))}
                     </CardContent>
@@ -255,25 +252,24 @@ export default function AprendeMasPage() {
                 </div>
 
                 {/* Implementation */}
-                <Card>
+                <Card className="bg-slate-900 border-slate-700">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-white">
                       <Target className="h-5 w-5 text-orange-500" />
                       Plan de Implementación
                     </CardTitle>
-                    <CardDescription>Pasos prácticos para implementar esta estrategia en tu negocio</CardDescription>
+                    <CardDescription className="text-slate-400">
+                      Pasos prácticos para implementar esta estrategia en tu negocio
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="grid md:grid-cols-2 gap-4">
                       {strategy.content.implementation.map((step, index) => (
-                        <div
-                          key={index}
-                          className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg"
-                        >
+                        <div key={index} className="flex items-start gap-3 p-4 bg-slate-800 rounded-lg">
                           <div className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">
                             {index + 1}
                           </div>
-                          <p className="text-slate-700 dark:text-slate-300">{step}</p>
+                          <p className="text-slate-300">{step}</p>
                         </div>
                       ))}
                     </div>
@@ -286,38 +282,35 @@ export default function AprendeMasPage() {
       </section>
 
       {/* Webinar Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20">
+      <section className="py-20 px-4 bg-gradient-to-r from-orange-950/20 to-amber-950/20">
         <div className="max-w-4xl mx-auto text-center">
-          <Badge
-            variant="outline"
-            className="mb-6 text-orange-600 border-orange-200 bg-white dark:bg-slate-900 dark:border-orange-800"
-          >
+          <Badge variant="outline" className="mb-6 text-orange-400 border-orange-400 bg-slate-900">
             <Star className="mr-2 h-4 w-4" />
             Contenido Exclusivo
           </Badge>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Webinar: <span className="text-orange-500">SEO con IA en 2024</span>
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">
+          <p className="text-xl text-slate-300 mb-8">
             Únete a nuestro webinar exclusivo donde revelamos las estrategias más efectivas para dominar el SEO en la
             era de la inteligencia artificial.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+            <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
               <Clock className="h-8 w-8 text-orange-500 mx-auto mb-4" />
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">90 Minutos</h3>
-              <p className="text-slate-600 dark:text-slate-300">Contenido intensivo y práctico</p>
+              <h3 className="font-semibold text-white mb-2">90 Minutos</h3>
+              <p className="text-slate-300">Contenido intensivo y práctico</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+            <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
               <Users className="h-8 w-8 text-orange-500 mx-auto mb-4" />
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Expertos</h3>
-              <p className="text-slate-600 dark:text-slate-300">Presentado por especialistas</p>
+              <h3 className="font-semibold text-white mb-2">Expertos</h3>
+              <p className="text-slate-300">Presentado por especialistas</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+            <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
               <TrendingUp className="h-8 w-8 text-orange-500 mx-auto mb-4" />
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Resultados</h3>
-              <p className="text-slate-600 dark:text-slate-300">Estrategias probadas y efectivas</p>
+              <h3 className="font-semibold text-white mb-2">Resultados</h3>
+              <p className="text-slate-300">Estrategias probadas y efectivas</p>
             </div>
           </div>
 
@@ -331,7 +324,7 @@ export default function AprendeMasPage() {
       {/* Audit Section */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 rounded-2xl p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-8 md:p-12 text-white border border-slate-700">
             <div className="text-center mb-8">
               <Badge variant="outline" className="mb-6 text-orange-400 border-orange-400 bg-orange-950/20">
                 <Search className="mr-2 h-4 w-4" />
@@ -364,7 +357,7 @@ export default function AprendeMasPage() {
                   ))}
                 </ul>
               </div>
-              <div className="bg-slate-800/50 p-6 rounded-lg">
+              <div className="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
                 <h3 className="text-xl font-semibold text-orange-400 mb-4">Proceso:</h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
@@ -390,7 +383,16 @@ export default function AprendeMasPage() {
             </div>
 
             <div className="text-center">
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
+              <Button
+                size="lg"
+                className="bg-orange-500 hover:bg-orange-600 text-white"
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20solicitar%20una%20auditor%C3%ADa%20SEO%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADan%20ayudarme%3F",
+                    "_blank",
+                  )
+                }
+              >
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Solicitar Auditoría
               </Button>
@@ -400,7 +402,7 @@ export default function AprendeMasPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white">
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
             ¿Listo para implementar estas <span className="text-orange-400">estrategias avanzadas</span>?
