@@ -10,7 +10,13 @@ interface NavigationHeaderProps {
 export default function NavigationHeader({ title }: NavigationHeaderProps) {
   const handleBack = () => {
     if (typeof window !== "undefined") {
-      window.history.back()
+      // Check if there's history to go back to
+      if (window.history.length > 1) {
+        window.history.back()
+      } else {
+        // If no history, go to home page
+        window.location.href = "/"
+      }
     }
   }
 
