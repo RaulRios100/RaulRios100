@@ -260,19 +260,29 @@ export default function AprendeMas() {
             <Button
               size="lg"
               className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold"
-              onClick={() => (window.location.href = "/calendario")}
+              onClick={() =>
+                window.open(
+                  "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20agendar%20una%20auditor%C3%ADa%20SEO",
+                  "_blank",
+                )
+              }
             >
               <Clock className="mr-2 h-5 w-5" />
-              Agenda tu auditoría gratuita
+              Agenda tu auditoría
             </Button>
             <Button
               variant="outline"
               size="lg"
               className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
-              onClick={() => (window.location.href = "/casos-de-exito")}
+              onClick={() =>
+                window.open(
+                  "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20SEO%20con%20IA",
+                  "_blank",
+                )
+              }
             >
-              <Award className="mr-2 h-5 w-5" />
-              Ver casos de éxito
+              <MessageSquare className="mr-2 h-5 w-5" />
+              Contactar por WhatsApp
             </Button>
           </div>
 
