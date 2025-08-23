@@ -3,17 +3,21 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Crown, MessageSquare, ArrowRight } from "lucide-react"
+import { Switch } from "@/components/ui/switch"
+import { CheckCircle, Crown, MessageSquare, ArrowRight, Zap } from "lucide-react"
+import { useState } from "react"
 import NavigationHeader from "@/components/navigation-header"
 
 export default function PreciosPage() {
+  const [isAnnual, setIsAnnual] = useState(false)
+
   const plans = [
     {
       id: "launchpad",
       name: "AIO LAUNCHPAD",
       badge: { text: "PARA EMPEZAR", color: "bg-slate-600" },
-      price: "$10,000 MXN",
-      priceUsd: "o $555 USD",
+      monthlyPrice: 12000,
+      monthlyPriceUsd: 666,
       color: "slate",
       borderColor: "border-slate-600",
       buttonColor: "bg-slate-600 hover:bg-slate-700",
@@ -32,8 +36,8 @@ export default function PreciosPage() {
       name: "AIO ACCELERATOR",
       badge: { text: "MÁS POPULAR", color: "bg-green-500" },
       secondaryBadge: { text: "CRECIMIENTO", color: "bg-green-600" },
-      price: "$15,000 MXN",
-      priceUsd: "o $810 USD",
+      monthlyPrice: 18000,
+      monthlyPriceUsd: 1000,
       color: "green",
       borderColor: "border-green-500",
       buttonColor: "bg-green-500 hover:bg-green-600",
@@ -47,8 +51,8 @@ export default function PreciosPage() {
       id: "dominator",
       name: "AIO DOMINATOR",
       badge: { text: "DOMINACIÓN", color: "bg-orange-500" },
-      price: "$30,000 MXN",
-      priceUsd: "o $1666 USD",
+      monthlyPrice: 36000,
+      monthlyPriceUsd: 2000,
       color: "orange",
       borderColor: "border-orange-500",
       buttonColor: "bg-orange-500 hover:bg-orange-600",
@@ -62,8 +66,8 @@ export default function PreciosPage() {
       name: "AIO ENTERPRISE",
       badge: { text: "ENTERPRISE", color: "bg-purple-500" },
       secondaryBadge: { text: "CORPORATIVO", color: "bg-purple-600" },
-      price: "$70,000 MXN",
-      priceUsd: "o $3,888 USD",
+      monthlyPrice: 84000,
+      monthlyPriceUsd: 4666,
       color: "purple",
       borderColor: "border-purple-500",
       buttonColor: "bg-purple-500 hover:bg-purple-600",
@@ -81,6 +85,16 @@ export default function PreciosPage() {
       enterprise: true,
     },
   ]
+
+  const calculateAnnualPrice = (monthlyPrice: number) => {
+    const annualPrice = monthlyPrice * 12 * 0.8363 // 16.37% discount
+    return Math.round(annualPrice)
+  }
+
+  const calculateAnnualPriceUsd = (monthlyPriceUsd: number) => {
+    const annualPriceUsd = monthlyPriceUsd * 12 * 0.8363 // 16.37% discount
+    return Math.round(annualPriceUsd)
+  }
 
   const additionalFeatures = {
     launchpad: [
@@ -130,6 +144,21 @@ export default function PreciosPage() {
             Desde startups hasta empresas Fortune 500, tenemos la solución perfecta para llevar tu SEO al siguiente
             nivel con inteligencia artificial.
           </p>
+
+          {/* Pricing Toggle */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <span className={`text-lg font-medium ${!isAnnual ? "text-white" : "text-slate-400"}`}>Mensual</span>
+            <div className="relative">
+              <Switch checked={isAnnual} onCheckedChange={setIsAnnual} className="data-[state=checked]:bg-orange-500" />
+            </div>
+            <span className={`text-lg font-medium ${isAnnual ? "text-white" : "text-slate-400"}`}>Anual</span>
+            {isAnnual && (
+              <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white animate-pulse">
+                <Zap className="mr-1 h-3 w-3" />
+                16.37% OFF
+              </Badge>
+            )}
+          </div>
         </div>
       </section>
 
@@ -137,72 +166,88 @@ export default function PreciosPage() {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
-            {plans.map((plan) => (
-              <Card
-                key={plan.id}
-                className={`bg-slate-900 ${plan.borderColor} ${
-                  plan.popular || plan.enterprise ? "border-2 relative" : "border"
-                } hover:shadow-2xl transition-all duration-300 ${plan.enterprise ? "transform hover:scale-105" : ""}`}
-              >
-                {(plan.popular || plan.enterprise) && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className={plan.badge.color}>
-                      {plan.enterprise && <Crown className="mr-1 h-3 w-3" />}
-                      {plan.badge.text}
-                    </Badge>
-                  </div>
-                )}
+            {plans.map((plan) => {
+              const displayPrice = isAnnual ? calculateAnnualPrice(plan.monthlyPrice) : plan.monthlyPrice
+              const displayPriceUsd = isAnnual ? calculateAnnualPriceUsd(plan.monthlyPriceUsd) : plan.monthlyPriceUsd
+              const savings = isAnnual ? plan.monthlyPrice * 12 - displayPrice : 0
+              const savingsUsd = isAnnual ? plan.monthlyPriceUsd * 12 - displayPriceUsd : 0
 
-                <CardHeader className="text-center pb-4">
-                  {!plan.popular && !plan.enterprise && (
-                    <Badge className={`${plan.badge.color} mb-4 mx-auto w-fit`}>{plan.badge.text}</Badge>
-                  )}
-                  {plan.secondaryBadge && (
-                    <Badge className={`${plan.secondaryBadge.color} mb-4 mx-auto w-fit`}>
-                      {plan.secondaryBadge.text}
-                    </Badge>
-                  )}
-
-                  <CardTitle className="text-2xl font-bold text-white mb-4">{plan.name}</CardTitle>
-
-                  <div className="mb-6">
-                    <div
-                      className={`text-4xl font-bold mb-2 ${
-                        plan.color === "green"
-                          ? "text-green-400"
-                          : plan.color === "orange"
-                            ? "text-orange-400"
-                            : plan.color === "purple"
-                              ? "text-purple-400"
-                              : "text-slate-300"
-                      }`}
-                    >
-                      {plan.price}
+              return (
+                <Card
+                  key={plan.id}
+                  className={`bg-slate-900 ${plan.borderColor} ${
+                    plan.popular || plan.enterprise ? "border-2 relative" : "border"
+                  } hover:shadow-2xl transition-all duration-300 ${plan.enterprise ? "transform hover:scale-105" : ""}`}
+                >
+                  {(plan.popular || plan.enterprise) && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <Badge className={plan.badge.color}>
+                        {plan.enterprise && <Crown className="mr-1 h-3 w-3" />}
+                        {plan.badge.text}
+                      </Badge>
                     </div>
-                    <div className="text-slate-400">{plan.priceUsd}</div>
-                  </div>
-                </CardHeader>
+                  )}
 
-                <CardContent className="pt-0">
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                        <span className="text-slate-300">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <CardHeader className="text-center pb-4">
+                    {!plan.popular && !plan.enterprise && (
+                      <Badge className={`${plan.badge.color} mb-4 mx-auto w-fit`}>{plan.badge.text}</Badge>
+                    )}
+                    {plan.secondaryBadge && (
+                      <Badge className={`${plan.secondaryBadge.color} mb-4 mx-auto w-fit`}>
+                        {plan.secondaryBadge.text}
+                      </Badge>
+                    )}
 
-                  <Button
-                    className={`w-full ${plan.buttonColor} text-white font-semibold py-3`}
-                    onClick={() => window.open(`https://wa.me/5256202022210?text=${plan.whatsappMessage}`, "_blank")}
-                  >
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    {plan.buttonText}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                    <CardTitle className="text-2xl font-bold text-white mb-4">{plan.name}</CardTitle>
+
+                    <div className="mb-6">
+                      <div
+                        className={`text-4xl font-bold mb-2 ${
+                          plan.color === "green"
+                            ? "text-green-400"
+                            : plan.color === "orange"
+                              ? "text-orange-400"
+                              : plan.color === "purple"
+                                ? "text-purple-400"
+                                : "text-slate-300"
+                        }`}
+                      >
+                        ${displayPrice.toLocaleString()} MXN
+                      </div>
+                      <div className="text-slate-400">o ${displayPriceUsd} USD</div>
+                      <div className="text-sm text-slate-500">{isAnnual ? "por año" : "por mes"}</div>
+
+                      {isAnnual && savings > 0 && (
+                        <div className="mt-2">
+                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                            Ahorras ${savings.toLocaleString()} MXN
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+                  </CardHeader>
+
+                  <CardContent className="pt-0">
+                    <ul className="space-y-3 mb-8">
+                      {plan.features.map((feature, index) => (
+                        <li key={index} className="flex items-center gap-3">
+                          <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
+                          <span className="text-slate-300">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button
+                      className={`w-full ${plan.buttonColor} text-white font-semibold py-3`}
+                      onClick={() => window.open(`https://wa.me/5256202022210?text=${plan.whatsappMessage}`, "_blank")}
+                    >
+                      <MessageSquare className="mr-2 h-4 w-4" />
+                      {plan.buttonText}
+                    </Button>
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -220,55 +265,61 @@ export default function PreciosPage() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {plans.map((plan) => (
-              <Card key={`${plan.id}-details`} className={`bg-slate-900 ${plan.borderColor} border`}>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-white">
-                    {plan.enterprise && <Crown className="h-6 w-6 text-purple-400" />}
-                    {plan.name}
-                    <Badge className={plan.badge.color}>{plan.badge.text}</Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-6">
-                    <div
-                      className={`text-3xl font-bold ${
-                        plan.color === "green"
-                          ? "text-green-400"
-                          : plan.color === "orange"
-                            ? "text-orange-400"
-                            : plan.color === "purple"
-                              ? "text-purple-400"
-                              : "text-slate-300"
-                      }`}
-                    >
-                      {plan.price}
+            {plans.map((plan) => {
+              const displayPrice = isAnnual ? calculateAnnualPrice(plan.monthlyPrice) : plan.monthlyPrice
+              const displayPriceUsd = isAnnual ? calculateAnnualPriceUsd(plan.monthlyPriceUsd) : plan.monthlyPriceUsd
+
+              return (
+                <Card key={`${plan.id}-details`} className={`bg-slate-900 ${plan.borderColor} border`}>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-white">
+                      {plan.enterprise && <Crown className="h-6 w-6 text-purple-400" />}
+                      {plan.name}
+                      <Badge className={plan.badge.color}>{plan.badge.text}</Badge>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-6">
+                      <div
+                        className={`text-3xl font-bold ${
+                          plan.color === "green"
+                            ? "text-green-400"
+                            : plan.color === "orange"
+                              ? "text-orange-400"
+                              : plan.color === "purple"
+                                ? "text-purple-400"
+                                : "text-slate-300"
+                        }`}
+                      >
+                        ${displayPrice.toLocaleString()} MXN
+                      </div>
+                      <div className="text-slate-400">o ${displayPriceUsd} USD</div>
+                      <div className="text-sm text-slate-500">{isAnnual ? "por año" : "por mes"}</div>
                     </div>
-                    <div className="text-slate-400">{plan.priceUsd}</div>
-                  </div>
 
-                  <h4 className="font-semibold text-white mb-4">Incluye:</h4>
-                  <ul className="space-y-2 mb-6">
-                    {[...plan.features, ...additionalFeatures[plan.id as keyof typeof additionalFeatures]].map(
-                      (feature, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
-                          <span className="text-slate-300 text-sm">{feature}</span>
-                        </li>
-                      ),
-                    )}
-                  </ul>
+                    <h4 className="font-semibold text-white mb-4">Incluye:</h4>
+                    <ul className="space-y-2 mb-6">
+                      {[...plan.features, ...additionalFeatures[plan.id as keyof typeof additionalFeatures]].map(
+                        (feature, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                            <span className="text-slate-300 text-sm">{feature}</span>
+                          </li>
+                        ),
+                      )}
+                    </ul>
 
-                  <Button
-                    className={`w-full ${plan.buttonColor} text-white`}
-                    onClick={() => window.open(`https://wa.me/5256202022210?text=${plan.whatsappMessage}`, "_blank")}
-                  >
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    {plan.buttonText}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                    <Button
+                      className={`w-full ${plan.buttonColor} text-white`}
+                      onClick={() => window.open(`https://wa.me/5256202022210?text=${plan.whatsappMessage}`, "_blank")}
+                    >
+                      <MessageSquare className="mr-2 h-4 w-4" />
+                      {plan.buttonText}
+                    </Button>
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -371,6 +422,11 @@ export default function PreciosPage() {
                 question: "¿Qué significa 'optimización ilimitada' en Enterprise?",
                 answer:
                   "Significa que no hay límites en el número de páginas, URLs, o elementos de tu sitio web que podemos optimizar. Trabajamos en todo tu ecosistema digital sin restricciones.",
+              },
+              {
+                question: "¿Cómo funciona el descuento anual?",
+                answer:
+                  "Al elegir el plan anual, obtienes un 16.37% de descuento sobre el precio mensual. El pago se realiza una vez al año y tienes acceso inmediato a todos los beneficios de tu plan.",
               },
             ].map((faq, index) => (
               <Card key={index} className="bg-slate-900 border-slate-700">
