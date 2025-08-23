@@ -1,54 +1,69 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
+import { Inter } from "next/font/google"
 import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
+
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "AI Positioning - Agencia de Marketing Digital con IA",
   description:
-    "Transformamos tu negocio con estrategias de marketing digital potenciadas por Inteligencia Artificial. Especialistas en posicionamiento SEO, chatbots IA y optimización LLM.",
-  keywords: "marketing digital, inteligencia artificial, SEO, chatbots IA, posicionamiento web, optimización LLM",
+    "Especialistas en posicionamiento SEO con inteligencia artificial. Optimización para AI Overviews, chatbots inteligentes y estrategias de marketing digital avanzadas.",
+  keywords:
+    "SEO, inteligencia artificial, AI Overviews, marketing digital, posicionamiento web, chatbots IA, optimización LLM",
   authors: [{ name: "AI Positioning" }],
   creator: "AI Positioning",
   publisher: "AI Positioning",
-  robots: "index, follow",
   openGraph: {
-    title: "AI Positioning - Marketing Digital con IA",
+    title: "AI Positioning - Agencia de Marketing Digital con IA",
     description:
-      "Transformamos tu negocio con estrategias de marketing digital potenciadas por Inteligencia Artificial.",
-    type: "website",
-    locale: "es_MX",
+      "Especialistas en posicionamiento SEO con inteligencia artificial. Optimización para AI Overviews y estrategias digitales avanzadas.",
+    url: "https://aipositioningagency.com",
     siteName: "AI Positioning",
+    locale: "es_MX",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Positioning - Marketing Digital con IA",
-    description:
-      "Transformamos tu negocio con estrategias de marketing digital potenciadas por Inteligencia Artificial.",
+    title: "AI Positioning - Agencia de Marketing Digital con IA",
+    description: "Especialistas en posicionamiento SEO con inteligencia artificial.",
+    creator: "@aipositioningmx",
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#f97316",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
     generator: 'v0.app'
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="es" suppressHydrationWarning>
       <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
+        <meta name="theme-color" content="#f97316" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>{children}</body>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

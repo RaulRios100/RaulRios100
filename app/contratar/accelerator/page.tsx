@@ -7,9 +7,11 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowLeft, CheckCircle, Clock, Shield, Users, Zap, Moon, Sun } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export default function ContratarAccelerator() {
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme")
@@ -33,6 +35,14 @@ export default function ContratarAccelerator() {
     }
   }
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      router.back()
+    } else {
+      router.push("/")
+    }
+  }
+
   const DarkModeToggle = () => (
     <button
       onClick={toggleDarkMode}
@@ -51,7 +61,7 @@ export default function ContratarAccelerator() {
           <Button
             variant="outline"
             className="mb-6 bg-transparent border-white text-white hover:bg-white hover:text-green-800"
-            onClick={() => window.close()}
+            onClick={handleBack}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver
@@ -67,8 +77,8 @@ export default function ContratarAccelerator() {
               Acelera tu crecimiento con optimización avanzada y chatbot IA incluido
             </p>
             <div className="mt-6">
-              <div className="text-4xl font-bold text-green-200">$15,000 MXN</div>
-              <div className="text-lg text-green-100">o $800 USD</div>
+              <div className="text-4xl font-bold text-green-200">$18,000 MXN</div>
+              <div className="text-lg text-green-100">o $1,000 USD mensuales</div>
             </div>
           </div>
         </div>
@@ -122,7 +132,7 @@ export default function ContratarAccelerator() {
                     <CheckCircle className="h-6 w-6 text-orange-600 dark:text-orange-300" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">2 contenidos por mes</h3>
+                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">10 contenidos por mes</h3>
                     <p className="text-slate-600 dark:text-slate-300">
                       Duplicamos la producción de contenido optimizado para IA con formato conversacional
                     </p>
@@ -144,20 +154,20 @@ export default function ContratarAccelerator() {
                 </div>
               </div>
 
-              {/* Guarantees */}
+              {/* Benefits */}
               <div className="mt-12 p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
                 <h3 className="font-semibold text-green-900 dark:text-green-300 mb-4 flex items-center gap-2">
                   <Shield className="h-5 w-5" />
-                  Garantías Premium
+                  Beneficios Premium
                 </h3>
                 <ul className="space-y-2 text-green-800 dark:text-green-200">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    <span>Visibilidad en AI Overviews en 45 días o extendemos el servicio</span>
+                    <span>Mayor visibilidad en AI Overviews</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    <span>Chatbot funcionando en 30 días</span>
+                    <span>Chatbot funcionando en tiempo récord</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
@@ -179,8 +189,8 @@ export default function ContratarAccelerator() {
                     Contratar AIO Accelerator
                   </CardTitle>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-green-600">$15,000 MXN</div>
-                    <div className="text-slate-600 dark:text-slate-300">Pago único • Máximo valor</div>
+                    <div className="text-3xl font-bold text-green-600">$18,000 MXN</div>
+                    <div className="text-slate-600 dark:text-slate-300">Mensual • Máximo valor</div>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-6">
@@ -235,7 +245,16 @@ export default function ContratarAccelerator() {
                       <Textarea placeholder="Describe tus metas y expectativas con este paquete..." rows={3} />
                     </div>
 
-                    <Button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 text-lg">
+                    <Button
+                      className="w-full bg-green-500 hover:bg-green-600 text-white py-3 text-lg"
+                      onClick={() =>
+                        window.open(
+                          "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20el%20plan%20AIO%20Accelerator.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
+                          "_blank",
+                        )
+                      }
+                      type="button"
+                    >
                       Acelerar mi crecimiento
                     </Button>
 

@@ -7,9 +7,11 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowLeft, CheckCircle, Clock, Shield, Users, Moon, Sun } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export default function ContratarLaunchpad() {
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme")
@@ -33,6 +35,14 @@ export default function ContratarLaunchpad() {
     }
   }
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      router.back()
+    } else {
+      router.push("/")
+    }
+  }
+
   const DarkModeToggle = () => (
     <button
       onClick={toggleDarkMode}
@@ -51,7 +61,7 @@ export default function ContratarLaunchpad() {
           <Button
             variant="outline"
             className="mb-6 bg-transparent border-white text-white hover:bg-white hover:text-slate-900"
-            onClick={() => window.close()}
+            onClick={handleBack}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver
@@ -65,8 +75,8 @@ export default function ContratarLaunchpad() {
               El punto de partida perfecto para posicionar tu marca en los motores de IA
             </p>
             <div className="mt-6">
-              <div className="text-4xl font-bold text-orange-400">$8,500 MXN</div>
-              <div className="text-lg text-slate-300">o $450 USD</div>
+              <div className="text-4xl font-bold text-orange-400">$12,000 MXN</div>
+              <div className="text-lg text-slate-300">o $666 USD mensuales</div>
             </div>
           </div>
         </div>
@@ -124,10 +134,10 @@ export default function ContratarLaunchpad() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-                      1 contenido conversacional mensual
+                      5 contenidos conversacionales mensuales
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300">
-                      Artículo optimizado para IA con formato Q&A y estructura conversacional
+                      Artículos optimizados para IA con formato Q&A y estructura conversacional
                     </p>
                   </div>
                 </div>
@@ -147,16 +157,16 @@ export default function ContratarLaunchpad() {
                 </div>
               </div>
 
-              {/* Guarantees */}
+              {/* Benefits */}
               <div className="mt-12 p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
                 <h3 className="font-semibold text-green-900 dark:text-green-300 mb-4 flex items-center gap-2">
                   <Shield className="h-5 w-5" />
-                  Garantías incluidas
+                  Beneficios incluidos
                 </h3>
                 <ul className="space-y-2 text-green-800 dark:text-green-200">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    <span>Visibilidad en AI Overviews en 60 días o extendemos el servicio</span>
+                    <span>Mejora significativa en visibilidad orgánica</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
@@ -165,6 +175,10 @@ export default function ContratarLaunchpad() {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
                     <span>Reportes mensuales detallados</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4" />
+                    <span>Estrategia personalizada para tu industria</span>
                   </li>
                 </ul>
               </div>
@@ -176,8 +190,8 @@ export default function ContratarLaunchpad() {
                 <CardHeader>
                   <CardTitle className="text-2xl text-center">Contratar AIO Launchpad</CardTitle>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white">$8,500 MXN</div>
-                    <div className="text-slate-600 dark:text-slate-300">Pago único • Sin mensualidades</div>
+                    <div className="text-3xl font-bold text-slate-900 dark:text-white">$12,000 MXN</div>
+                    <div className="text-slate-600 dark:text-slate-300">Mensual • Cancela cuando quieras</div>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -232,7 +246,16 @@ export default function ContratarLaunchpad() {
                       <Textarea placeholder="Describe brevemente tu empresa y objetivos..." rows={3} />
                     </div>
 
-                    <Button className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 text-lg">
+                    <Button
+                      className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 text-lg"
+                      onClick={() =>
+                        window.open(
+                          "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20el%20plan%20AIO%20Launchpad.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
+                          "_blank",
+                        )
+                      }
+                      type="button"
+                    >
                       Contratar AIO Launchpad
                     </Button>
 

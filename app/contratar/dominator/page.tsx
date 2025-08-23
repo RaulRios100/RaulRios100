@@ -7,9 +7,11 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ArrowLeft, CheckCircle, Clock, Shield, Users, Crown, BarChart3, Moon, Sun } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export default function ContratarDominator() {
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme")
@@ -33,6 +35,14 @@ export default function ContratarDominator() {
     }
   }
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      router.back()
+    } else {
+      router.push("/")
+    }
+  }
+
   const DarkModeToggle = () => (
     <button
       onClick={toggleDarkMode}
@@ -51,7 +61,7 @@ export default function ContratarDominator() {
           <Button
             variant="outline"
             className="mb-6 bg-transparent border-white text-white hover:bg-white hover:text-orange-800"
-            onClick={() => window.close()}
+            onClick={handleBack}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver
@@ -67,8 +77,8 @@ export default function ContratarDominator() {
               Domina completamente tu mercado con la solución más avanzada de posicionamiento en IA
             </p>
             <div className="mt-6">
-              <div className="text-4xl font-bold text-orange-200">$28,000 MXN</div>
-              <div className="text-lg text-orange-100">o $1,500 USD</div>
+              <div className="text-4xl font-bold text-orange-200">$36,000 MXN</div>
+              <div className="text-lg text-orange-100">o $2,000 USD mensuales</div>
             </div>
           </div>
         </div>
@@ -87,7 +97,7 @@ export default function ContratarDominator() {
                     Todo lo del paquete Accelerator +
                   </h3>
                   <p className="text-orange-800 dark:text-orange-200 text-sm">
-                    10 URLs optimizadas, chatbot IA, 2 contenidos mensuales, análisis de competencia y más
+                    10 URLs optimizadas, chatbot IA, 10 contenidos mensuales, análisis de competencia y más
                   </p>
                 </div>
 
@@ -121,7 +131,7 @@ export default function ContratarDominator() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-                      4 contenidos por mes + chatbot experto
+                      20 contenidos por mes + chatbot experto
                     </h3>
                     <p className="text-slate-600 dark:text-slate-300">
                       Producción intensiva de contenido y chatbot avanzado con capacidades expertas
@@ -154,32 +164,32 @@ export default function ContratarDominator() {
                 </div>
               </div>
 
-              {/* Guarantees */}
+              {/* Benefits */}
               <div className="mt-12 p-6 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
                 <h3 className="font-semibold text-orange-900 dark:text-orange-300 mb-4 flex items-center gap-2">
                   <Shield className="h-5 w-5" />
-                  Garantías Elite
+                  Beneficios Elite
                 </h3>
                 <ul className="space-y-2 text-orange-800 dark:text-orange-200">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    <span>Dominación en AI Overviews en 30 días o reembolso completo</span>
+                    <span>Dominación completa en AI Overviews</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    <span>Posicionamiento #1 en tu sector o extendemos hasta lograrlo</span>
+                    <span>Posicionamiento líder en tu sector</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    <span>Soporte VIP 24/7 con respuesta en menos de 2 horas</span>
+                    <span>Soporte VIP con respuesta prioritaria</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    <span>Acceso directo al CEO para consultas estratégicas</span>
+                    <span>Acceso directo al equipo senior</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    <span>ROI mínimo garantizado del 300% en 6 meses</span>
+                    <span>Resultados medibles y reportes ejecutivos</span>
                   </li>
                 </ul>
               </div>
@@ -193,8 +203,8 @@ export default function ContratarDominator() {
                     Contratar AIO Dominator
                   </CardTitle>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600">$28,000 MXN</div>
-                    <div className="text-slate-600 dark:text-slate-300">Inversión elite • Resultados garantizados</div>
+                    <div className="text-3xl font-bold text-orange-600">$36,000 MXN</div>
+                    <div className="text-slate-600 dark:text-slate-300">Mensual • Resultados superiores</div>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-6">
@@ -259,7 +269,16 @@ export default function ContratarDominator() {
                       />
                     </div>
 
-                    <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 text-lg">
+                    <Button
+                      className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 text-lg"
+                      onClick={() =>
+                        window.open(
+                          "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20el%20plan%20AIO%20Dominator.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
+                          "_blank",
+                        )
+                      }
+                      type="button"
+                    >
                       Dominar mi mercado
                     </Button>
 
