@@ -1,247 +1,401 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Badge } from "@/components/ui/badge"
 import {
   Brain,
-  Search,
   Target,
-  BarChart3,
-  CheckCircle,
+  TrendingUp,
+  Users,
   Zap,
-  Settings,
-  MessageSquare,
+  Search,
+  BarChart3,
+  Globe,
+  Lightbulb,
+  CheckCircle,
   Clock,
-  Award,
-  Database,
-  Monitor,
-  Smartphone,
-  AlertTriangle,
+  Star,
+  ArrowRight,
   Play,
-  Moon,
-  Sun,
+  Calendar,
+  MessageSquare,
 } from "lucide-react"
-
-import { useState, useEffect } from "react"
 import NavigationHeader from "@/components/navigation-header"
 
-export default function AprendeMas() {
-  const [isDarkMode, setIsDarkMode] = useState(true)
+export default function AprendeMasPage() {
+  const [activeTab, setActiveTab] = useState("fundamentos")
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    if (savedTheme === "light") {
-      setIsDarkMode(false)
-      document.documentElement.classList.remove("dark")
-    } else {
-      setIsDarkMode(true)
-      document.documentElement.classList.add("dark")
-    }
-  }, [])
+  const strategies = [
+    {
+      id: "fundamentos",
+      title: "Fundamentos de IA en SEO",
+      icon: <Brain className="w-5 h-5" />,
+      description: "Comprende cómo la IA está transformando el SEO",
+      content: {
+        overview:
+          "La inteligencia artificial ha revolucionado completamente el panorama del SEO. Desde algoritmos de búsqueda más sofisticados hasta herramientas de optimización automatizada, la IA está redefiniendo cómo abordamos la visibilidad online.",
+        keyPoints: [
+          "Algoritmos de Google basados en IA (RankBrain, BERT, MUM)",
+          "Procesamiento de lenguaje natural avanzado",
+          "Personalización de resultados de búsqueda",
+          "Automatización de tareas SEO repetitivas",
+          "Análisis predictivo de tendencias",
+        ],
+        tools: [
+          { name: "Google AI Overviews", description: "Respuestas generadas por IA en resultados" },
+          { name: "ChatGPT para SEO", description: "Generación de contenido optimizado" },
+          { name: "Jasper AI", description: "Creación de contenido a escala" },
+          { name: "Surfer SEO", description: "Optimización basada en IA" },
+        ],
+        implementation: [
+          "Audita tu contenido actual con herramientas de IA",
+          "Identifica oportunidades de optimización automatizada",
+          "Implementa estrategias de contenido basadas en IA",
+          "Monitorea el rendimiento con analytics predictivos",
+        ],
+      },
+    },
+    {
+      id: "contenido",
+      title: "Optimización de Contenido con IA",
+      icon: <Target className="w-5 h-5" />,
+      description: "Crea contenido que resuene con algoritmos de IA",
+      content: {
+        overview:
+          "El contenido optimizado para IA va más allá de las palabras clave tradicionales. Se trata de crear contenido que comprenda y satisfaga la intención del usuario de manera profunda y contextual.",
+        keyPoints: [
+          "Optimización para búsquedas conversacionales",
+          "Estructuración semántica del contenido",
+          "Creación de contenido para featured snippets",
+          "Optimización para búsquedas por voz",
+          "Contenido multimedia optimizado",
+        ],
+        tools: [
+          { name: "Frase.io", description: "Optimización semántica de contenido" },
+          { name: "MarketMuse", description: "Planificación de contenido basada en IA" },
+          { name: "Clearscope", description: "Optimización de contenido en tiempo real" },
+          { name: "Copy.ai", description: "Generación de contenido optimizado" },
+        ],
+        implementation: [
+          "Analiza la intención detrás de las consultas objetivo",
+          "Estructura el contenido con marcado semántico",
+          "Optimiza para preguntas frecuentes y búsquedas largas",
+          "Implementa esquemas de datos estructurados",
+        ],
+      },
+    },
+    {
+      id: "tecnico",
+      title: "SEO Técnico Avanzado",
+      icon: <Zap className="w-5 h-5" />,
+      description: "Optimizaciones técnicas para algoritmos de IA",
+      content: {
+        overview:
+          "El SEO técnico en la era de la IA requiere un enfoque más sofisticado. Los algoritmos modernos evalúan no solo la estructura técnica, sino también la experiencia del usuario y la calidad del contenido de manera integrada.",
+        keyPoints: [
+          "Core Web Vitals y experiencia de página",
+          "Optimización para mobile-first indexing",
+          "Implementación de datos estructurados avanzados",
+          "Optimización de velocidad con IA",
+          "Arquitectura de sitio para crawling inteligente",
+        ],
+        tools: [
+          { name: "PageSpeed Insights", description: "Análisis de rendimiento web" },
+          { name: "Schema.org", description: "Marcado de datos estructurados" },
+          { name: "Screaming Frog", description: "Auditoría técnica automatizada" },
+          { name: "GTmetrix", description: "Monitoreo de rendimiento" },
+        ],
+        implementation: [
+          "Audita y optimiza Core Web Vitals",
+          "Implementa datos estructurados comprehensivos",
+          "Optimiza la arquitectura de información",
+          "Configura monitoreo automatizado de rendimiento",
+        ],
+      },
+    },
+    {
+      id: "analytics",
+      title: "Analytics Predictivos",
+      icon: <BarChart3 className="w-5 h-5" />,
+      description: "Utiliza datos para predecir tendencias SEO",
+      content: {
+        overview:
+          "Los analytics predictivos en SEO permiten anticipar cambios en el comportamiento de búsqueda y ajustar estrategias proactivamente. La IA analiza patrones históricos para predecir tendencias futuras.",
+        keyPoints: [
+          "Análisis de tendencias de búsqueda",
+          "Predicción de cambios algorítmicos",
+          "Modelado de comportamiento del usuario",
+          "Optimización basada en datos predictivos",
+          "ROI predictivo de estrategias SEO",
+        ],
+        tools: [
+          { name: "Google Analytics 4", description: "Analytics con IA integrada" },
+          { name: "SEMrush", description: "Análisis competitivo predictivo" },
+          { name: "Ahrefs", description: "Predicción de oportunidades de keywords" },
+          { name: "BrightEdge", description: "Plataforma de SEO predictivo" },
+        ],
+        implementation: [
+          "Configura modelos predictivos en GA4",
+          "Analiza patrones de comportamiento históricos",
+          "Identifica oportunidades emergentes",
+          "Desarrolla estrategias basadas en predicciones",
+        ],
+      },
+    },
+  ]
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-    if (!isDarkMode) {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
-    }
-  }
-
-  const DarkModeToggle = () => (
-    <button
-      onClick={toggleDarkMode}
-      className="fixed bottom-6 right-6 z-50 bg-white dark:bg-slate-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
-    >
-      {isDarkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-slate-600" />}
-    </button>
-  )
+  const currentStrategy = strategies.find((s) => s.id === activeTab)
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
-      <DarkModeToggle />
-      <NavigationHeader title="Centro de Aprendizaje" />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+      <NavigationHeader title="Aprende Más" />
 
-      {/* Header */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-white py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            <Badge className="mb-6 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 text-sm font-medium">
-              🎓 Centro de Aprendizaje
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Domina el <span className="text-orange-400">SEO con IA</span> en 2025
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              Aprende las técnicas más avanzadas de posicionamiento en motores de IA, auditorías técnicas y estrategias
-              disruptivas que están transformando el marketing digital.
-            </p>
+      {/* Hero Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <Badge
+            variant="outline"
+            className="mb-6 text-orange-600 border-orange-200 bg-orange-50 dark:bg-orange-950 dark:border-orange-800"
+          >
+            <Lightbulb className="mr-2 h-4 w-4" />
+            Centro de Conocimiento
+          </Badge>
+          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            Domina el <span className="text-orange-500">SEO con IA</span>
+          </h1>
+          <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto">
+            Aprende las estrategias más avanzadas para posicionar tu negocio en la era de la inteligencia artificial.
+            Contenido actualizado y técnicas probadas por expertos.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
+              <Play className="mr-2 h-5 w-5" />
+              Ver Webinar Gratuito
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-orange-200 text-orange-600 hover:bg-orange-50 dark:border-orange-800 dark:text-orange-400 bg-transparent"
+            >
+              <Calendar className="mr-2 h-5 w-5" />
+              Agendar Consulta
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-20 px-4">
+      <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <Tabs defaultValue="webinar" className="w-full">
-            <TabsList className="grid w-full grid-cols-1 md:grid-cols-2 mb-12">
-              <TabsTrigger value="webinar" className="text-lg py-4">
-                <Play className="mr-2 h-5 w-5" />
-                Webinar AI First SEO 2025
-              </TabsTrigger>
-              <TabsTrigger value="auditoria" className="text-lg py-4">
-                <Settings className="mr-2 h-5 w-5" />
-                Auditoría SEO Técnico
-              </TabsTrigger>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8">
+              {strategies.map((strategy) => (
+                <TabsTrigger
+                  key={strategy.id}
+                  value={strategy.id}
+                  className="flex items-center gap-2 data-[state=active]:bg-orange-500 data-[state=active]:text-white"
+                >
+                  {strategy.icon}
+                  <span className="hidden sm:inline">{strategy.title}</span>
+                </TabsTrigger>
+              ))}
             </TabsList>
 
-            {/* Webinar Content */}
-            <TabsContent value="webinar">
-              <div className="space-y-8">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-                    AI First: SEO, SMM & SEM <span className="text-green-500">Disruptivo 2025</span>
-                  </h2>
-                  <p className="text-xl text-slate-700 dark:text-slate-300">
-                    Descubre las estrategias más avanzadas para dominar los motores de IA
-                  </p>
+            {strategies.map((strategy) => (
+              <TabsContent key={strategy.id} value={strategy.id} className="space-y-8">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{strategy.title}</h2>
+                  <p className="text-lg text-slate-600 dark:text-slate-300">{strategy.description}</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-8 rounded-xl border border-blue-200 dark:border-blue-800">
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                    Contenido del Webinar Completo
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Módulos Incluidos:</h4>
-                      <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span>Introducción a AI First Search</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span>Técnicas Avanzadas de SEO</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span>Automatización y AI SEO Tools</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span>SEM con Inteligencia Artificial</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span>SMM Potenciado por IA</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span>Métricas y Reporting AI Driven</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span>Caso Práctico en Vivo</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Lo que aprenderás:</h4>
-                      <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                        <li className="flex items-center gap-2">
-                          <Brain className="h-4 w-4 text-blue-500" />
-                          <span>Optimización para AI Overviews</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Target className="h-4 w-4 text-green-500" />
-                          <span>Estrategias de contenido citeable</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Zap className="h-4 w-4 text-purple-500" />
-                          <span>Automatización de procesos SEO</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <BarChart3 className="h-4 w-4 text-orange-500" />
-                          <span>Nuevos KPIs para IA</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
+                <div className="grid lg:grid-cols-3 gap-8">
+                  {/* Overview */}
+                  <Card className="lg:col-span-2">
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Globe className="h-5 w-5 text-orange-500" />
+                        Visión General
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-slate-600 dark:text-slate-300 mb-6">{strategy.content.overview}</p>
 
-            {/* Auditoría Content */}
-            <TabsContent value="auditoria">
-              <div className="space-y-8">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-                    Auditoría <span className="text-orange-500">SEO Técnico</span> Completa
-                  </h2>
-                  <p className="text-xl text-slate-700 dark:text-slate-300">
-                    Guía paso a paso para una auditoría técnica profesional
-                  </p>
+                      <h4 className="font-semibold text-slate-900 dark:text-white mb-4">Puntos Clave:</h4>
+                      <ul className="space-y-2">
+                        {strategy.content.keyPoints.map((point, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-slate-600 dark:text-slate-300">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  {/* Tools */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Zap className="h-5 w-5 text-orange-500" />
+                        Herramientas
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {strategy.content.tools.map((tool, index) => (
+                        <div key={index} className="border-l-4 border-orange-200 pl-4">
+                          <h5 className="font-medium text-slate-900 dark:text-white">{tool.name}</h5>
+                          <p className="text-sm text-slate-600 dark:text-slate-300">{tool.description}</p>
+                        </div>
+                      ))}
+                    </CardContent>
+                  </Card>
                 </div>
 
-                <div className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-8 rounded-xl border border-orange-200 dark:border-orange-800">
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                    Proceso de Auditoría Completo
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Áreas de Análisis:</h4>
-                      <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                        <li className="flex items-center gap-2">
-                          <Settings className="h-4 w-4 text-blue-500" />
-                          <span>Auditoría Técnica (SEO Técnico)</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Search className="h-4 w-4 text-green-500" />
-                          <span>Keywords "AI Friendly"</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <MessageSquare className="h-4 w-4 text-purple-500" />
-                          <span>Secciones Q&A</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <AlertTriangle className="h-4 w-4 text-red-500" />
-                          <span>Errores Clave a Corregir</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Brain className="h-4 w-4 text-orange-500" />
-                          <span>Auditoría de AEO y GEO</span>
-                        </li>
-                      </ul>
+                {/* Implementation */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Target className="h-5 w-5 text-orange-500" />
+                      Plan de Implementación
+                    </CardTitle>
+                    <CardDescription>Pasos prácticos para implementar esta estrategia en tu negocio</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {strategy.content.implementation.map((step, index) => (
+                        <div
+                          key={index}
+                          className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg"
+                        >
+                          <div className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            {index + 1}
+                          </div>
+                          <p className="text-slate-700 dark:text-slate-300">{step}</p>
+                        </div>
+                      ))}
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Herramientas Incluidas:</h4>
-                      <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                        <li className="flex items-center gap-2">
-                          <Database className="h-4 w-4 text-blue-500" />
-                          <span>Screaming Frog, Search Console</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Monitor className="h-4 w-4 text-green-500" />
-                          <span>SEMrush, Ahrefs</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Smartphone className="h-4 w-4 text-purple-500" />
-                          <span>PageSpeed Insights</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Award className="h-4 w-4 text-orange-500" />
-                          <span>AI Overviews Detector</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            ))}
           </Tabs>
+        </div>
+      </section>
+
+      {/* Webinar Section */}
+      <section className="py-20 px-4 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20">
+        <div className="max-w-4xl mx-auto text-center">
+          <Badge
+            variant="outline"
+            className="mb-6 text-orange-600 border-orange-200 bg-white dark:bg-slate-900 dark:border-orange-800"
+          >
+            <Star className="mr-2 h-4 w-4" />
+            Contenido Exclusivo
+          </Badge>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+            Webinar: <span className="text-orange-500">SEO con IA en 2024</span>
+          </h2>
+          <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">
+            Únete a nuestro webinar exclusivo donde revelamos las estrategias más efectivas para dominar el SEO en la
+            era de la inteligencia artificial.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+              <Clock className="h-8 w-8 text-orange-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">90 Minutos</h3>
+              <p className="text-slate-600 dark:text-slate-300">Contenido intensivo y práctico</p>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+              <Users className="h-8 w-8 text-orange-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Expertos</h3>
+              <p className="text-slate-600 dark:text-slate-300">Presentado por especialistas</p>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+              <TrendingUp className="h-8 w-8 text-orange-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Resultados</h3>
+              <p className="text-slate-600 dark:text-slate-300">Estrategias probadas y efectivas</p>
+            </div>
+          </div>
+
+          <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
+            <Play className="mr-2 h-5 w-5" />
+            Acceder al Webinar
+          </Button>
+        </div>
+      </section>
+
+      {/* Audit Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 rounded-2xl p-8 md:p-12 text-white">
+            <div className="text-center mb-8">
+              <Badge variant="outline" className="mb-6 text-orange-400 border-orange-400 bg-orange-950/20">
+                <Search className="mr-2 h-4 w-4" />
+                Auditoría Personalizada
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                ¿Quieres saber cómo está tu <span className="text-orange-400">SEO actual</span>?
+              </h2>
+              <p className="text-xl text-slate-300 mb-8">
+                Recibe una auditoría completa de tu sitio web y descubre oportunidades específicas para mejorar tu
+                posicionamiento con IA.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-orange-400">Incluye:</h3>
+                <ul className="space-y-3">
+                  {[
+                    "Análisis técnico completo",
+                    "Evaluación de contenido actual",
+                    "Oportunidades de palabras clave",
+                    "Recomendaciones específicas",
+                    "Plan de acción personalizado",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-slate-800/50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-orange-400 mb-4">Proceso:</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+                      1
+                    </div>
+                    <span>Análisis automatizado</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+                      2
+                    </div>
+                    <span>Revisión por expertos</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+                      3
+                    </div>
+                    <span>Entrega en 48 horas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
+                <MessageSquare className="mr-2 h-5 w-5" />
+                Solicitar Auditoría
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -251,54 +405,38 @@ export default function AprendeMas() {
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
             ¿Listo para implementar estas <span className="text-orange-400">estrategias avanzadas</span>?
           </h2>
-          <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto">
-            Nuestro equipo de expertos puede ayudarte a implementar todas estas técnicas y más. Agenda tu auditoría
-            gratuita y descubre el potencial de tu sitio web.
+          <p className="text-xl text-slate-300 mb-8">
+            No dejes que tu competencia se adelante. Comienza a implementar SEO con IA hoy mismo y posiciona tu negocio
+            en los primeros resultados de búsqueda.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold"
+              className="bg-orange-500 hover:bg-orange-600 text-white"
               onClick={() =>
                 window.open(
-                  "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20agendar%20una%20auditor%C3%ADa%20SEO",
-                  "_blank",
-                )
-              }
-            >
-              <Clock className="mr-2 h-5 w-5" />
-              Agenda tu auditoría
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-transparent border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
-              onClick={() =>
-                window.open(
-                  "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20SEO%20con%20IA",
+                  "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20agendar%20una%20auditor%C3%ADa%20SEO%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADan%20ayudarme%3F",
                   "_blank",
                 )
               }
             >
               <MessageSquare className="mr-2 h-5 w-5" />
-              Contactar por WhatsApp
+              Agendar Auditoría
             </Button>
-          </div>
-
-          <div className="mt-12 flex items-center justify-center gap-8 text-sm text-slate-400 dark:text-slate-500">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-400" />
-              <span>Implementación garantizada</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-400" />
-              <span>Resultados medibles</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-400" />
-              <span>Soporte continuo</span>
-            </div>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-orange-400 text-orange-400 hover:bg-orange-950/20 bg-transparent"
+              onClick={() =>
+                window.open(
+                  "https://wa.me/5256202022210?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20SEO%20con%20IA.%20%C2%BFPodr%C3%ADan%20contactarme%3F",
+                  "_blank",
+                )
+              }
+            >
+              <ArrowRight className="mr-2 h-5 w-5" />
+              Contactar Ahora
+            </Button>
           </div>
         </div>
       </section>
