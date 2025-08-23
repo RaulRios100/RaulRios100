@@ -127,17 +127,6 @@ export default function AgendarSesion() {
                   </div>
                 </div>
               </div>
-
-              <div className="mt-8 p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                <h3 className="font-semibold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2">
-                  <Clock className="h-5 w-5" />
-                  Inversión: $2,500 MXN (Valor: $8,000 MXN)
-                </h3>
-                <p className="text-green-800 dark:text-green-200 text-sm">
-                  Esta sesión tiene un valor real de $8,000 MXN, pero la ofrecemos a precio especial para empresarios
-                  comprometidos con el crecimiento.
-                </p>
-              </div>
             </div>
 
             <div>
@@ -160,19 +149,12 @@ export default function AgendarSesion() {
                     </div>
                   </div>
 
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-green-600 mb-2">$2,500 MXN</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400 line-through">
-                      Valor regular: $8,000 MXN
-                    </div>
-                  </div>
-
                   <Button
                     size="lg"
                     className="w-full bg-green-500 hover:bg-green-600 text-white"
                     onClick={() =>
                       window.open(
-                        "https://wa.me/5256202022210?text=Hola,%20me%20interesa%20agendar%20una%20sesi%C3%B3n%20estrat%C3%A9gica",
+                        "https://wa.me/525620202210?text=Hola,%20me%20interesa%20agendar%20una%20sesi%C3%B3n%20estrat%C3%A9gica",
                         "_blank",
                       )
                     }

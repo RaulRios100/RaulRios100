@@ -128,7 +128,7 @@ export default function Contacto() {
                     className="w-full justify-start bg-green-500 hover:bg-green-600 text-white"
                     onClick={() =>
                       window.open(
-                        "https://wa.me/5256202022210?text=Hola,%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios",
+                        "https://wa.me/525620202210?text=Hola,%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios",
                         "_blank",
                       )
                     }
@@ -138,7 +138,7 @@ export default function Contacto() {
                   <Button
                     variant="outline"
                     className="w-full justify-start bg-transparent"
-                    onClick={() => window.open("https://wa.me/5551234567", "_blank")}
+                    onClick={() => window.open("https://wa.me/525620202210", "_blank")}
                   >
                     💬 WhatsApp directo
                   </Button>
