@@ -622,9 +622,9 @@ export default function AIPositioningLanding() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Launchpad Package */}
-            <Card className="relative border-2 border-slate-200 dark:border-slate-700 hover:border-green-300 transition-all duration-300">
+            <Card className="relative border-2 border-slate-200 dark:border-slate-700 hover:border-slate-300 transition-all duration-300">
               <CardHeader className="text-center pb-8">
                 <Badge className="w-fit mx-auto mb-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600">
                   PARA EMPEZAR
@@ -760,6 +760,53 @@ export default function AIPositioningLanding() {
                   onClick={() => (window.location.href = "/contratar/dominator")}
                 >
                   Dominar mi mercado
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Package */}
+            <Card className="relative border-2 border-purple-300 dark:border-purple-700 hover:border-purple-400 transition-all duration-300 transform hover:scale-105">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2">ENTERPRISE</Badge>
+              </div>
+              <CardHeader className="text-center pb-8 pt-8">
+                <Badge className="w-fit mx-auto mb-4 bg-purple-100 dark:bg-purple-700 text-purple-700 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-600">
+                  CORPORATIVO
+                </Badge>
+                <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">AIO ENTERPRISE</CardTitle>
+                <div className="mt-4">
+                  <div className="text-3xl font-bold text-purple-600">$70,000 MXN</div>
+                  <div className="text-lg text-slate-600 dark:text-slate-300">o $3,888 USD</div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300 font-medium">Todo lo anterior +</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-purple-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Optimización ilimitada</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-purple-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">IA personalizada</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-purple-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">Account Manager 24/7</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-purple-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-300">50 contenidos mensuales</span>
+                  </div>
+                </div>
+                <Button
+                  className="w-full mt-6 bg-purple-500 hover:bg-purple-600 text-white"
+                  onClick={() => (window.location.href = "/contratar/enterprise")}
+                >
+                  Solución Enterprise
                 </Button>
               </CardContent>
             </Card>
