@@ -110,7 +110,7 @@ export default function PreciosPage() {
       "Optimización multiidioma y multinacional",
       "Consultoría estratégica mensual",
       "Acceso prioritario a nuevas funcionalidades",
-      "SLA con garantías de tiempo de respuesta",
+      "Tiempo de respuesta prioritario",
       "Equipo dedicado exclusivo",
       "Reportes en tiempo real personalizados",
     ],
@@ -371,11 +371,6 @@ export default function PreciosPage() {
                 question: "¿Qué significa 'optimización ilimitada' en Enterprise?",
                 answer:
                   "Significa que no hay límites en el número de páginas, URLs, o elementos de tu sitio web que podemos optimizar. Trabajamos en todo tu ecosistema digital sin restricciones.",
-              },
-              {
-                question: "¿Incluyen garantías los planes?",
-                answer:
-                  "Todos nuestros planes incluyen garantía de satisfacción. El plan Enterprise además incluye SLA con garantías específicas de tiempo de respuesta y resultados medibles.",
               },
             ].map((faq, index) => (
               <Card key={index} className="bg-slate-900 border-slate-700">
