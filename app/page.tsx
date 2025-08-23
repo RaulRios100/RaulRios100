@@ -849,10 +849,7 @@ export default function AIPositioningLanding() {
       <section id="faq" className="py-20 px-4 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2
-              className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6
-"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
               Preguntas <span className="text-green-500">frecuentes</span>
             </h2>
           </div>
