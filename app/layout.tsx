@@ -61,7 +61,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={inter.className}>
-        {/* Facebook Pixel - Reemplaza YOUR_PIXEL_ID con tu ID real */}
+        {/* Facebook Pixel */}
         <Script
           id="facebook-pixel"
           strategy="afterInteractive"
@@ -75,7 +75,7 @@ export default function RootLayout({
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', 'YOUR_PIXEL_ID');
+              fbq('init', '644155554997693');
               fbq('track', 'PageView');
             `,
           }}
@@ -85,7 +85,7 @@ export default function RootLayout({
             height="1"
             width="1"
             style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=644155554997693&ev=PageView&noscript=1"
             alt=""
           />
         </noscript>

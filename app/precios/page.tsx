@@ -1,486 +1,376 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Switch } from "@/components/ui/switch"
-import { CheckCircle, Crown, MessageSquare, ArrowRight, Zap } from "lucide-react"
 import { useState } from "react"
-import NavigationHeader from "@/components/navigation-header"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Check, ArrowLeft, Zap } from "lucide-react"
+import Link from "next/link"
+import { trackInitiateCheckout, trackContact } from "@/components/facebook-pixel"
 
 export default function PreciosPage() {
   const [isAnnual, setIsAnnual] = useState(false)
 
   const plans = [
     {
-      id: "launchpad",
-      name: "AIO LAUNCHPAD",
-      badge: { text: "PARA EMPEZAR", color: "bg-slate-600" },
+      name: "Launchpad",
+      description: "Perfecto para emprendedores y pequeñas empresas que buscan establecer su presencia digital",
       monthlyPrice: 12000,
-      monthlyPriceUsd: 666,
-      color: "slate",
-      borderColor: "border-slate-600",
-      buttonColor: "bg-slate-600 hover:bg-slate-700",
       features: [
-        "Auditoría inicial completa",
-        "Optimización de 5 páginas",
-        "Schema markup básico",
-        "5 contenidos mensuales",
+        "Auditoría SEO completa",
+        "Optimización básica para AI Overviews",
+        "Configuración de Schema Markup",
+        "Análisis de competencia",
+        "Reporte mensual de progreso",
+        "Soporte por email",
+        "1 sesión de consultoría mensual",
       ],
-      buttonText: "Comenzar ahora",
-      href: "/contratar/launchpad",
-      whatsappMessage: "Hola%2C%20me%20interesa%20el%20plan%20AIO%20Launchpad.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
+      popular: false,
+      whatsappMessage: "¡Hola! Me interesa el plan Launchpad para mi negocio. ¿Podrían darme más información?",
     },
     {
-      id: "accelerator",
-      name: "AIO ACCELERATOR",
-      badge: { text: "MÁS POPULAR", color: "bg-green-500" },
-      secondaryBadge: { text: "CRECIMIENTO", color: "bg-green-600" },
+      name: "Accelerator",
+      description: "Ideal para empresas en crecimiento que necesitan acelerar su visibilidad online",
       monthlyPrice: 18000,
-      monthlyPriceUsd: 1000,
-      color: "green",
-      borderColor: "border-green-500",
-      buttonColor: "bg-green-500 hover:bg-green-600",
-      features: ["Todo lo anterior +", "10 URLs optimizadas", "Chatbot LLM simple", "10 contenidos mensuales"],
-      buttonText: "Acelerar crecimiento",
-      href: "/contratar/accelerator",
-      whatsappMessage: "Hola%2C%20me%20interesa%20el%20plan%20AIO%20Accelerator.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
-      popular: true,
-    },
-    {
-      id: "dominator",
-      name: "AIO DOMINATOR",
-      badge: { text: "DOMINACIÓN", color: "bg-orange-500" },
-      monthlyPrice: 36000,
-      monthlyPriceUsd: 2000,
-      color: "orange",
-      borderColor: "border-orange-500",
-      buttonColor: "bg-orange-500 hover:bg-orange-600",
-      features: ["Todo lo anterior +", "Sitio completo optimizado", "PR digital y enlaces", "20 contenidos mensuales"],
-      buttonText: "Dominar mercado",
-      href: "/contratar/dominator",
-      whatsappMessage: "Hola%2C%20me%20interesa%20el%20plan%20AIO%20Dominator.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
-    },
-    {
-      id: "enterprise",
-      name: "AIO ENTERPRISE",
-      badge: { text: "ENTERPRISE", color: "bg-purple-500" },
-      secondaryBadge: { text: "CORPORATIVO", color: "bg-purple-600" },
-      monthlyPrice: 84000,
-      monthlyPriceUsd: 4666,
-      color: "purple",
-      borderColor: "border-purple-500",
-      buttonColor: "bg-purple-500 hover:bg-purple-600",
       features: [
-        "Todo lo anterior +",
-        "Optimización ilimitada",
-        "IA personalizada",
-        "Account Manager 24/7",
-        "50 contenidos mensuales",
+        "Todo lo incluido en Launchpad",
+        "Optimización avanzada para AI Overviews",
+        "Chatbot IA personalizado",
+        "Estrategia de contenido SEO",
+        "Optimización técnica avanzada",
+        "Soporte prioritario",
+        "2 sesiones de consultoría mensual",
+        "Análisis de rendimiento semanal",
       ],
-      buttonText: "Solución Enterprise",
-      href: "/contratar/enterprise",
+      popular: true,
       whatsappMessage:
-        "Hola%2C%20me%20interesa%20el%20plan%20AIO%20Enterprise.%20%C2%BFPodr%C3%ADamos%20agendar%20una%20reuni%C3%B3n%3F",
-      enterprise: true,
+        "¡Hola! Me interesa el plan Accelerator. ¿Podrían explicarme cómo puede ayudar a acelerar el crecimiento de mi empresa?",
+    },
+    {
+      name: "Dominator",
+      description: "Para empresas establecidas que buscan dominar su mercado con IA",
+      monthlyPrice: 36000,
+      features: [
+        "Todo lo incluido en Accelerator",
+        "Optimización completa para LLMs",
+        "Múltiples chatbots IA especializados",
+        "Estrategia de contenido premium",
+        "Análisis predictivo con IA",
+        "Soporte 24/7",
+        "Consultoría semanal personalizada",
+        "Implementación de automatizaciones",
+        "Reportes ejecutivos detallados",
+      ],
+      popular: false,
+      whatsappMessage:
+        "¡Hola! Estoy interesado en el plan Dominator para posicionar mi empresa como líder del mercado. ¿Podrían contarme más sobre las estrategias incluidas?",
     },
   ]
 
   const calculateAnnualPrice = (monthlyPrice: number) => {
-    const annualPrice = monthlyPrice * 12 * 0.8363 // 16.37% discount
-    return Math.round(annualPrice)
+    return Math.round(monthlyPrice * 12 * 0.8363) // 16.37% descuento
   }
 
-  const calculateAnnualPriceUsd = (monthlyPriceUsd: number) => {
-    const annualPriceUsd = monthlyPriceUsd * 12 * 0.8363 // 16.37% discount
-    return Math.round(annualPriceUsd)
+  const calculateSavings = (monthlyPrice: number) => {
+    const annualTotal = monthlyPrice * 12
+    const discountedAnnual = calculateAnnualPrice(monthlyPrice)
+    return annualTotal - discountedAnnual
   }
 
-  const additionalFeatures = {
-    launchpad: [
-      "Configuración inicial de Google Analytics y Search Console",
-      "Optimización básica de velocidad de carga",
-      "Investigación de palabras clave inicial",
-      "Reporte mensual de progreso",
-    ],
-    accelerator: [
-      "Optimización avanzada de Core Web Vitals",
-      "Implementación de datos estructurados",
-      "Estrategia de contenido personalizada",
-      "Integración con redes sociales",
-      "Monitoreo de competencia",
-    ],
-    dominator: [
-      "Estrategia de link building avanzada",
-      "Optimización para búsquedas locales",
-      "Implementación de AMP (Accelerated Mobile Pages)",
-      "Auditoría técnica mensual completa",
-      "Optimización para voice search",
-      "Reportes ejecutivos detallados",
-    ],
-    enterprise: [
-      "Modelo de IA entrenado específicamente para tu industria",
-      "Integración con sistemas CRM y ERP",
-      "Optimización multiidioma y multinacional",
-      "Consultoría estratégica mensual",
-      "Acceso prioritario a nuevas funcionalidades",
-      "Tiempo de respuesta prioritario",
-      "Equipo dedicado exclusivo",
-      "Reportes en tiempo real personalizados",
-    ],
+  const handlePlanSelection = (plan: any) => {
+    const price = isAnnual ? calculateAnnualPrice(plan.monthlyPrice) : plan.monthlyPrice
+    trackInitiateCheckout(plan.name, price)
+    trackContact()
+
+    const message = encodeURIComponent(plan.whatsappMessage)
+    window.open(`https://wa.me/5256202020210?text=${message}`, "_blank")
   }
 
   return (
-    <div className="min-h-screen bg-slate-950">
-      <NavigationHeader title="Planes y Precios" />
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Header */}
+      <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">AI</span>
+              </div>
+              <span className="text-xl font-bold text-white">AI Positioning</span>
+            </Link>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => window.history.back()}
+              className="text-slate-300 hover:text-white"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Volver
+            </Button>
+          </div>
+        </div>
+      </header>
 
-      {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
+      <div className="container mx-auto px-4 py-16">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Elige tu plan <span className="text-orange-500">AIO</span>
+            Planes que se adaptan a tu{" "}
+            <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+              crecimiento
+            </span>
           </h1>
-          <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto">
-            Desde startups hasta empresas Fortune 500, tenemos la solución perfecta para llevar tu SEO al siguiente
-            nivel con inteligencia artificial.
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
+            Elige el plan perfecto para transformar tu presencia digital con inteligencia artificial
           </p>
 
-          {/* Pricing Toggle */}
+          {/* Toggle Mensual/Anual */}
           <div className="flex items-center justify-center gap-4 mb-8">
-            <span className={`text-lg font-medium ${!isAnnual ? "text-white" : "text-slate-400"}`}>Mensual</span>
-            <div className="relative">
-              <Switch checked={isAnnual} onCheckedChange={setIsAnnual} className="data-[state=checked]:bg-orange-500" />
-            </div>
-            <span className={`text-lg font-medium ${isAnnual ? "text-white" : "text-slate-400"}`}>Anual</span>
+            <span className={`text-lg ${!isAnnual ? "text-white font-semibold" : "text-slate-400"}`}>Mensual</span>
+            <button
+              onClick={() => setIsAnnual(!isAnnual)}
+              className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-slate-900 ${
+                isAnnual ? "bg-orange-500" : "bg-slate-600"
+              }`}
+            >
+              <span
+                className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${
+                  isAnnual ? "translate-x-7" : "translate-x-1"
+                }`}
+              />
+            </button>
+            <span className={`text-lg ${isAnnual ? "text-white font-semibold" : "text-slate-400"}`}>Anual</span>
             {isAnnual && (
-              <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white animate-pulse">
-                <Zap className="mr-1 h-3 w-3" />
+              <Badge className="bg-green-500/20 text-green-400 border-green-500/30 animate-pulse">
+                <Zap className="w-3 h-3 mr-1" />
                 16.37% OFF
               </Badge>
             )}
           </div>
         </div>
-      </section>
 
-      {/* Pricing Cards */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
-            {plans.map((plan) => {
-              const displayPrice = isAnnual ? calculateAnnualPrice(plan.monthlyPrice) : plan.monthlyPrice
-              const displayPriceUsd = isAnnual ? calculateAnnualPriceUsd(plan.monthlyPriceUsd) : plan.monthlyPriceUsd
-              const savings = isAnnual ? plan.monthlyPrice * 12 - displayPrice : 0
-              const savingsUsd = isAnnual ? plan.monthlyPriceUsd * 12 - displayPriceUsd : 0
+        {/* Plans Grid */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {plans.map((plan, index) => {
+            const displayPrice = isAnnual ? calculateAnnualPrice(plan.monthlyPrice) : plan.monthlyPrice
+            const savings = calculateSavings(plan.monthlyPrice)
 
-              return (
-                <Card
-                  key={plan.id}
-                  className={`bg-slate-900 ${plan.borderColor} ${
-                    plan.popular || plan.enterprise ? "border-2 relative" : "border"
-                  } hover:shadow-2xl transition-all duration-300 ${plan.enterprise ? "transform hover:scale-105" : ""}`}
-                >
-                  {(plan.popular || plan.enterprise) && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <Badge className={plan.badge.color}>
-                        {plan.enterprise && <Crown className="mr-1 h-3 w-3" />}
-                        {plan.badge.text}
-                      </Badge>
+            return (
+              <Card
+                key={index}
+                className={`relative bg-slate-800/50 border-slate-700 backdrop-blur-sm ${
+                  plan.popular ? "ring-2 ring-orange-500 scale-105" : ""
+                }`}
+              >
+                {plan.popular && (
+                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-orange-500 to-pink-500 text-white">
+                    Más Popular
+                  </Badge>
+                )}
+
+                <CardHeader className="text-center pb-8">
+                  <CardTitle className="text-2xl font-bold text-white mb-2">{plan.name}</CardTitle>
+                  <CardDescription className="text-slate-300 mb-4">{plan.description}</CardDescription>
+
+                  <div className="space-y-2">
+                    <div className="text-4xl font-bold text-white">
+                      ${displayPrice.toLocaleString("es-MX")}
+                      <span className="text-lg text-slate-400 font-normal">{isAnnual ? "/año" : "/mes"}</span>
                     </div>
-                  )}
 
-                  <CardHeader className="text-center pb-4">
-                    {!plan.popular && !plan.enterprise && (
-                      <Badge className={`${plan.badge.color} mb-4 mx-auto w-fit`}>{plan.badge.text}</Badge>
-                    )}
-                    {plan.secondaryBadge && (
-                      <Badge className={`${plan.secondaryBadge.color} mb-4 mx-auto w-fit`}>
-                        {plan.secondaryBadge.text}
-                      </Badge>
-                    )}
-
-                    <CardTitle className="text-2xl font-bold text-white mb-4">{plan.name}</CardTitle>
-
-                    <div className="mb-6">
-                      <div
-                        className={`text-4xl font-bold mb-2 ${
-                          plan.color === "green"
-                            ? "text-green-400"
-                            : plan.color === "orange"
-                              ? "text-orange-400"
-                              : plan.color === "purple"
-                                ? "text-purple-400"
-                                : "text-slate-300"
-                        }`}
-                      >
-                        ${displayPrice.toLocaleString()} MXN
+                    {isAnnual && (
+                      <div className="space-y-1">
+                        <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                          Ahorras ${savings.toLocaleString("es-MX")} MXN
+                        </Badge>
+                        <p className="text-sm text-slate-400">
+                          Equivale a ${Math.round(displayPrice / 12).toLocaleString("es-MX")} MXN/mes
+                        </p>
                       </div>
-                      <div className="text-slate-400">o ${displayPriceUsd} USD</div>
-                      <div className="text-sm text-slate-500">{isAnnual ? "por año" : "por mes"}</div>
+                    )}
+                  </div>
+                </CardHeader>
 
-                      {isAnnual && savings > 0 && (
-                        <div className="mt-2">
-                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                            Ahorras ${savings.toLocaleString()} MXN
-                          </Badge>
-                        </div>
-                      )}
+                <CardContent className="space-y-4">
+                  {plan.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-start space-x-3">
+                      <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">{feature}</span>
                     </div>
-                  </CardHeader>
+                  ))}
+                </CardContent>
 
-                  <CardContent className="pt-0">
-                    <ul className="space-y-3 mb-8">
-                      {plan.features.map((feature, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                          <span className="text-slate-300">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Button
-                      className={`w-full ${plan.buttonColor} text-white font-semibold py-3`}
-                      onClick={() => window.open(`https://wa.me/5256202022210?text=${plan.whatsappMessage}`, "_blank")}
-                    >
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      {plan.buttonText}
-                    </Button>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
+                <CardFooter>
+                  <Button
+                    type="button"
+                    onClick={() => handlePlanSelection(plan)}
+                    className={`w-full ${
+                      plan.popular
+                        ? "bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600"
+                        : "bg-slate-700 hover:bg-slate-600"
+                    } text-white font-semibold py-3`}
+                  >
+                    Comenzar ahora
+                  </Button>
+                </CardFooter>
+              </Card>
+            )
+          })}
         </div>
-      </section>
 
-      {/* Detailed Features */}
-      <section className="py-20 px-4 bg-gradient-to-r from-slate-900/50 to-slate-950">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Características <span className="text-orange-500">detalladas</span>
-            </h2>
-            <p className="text-xl text-slate-300">
-              Descubre todo lo que incluye cada plan para hacer crecer tu negocio
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {plans.map((plan) => {
-              const displayPrice = isAnnual ? calculateAnnualPrice(plan.monthlyPrice) : plan.monthlyPrice
-              const displayPriceUsd = isAnnual ? calculateAnnualPriceUsd(plan.monthlyPriceUsd) : plan.monthlyPriceUsd
-
-              return (
-                <Card key={`${plan.id}-details`} className={`bg-slate-900 ${plan.borderColor} border`}>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3 text-white">
-                      {plan.enterprise && <Crown className="h-6 w-6 text-purple-400" />}
-                      {plan.name}
-                      <Badge className={plan.badge.color}>{plan.badge.text}</Badge>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-6">
-                      <div
-                        className={`text-3xl font-bold ${
-                          plan.color === "green"
-                            ? "text-green-400"
-                            : plan.color === "orange"
-                              ? "text-orange-400"
-                              : plan.color === "purple"
-                                ? "text-purple-400"
-                                : "text-slate-300"
-                        }`}
-                      >
-                        ${displayPrice.toLocaleString()} MXN
-                      </div>
-                      <div className="text-slate-400">o ${displayPriceUsd} USD</div>
-                      <div className="text-sm text-slate-500">{isAnnual ? "por año" : "por mes"}</div>
+        {/* Enterprise Section */}
+        <div className="mt-16 text-center">
+          <Card className="bg-gradient-to-r from-slate-800/50 to-purple-800/50 border-slate-700 backdrop-blur-sm max-w-4xl mx-auto">
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold text-white mb-4">¿Necesitas algo más personalizado?</CardTitle>
+              <CardDescription className="text-xl text-slate-300">
+                Ofrecemos soluciones enterprise completamente personalizadas para grandes empresas
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="grid md:grid-cols-2 gap-8 text-left">
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-white">Incluye todo de Dominator, más:</h4>
+                <div className="space-y-2">
+                  {[
+                    "Estrategia IA completamente personalizada",
+                    "Equipo dedicado exclusivo",
+                    "Integración con sistemas empresariales",
+                    "Análisis predictivo avanzado",
+                    "Automatización de procesos complejos",
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">{feature}</span>
                     </div>
-
-                    <h4 className="font-semibold text-white mb-4">Incluye:</h4>
-                    <ul className="space-y-2 mb-6">
-                      {[...plan.features, ...additionalFeatures[plan.id as keyof typeof additionalFeatures]].map(
-                        (feature, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
-                            <span className="text-slate-300 text-sm">{feature}</span>
-                          </li>
-                        ),
-                      )}
-                    </ul>
-
-                    <Button
-                      className={`w-full ${plan.buttonColor} text-white`}
-                      onClick={() => window.open(`https://wa.me/5256202022210?text=${plan.whatsappMessage}`, "_blank")}
-                    >
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      {plan.buttonText}
-                    </Button>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-white">Beneficios adicionales:</h4>
+                <div className="space-y-2">
+                  {[
+                    "Consultoría estratégica C-level",
+                    "Implementación en múltiples mercados",
+                    "Soporte técnico prioritario 24/7",
+                    "Capacitación del equipo interno",
+                    "Métricas y KPIs personalizados",
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="flex flex-col space-y-4">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">Desde $84,000 MXN/mes</div>
+                <p className="text-slate-400">Precio personalizado según necesidades</p>
+              </div>
+              <Button
+                type="button"
+                onClick={() => {
+                  trackInitiateCheckout("Enterprise", 84000)
+                  trackContact()
+                  const message = encodeURIComponent(
+                    "¡Hola! Estoy interesado en conocer más sobre las soluciones Enterprise de AI Positioning. ¿Podrían agendar una consulta para discutir las necesidades específicas de mi empresa?",
+                  )
+                  window.open(`https://wa.me/5256202020210?text=${message}`, "_blank")
+                }}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8"
+              >
+                Solicitar consulta Enterprise
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
-      </section>
 
-      {/* Comparison Table */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Comparación de <span className="text-orange-500">planes</span>
-            </h2>
-            <p className="text-xl text-slate-300">Encuentra el plan perfecto para tus necesidades</p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full bg-slate-900 rounded-lg overflow-hidden">
-              <thead className="bg-slate-800">
-                <tr>
-                  <th className="text-left p-4 text-white font-semibold">Características</th>
-                  <th className="text-center p-4 text-white font-semibold">Launchpad</th>
-                  <th className="text-center p-4 text-white font-semibold">Accelerator</th>
-                  <th className="text-center p-4 text-white font-semibold">Dominator</th>
-                  <th className="text-center p-4 text-white font-semibold">Enterprise</th>
-                </tr>
-              </thead>
-              <tbody className="text-slate-300">
-                <tr className="border-t border-slate-700">
-                  <td className="p-4 font-medium">Páginas optimizadas</td>
-                  <td className="text-center p-4">5</td>
-                  <td className="text-center p-4">10</td>
-                  <td className="text-center p-4">Sitio completo</td>
-                  <td className="text-center p-4">
-                    <span className="text-purple-400 font-semibold">Ilimitado</span>
-                  </td>
-                </tr>
-                <tr className="border-t border-slate-700">
-                  <td className="p-4 font-medium">Contenidos mensuales</td>
-                  <td className="text-center p-4">5</td>
-                  <td className="text-center p-4">10</td>
-                  <td className="text-center p-4">20</td>
-                  <td className="text-center p-4">
-                    <span className="text-purple-400 font-semibold">50</span>
-                  </td>
-                </tr>
-                <tr className="border-t border-slate-700">
-                  <td className="p-4 font-medium">Soporte</td>
-                  <td className="text-center p-4">Horario laboral</td>
-                  <td className="text-center p-4">Horario laboral</td>
-                  <td className="text-center p-4">Prioritario</td>
-                  <td className="text-center p-4">
-                    <span className="text-purple-400 font-semibold">24/7 Dedicado</span>
-                  </td>
-                </tr>
-                <tr className="border-t border-slate-700">
-                  <td className="p-4 font-medium">IA Personalizada</td>
-                  <td className="text-center p-4">-</td>
-                  <td className="text-center p-4">-</td>
-                  <td className="text-center p-4">-</td>
-                  <td className="text-center p-4">
-                    <CheckCircle className="h-5 w-5 text-green-400 mx-auto" />
-                  </td>
-                </tr>
-                <tr className="border-t border-slate-700">
-                  <td className="p-4 font-medium">Account Manager</td>
-                  <td className="text-center p-4">-</td>
-                  <td className="text-center p-4">-</td>
-                  <td className="text-center p-4">-</td>
-                  <td className="text-center p-4">
-                    <CheckCircle className="h-5 w-5 text-green-400 mx-auto" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-slate-900/50 to-slate-950">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Preguntas <span className="text-orange-500">frecuentes</span>
-            </h2>
-          </div>
-
-          <div className="space-y-6">
+        {/* FAQ Section */}
+        <div className="mt-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">Preguntas Frecuentes</h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {[
               {
-                question: "¿Qué incluye la IA personalizada del plan Enterprise?",
+                question: "¿Qué incluye la optimización para AI Overviews?",
                 answer:
-                  "La IA personalizada incluye un modelo entrenado específicamente con datos de tu industria, competencia y objetivos de negocio. Esto permite generar contenido más relevante y estrategias más efectivas para tu nicho específico.",
+                  "Optimizamos tu contenido para aparecer en las respuestas de IA de Google, incluyendo estructura de datos, contenido semántico y autoridad temática.",
+              },
+              {
+                question: "¿Cuánto tiempo toma ver resultados?",
+                answer:
+                  "Los primeros resultados suelen verse entre 2-4 semanas, con mejoras significativas en 2-3 meses, dependiendo de la competencia y el estado actual del sitio.",
               },
               {
                 question: "¿Puedo cambiar de plan en cualquier momento?",
                 answer:
-                  "Sí, puedes actualizar tu plan en cualquier momento. Los cambios se aplican inmediatamente y solo pagas la diferencia prorrateada del período actual.",
+                  "Sí, puedes actualizar o cambiar tu plan en cualquier momento. Los cambios se aplican en el siguiente ciclo de facturación.",
               },
               {
-                question: "¿Qué significa 'optimización ilimitada' en Enterprise?",
+                question: "¿Qué tipo de soporte incluyen los planes?",
                 answer:
-                  "Significa que no hay límites en el número de páginas, URLs, o elementos de tu sitio web que podemos optimizar. Trabajamos en todo tu ecosistema digital sin restricciones.",
+                  "Todos los planes incluyen soporte especializado, desde email en Launchpad hasta soporte 24/7 en Dominator, con tiempos de respuesta garantizados.",
               },
               {
-                question: "¿Cómo funciona el descuento anual?",
+                question: "¿Los chatbots IA se integran con mi sitio web?",
                 answer:
-                  "Al elegir el plan anual, obtienes un 16.37% de descuento sobre el precio mensual. El pago se realiza una vez al año y tienes acceso inmediato a todos los beneficios de tu plan.",
+                  "Sí, desarrollamos chatbots personalizados que se integran perfectamente con tu sitio web y sistemas existentes, adaptados a tu marca y necesidades.",
+              },
+              {
+                question: "¿Ofrecen capacitación para usar las herramientas?",
+                answer:
+                  "Incluimos capacitación completa para tu equipo en el uso de todas las herramientas y estrategias implementadas, con materiales de apoyo y sesiones de seguimiento.",
               },
             ].map((faq, index) => (
-              <Card key={index} className="bg-slate-900 border-slate-700">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-white mb-3">{faq.question}</h3>
+              <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-lg text-white">{faq.question}</CardTitle>
+                </CardHeader>
+                <CardContent>
                   <p className="text-slate-300">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            ¿No estás seguro qué plan <span className="text-orange-500">elegir</span>?
-          </h2>
-          <p className="text-xl text-slate-300 mb-8">
-            Agenda una consulta personalizada y te ayudaremos a encontrar la solución perfecta para tu negocio.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold"
-              onClick={() =>
-                window.open(
-                  "https://wa.me/5256202022210?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20para%20elegir%20el%20mejor%20plan%20AIO%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
-                  "_blank",
-                )
-              }
-            >
-              <MessageSquare className="mr-2 h-5 w-5" />
-              Consulta Personalizada
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-orange-400 text-orange-400 hover:bg-orange-950/20 bg-transparent px-8 py-4 text-lg"
-              onClick={() =>
-                window.open(
-                  "https://wa.me/5256202022210?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20planes%20AIO%20y%20sus%20diferencias.%20%C2%BFPodr%C3%ADan%20ayudarme%3F",
-                  "_blank",
-                )
-              }
-            >
-              <ArrowRight className="mr-2 h-5 w-5" />
-              Más Información
-            </Button>
-          </div>
+        {/* CTA Final */}
+        <div className="mt-20 text-center">
+          <Card className="bg-gradient-to-r from-orange-500/20 to-pink-500/20 border-orange-500/30 backdrop-blur-sm max-w-4xl mx-auto">
+            <CardContent className="py-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                ¿Listo para transformar tu negocio con IA?
+              </h2>
+              <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                Únete a las empresas que ya están dominando su mercado con nuestras estrategias de marketing digital
+                potenciadas por inteligencia artificial.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  type="button"
+                  onClick={() => {
+                    trackContact()
+                    const message = encodeURIComponent(
+                      "¡Hola! Me gustaría agendar una consulta gratuita para conocer cómo AI Positioning puede ayudar a transformar mi negocio.",
+                    )
+                    window.open(`https://wa.me/5256202020210?text=${message}`, "_blank")
+                  }}
+                  className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-semibold py-3 px-8"
+                >
+                  Consulta gratuita
+                </Button>
+                <Button
+                  variant="outline"
+                  asChild
+                  className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white bg-transparent"
+                >
+                  <Link href="/casos-de-exito">Ver casos de éxito</Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </section>
+      </div>
     </div>
   )
 }
