@@ -24,9 +24,9 @@ export default function PreciosPage() {
       buttonColor: "bg-slate-600 hover:bg-slate-700",
       features: [
         "Auditoría inicial completa",
-        "Optimización de 5 páginas",
-        "Schema markup básico",
-        "5 contenidos mensuales",
+        "Optimización de 5 páginas clave",
+        "Datos estructurados (FAQPage y LocalBusiness)",
+        "5 contenidos conversacionales mensuales",
         "Reporte mensual de visibilidad",
       ],
       buttonText: "Comenzar ahora",
@@ -45,12 +45,13 @@ export default function PreciosPage() {
       buttonColor: "bg-green-500 hover:bg-green-600",
       features: [
         "Todo lo anterior +",
-        "10 URLs optimizadas",
-        "Chatbot LLM simple",
-        "10 contenidos mensuales",
+        "Optimización de 10 URLs",
+        "Integración de chatbot LLM simple",
+        "10 contenidos por mes",
+        "Análisis de competencia en SGE",
         "Reporte mensual de visibilidad",
       ],
-      buttonText: "Acelerar crecimiento",
+      buttonText: "Acelerar mi crecimiento",
       href: "/contratar/accelerator",
       whatsappMessage: "Hola%2C%20me%20interesa%20el%20plan%20AIO%20Accelerator.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
       popular: true,
@@ -58,7 +59,7 @@ export default function PreciosPage() {
     {
       id: "dominator",
       name: "AIO DOMINATOR",
-      badge: { text: "DOMINACIÓN", color: "bg-orange-500" },
+      badge: { text: "DOMINACIÓN TOTAL", color: "bg-orange-500" },
       monthlyPrice: 36000,
       monthlyPriceUsd: 2000,
       color: "orange",
@@ -67,11 +68,13 @@ export default function PreciosPage() {
       features: [
         "Todo lo anterior +",
         "Sitio completo optimizado",
-        "PR digital y enlaces",
-        "20 contenidos mensuales",
+        "PR digital y enlaces EEAT",
+        "20 contenidos por mes + chatbot experto",
+        "Coaching mensual 1:1",
+        "Dashboard de rendimiento",
         "Reporte mensual de visibilidad",
       ],
-      buttonText: "Dominar mercado",
+      buttonText: "Dominar mi mercado",
       href: "/contratar/dominator",
       whatsappMessage: "Hola%2C%20me%20interesa%20el%20plan%20AIO%20Dominator.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
     },
@@ -198,7 +201,7 @@ export default function PreciosPage() {
                   key={plan.id}
                   className={`bg-slate-900 ${plan.borderColor} ${
                     plan.popular || plan.enterprise ? "border-2 relative" : "border"
-                  } hover:shadow-2xl transition-all duration-300 ${plan.enterprise ? "transform hover:scale-105" : ""}`}
+                  } hover:shadow-2xl transition-all duration-300 ${plan.enterprise ? "transform hover:scale-105" : ""} flex flex-col h-full`}
                 >
                   {(plan.popular || plan.enterprise) && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -248,8 +251,8 @@ export default function PreciosPage() {
                     </div>
                   </CardHeader>
 
-                  <CardContent className="pt-0">
-                    <ul className="space-y-3 mb-8">
+                  <CardContent className="pt-0 flex-1 flex flex-col">
+                    <ul className="space-y-3 mb-8 flex-1">
                       {plan.features.map((feature, index) => (
                         <li key={index} className="flex items-center gap-3">
                           <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
@@ -259,7 +262,7 @@ export default function PreciosPage() {
                     </ul>
 
                     <Button
-                      className={`w-full ${plan.buttonColor} text-white font-semibold py-3`}
+                      className={`w-full ${plan.buttonColor} text-white font-semibold py-3 mt-auto`}
                       onClick={() => handlePlanClick(plan)}
                       type="button"
                     >
@@ -388,7 +391,7 @@ export default function PreciosPage() {
                   </td>
                 </tr>
                 <tr className="border-t border-slate-700">
-                  <td className="p-4 font-medium">Reporte de visibilidad</td>
+                  <td className="p-4 font-medium">Reporte mensual de visibilidad</td>
                   <td className="text-center p-4">
                     <CheckCircle className="h-5 w-5 text-green-400 mx-auto" />
                   </td>
