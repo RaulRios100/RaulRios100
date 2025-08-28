@@ -64,7 +64,6 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
-  category: "technology",
     generator: 'v0.app'
 }
 
@@ -77,14 +76,12 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#f97316" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="AI Positioning" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="msapplication-TileColor" content="#f97316" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <FacebookPixel />
       </head>
       <body className={inter.className}>
-        <FacebookPixel />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>

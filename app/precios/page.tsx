@@ -123,7 +123,7 @@ export default function PreciosPage() {
       "Configuración inicial de Google Analytics y Search Console",
       "Optimización básica de velocidad de carga",
       "Investigación de palabras clave inicial",
-      "Estrategia de contenido básica",
+      "Dashboard con métricas básicas",
     ],
     accelerator: [
       "Optimización avanzada de Core Web Vitals",
@@ -447,6 +447,11 @@ export default function PreciosPage() {
           <div className="space-y-6">
             {[
               {
+                question: "¿Qué incluye el reporte mensual de visibilidad?",
+                answer:
+                  "Cada mes recibes un reporte detallado con métricas de aparición en AI Overviews, posicionamiento en motores generativos, análisis de competencia y recomendaciones de mejora específicas para tu industria.",
+              },
+              {
                 question: "¿Qué incluye la IA personalizada del plan Enterprise?",
                 answer:
                   "La IA personalizada incluye un modelo entrenado específicamente con datos de tu industria, competencia y objetivos de negocio. Esto permite generar contenido más relevante y estrategias más efectivas para tu nicho específico.",
@@ -465,11 +470,6 @@ export default function PreciosPage() {
                 question: "¿Cómo funciona el descuento anual?",
                 answer:
                   "Al elegir el plan anual, obtienes un 16.37% de descuento sobre el precio mensual. El pago se realiza una vez al año y tienes acceso inmediato a todos los beneficios de tu plan.",
-              },
-              {
-                question: "¿Qué incluye el reporte mensual de visibilidad?",
-                answer:
-                  "El reporte incluye métricas de aparición en AI Overviews, posicionamiento en motores generativos, análisis de competencia, y recomendaciones específicas para mejorar tu visibilidad online.",
               },
             ].map((faq, index) => (
               <Card key={index} className="bg-slate-900 border-slate-700">
