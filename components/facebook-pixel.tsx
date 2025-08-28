@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 
 declare global {
   interface Window {
@@ -9,42 +9,89 @@ declare global {
   }
 }
 
-export function FacebookPixel() {
+const FACEBOOK_PIXEL_ID = "644155554997693"
+
+export default function FacebookPixel() {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
+    // Initialize Facebook Pixel
+    if (typeof window !== "undefined") {
+      ;((f: any, b: any, e: any, v: any, n: any, t: any, s: any) => {
+        if (f.fbq) return
+        n = f.fbq = () => {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        }
+        if (!f._fbq) f._fbq = n
+        n.push = n
+        n.loaded = !0
+        n.version = "2.0"
+        n.queue = []
+        t = b.createElement(e)
+        t.async = !0
+        t.src = v
+        s = b.getElementsByTagName(e)[0]
+        s.parentNode.insertBefore(t, s)
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js", undefined, undefined, undefined)
+
+      window.fbq("init", FACEBOOK_PIXEL_ID)
+      window.fbq("track", "PageView")
+    }
+  }, [])
+
+  useEffect(() => {
+    // Track page views on route changes
     if (typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "PageView")
     }
-  }, [pathname])
+  }, [pathname, searchParams])
 
-  return null
+  return (
+    <>
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src={`https://www.facebook.com/tr?id=${FACEBOOK_PIXEL_ID}&ev=PageView&noscript=1`}
+          alt=""
+        />
+      </noscript>
+    </>
+  )
 }
 
-// Función para trackear eventos personalizados
-export const trackEvent = (eventName: string, parameters?: any) => {
+// Helper functions for tracking events
+export const trackLead = (value?: number) => {
   if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", eventName, parameters)
+    window.fbq("track", "Lead", {
+      value: value,
+      currency: "MXN",
+    })
   }
 }
 
-// Eventos específicos para el negocio
-export const trackLead = (value?: number) => {
-  trackEvent("Lead", { value, currency: "MXN" })
-}
-
 export const trackContact = () => {
-  trackEvent("Contact")
-}
-
-export const trackViewContent = (contentName: string) => {
-  trackEvent("ViewContent", { content_name: contentName })
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "Contact")
+  }
 }
 
 export const trackInitiateCheckout = (planName: string, value: number) => {
-  trackEvent("InitiateCheckout", {
-    content_name: planName,
-    value,
-    currency: "MXN",
-  })
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "InitiateCheckout", {
+      content_name: planName,
+      value: value,
+      currency: "MXN",
+    })
+  }
+}
+
+export const trackViewContent = (contentName: string) => {
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "ViewContent", {
+      content_name: contentName,
+    })
+  }
 }
