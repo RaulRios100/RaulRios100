@@ -24,12 +24,14 @@ export default function PreciosPage() {
       buttonColor: "bg-slate-600 hover:bg-slate-700",
       glowColor: "hover:shadow-slate-500/20",
       features: [
-        "Auditoría inicial completa",
+        "Auditoría inicial completa de SEO",
         "Optimización de 5 páginas clave",
-        "Datos estructurados básicos",
+        "Datos estructurados básicos (Schema)",
         "5 contenidos conversacionales mensuales",
+        "Configuración Google Analytics y Search Console",
+        "Investigación de palabras clave inicial",
+        "Optimización básica de velocidad de carga",
         "Reporte mensual de visibilidad",
-        "Soporte por email",
       ],
       buttonText: "Comenzar ahora",
       href: "/contratar/launchpad",
@@ -48,10 +50,12 @@ export default function PreciosPage() {
       glowColor: "hover:shadow-green-500/30",
       features: [
         "Todo lo anterior +",
-        "Optimización de 10 URLs",
+        "Optimización de 10 URLs completas",
         "Integración de chatbot LLM simple",
-        "10 contenidos por mes",
+        "10 contenidos optimizados por mes",
         "Análisis de competencia en SGE",
+        "Optimización avanzada Core Web Vitals",
+        "Estrategia de contenido personalizada",
         "Reporte mensual de visibilidad",
       ],
       buttonText: "Acelerar mi crecimiento",
@@ -71,10 +75,12 @@ export default function PreciosPage() {
       glowColor: "hover:shadow-orange-500/30",
       features: [
         "Todo lo anterior +",
-        "Sitio completo optimizado",
+        "Sitio completo optimizado (ilimitado)",
         "PR digital y enlaces EEAT",
-        "20 contenidos por mes + chatbot experto",
-        "Coaching mensual 1:1",
+        "20 contenidos premium + chatbot experto",
+        "Coaching mensual 1:1 personalizado",
+        "Dashboard de rendimiento en tiempo real",
+        "Estrategia de link building avanzada",
         "Reporte mensual de visibilidad",
       ],
       buttonText: "Dominar mi mercado",
@@ -94,10 +100,12 @@ export default function PreciosPage() {
       glowColor: "hover:shadow-purple-500/30",
       features: [
         "Todo lo anterior +",
-        "Optimización ilimitada",
-        "IA personalizada",
-        "Account Manager 24/7",
-        "50 contenidos mensuales",
+        "Optimización ilimitada multi-sitio",
+        "IA personalizada entrenada para tu industria",
+        "Account Manager dedicado 24/7",
+        "50 contenidos premium mensuales",
+        "Integración con sistemas CRM y ERP",
+        "Consultoría estratégica C-level mensual",
         "Reporte mensual de visibilidad",
       ],
       buttonText: "Solución Enterprise",
@@ -127,35 +135,35 @@ export default function PreciosPage() {
 
   const additionalFeatures = {
     launchpad: [
-      "Configuración inicial de Google Analytics y Search Console",
-      "Optimización básica de velocidad de carga",
-      "Investigación de palabras clave inicial",
       "Dashboard con métricas básicas",
+      "Soporte por email en horario laboral",
+      "Onboarding personalizado",
+      "Acceso a recursos educativos",
     ],
     accelerator: [
-      "Optimización avanzada de Core Web Vitals",
-      "Implementación de datos estructurados",
-      "Estrategia de contenido personalizada",
       "Integración con redes sociales",
-      "Monitoreo de competencia",
+      "Monitoreo de competencia semanal",
+      "Soporte prioritario",
+      "Sesiones de capacitación mensuales",
+      "Implementación de datos estructurados avanzados",
     ],
     dominator: [
-      "Estrategia de link building avanzada",
       "Optimización para búsquedas locales",
       "Implementación de AMP (Accelerated Mobile Pages)",
       "Auditoría técnica mensual completa",
       "Optimización para voice search",
       "Reportes ejecutivos detallados",
+      "Acceso a herramientas premium",
     ],
     enterprise: [
-      "Modelo de IA entrenado específicamente para tu industria",
-      "Integración con sistemas CRM y ERP",
       "Optimización multiidioma y multinacional",
-      "Consultoría estratégica mensual",
       "Acceso prioritario a nuevas funcionalidades",
-      "Tiempo de respuesta prioritario",
+      "Tiempo de respuesta garantizado <2 horas",
       "Equipo dedicado exclusivo",
       "Reportes en tiempo real personalizados",
+      "Integración con herramientas empresariales",
+      "Capacitación del equipo interno",
+      "SLA garantizado 99.9%",
     ],
   }
 
@@ -226,7 +234,7 @@ export default function PreciosPage() {
                     } hover:shadow-2xl ${plan.glowColor} transition-all duration-500 ease-out
                     ${plan.enterprise ? "hover:scale-105" : "hover:scale-102"} 
                     ${plan.popular ? "hover:-translate-y-2" : "hover:-translate-y-1"}
-                    flex flex-col w-full min-h-[600px] group cursor-pointer
+                    flex flex-col w-full min-h-[700px] group cursor-pointer
                     hover:bg-slate-800/50 backdrop-blur-sm`}
                     onClick={() => handlePlanClick(plan)}
                   >
@@ -506,7 +514,7 @@ export default function PreciosPage() {
                 <tr className="border-t border-slate-700 hover:bg-slate-800/30 transition-colors duration-300">
                   <td className="p-4 font-medium">Soporte</td>
                   <td className="text-center p-4">Horario laboral</td>
-                  <td className="text-center p-4">Horario laboral</td>
+                  <td className="text-center p-4">Prioritario</td>
                   <td className="text-center p-4">Prioritario</td>
                   <td className="text-center p-4">
                     <span className="text-purple-400 font-semibold animate-pulse">24/7 Dedicado</span>
