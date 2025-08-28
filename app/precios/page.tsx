@@ -158,7 +158,7 @@ export default function PreciosPage() {
     enterprise: [
       "Optimización multiidioma y multinacional",
       "Acceso prioritario a nuevas funcionalidades",
-      "Tiempo de respuesta garantizado <2 horas",
+      "Tiempo de respuesta garantizado menor a 2 horas",
       "Equipo dedicado exclusivo",
       "Reportes en tiempo real personalizados",
       "Integración con herramientas empresariales",
