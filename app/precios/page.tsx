@@ -25,9 +25,10 @@ export default function PreciosPage() {
       features: [
         "Auditoría inicial completa",
         "Optimización de 5 páginas clave",
-        "Datos estructurados (FAQPage y LocalBusiness)",
+        "Datos estructurados básicos",
         "5 contenidos conversacionales mensuales",
         "Reporte mensual de visibilidad",
+        "Soporte por email",
       ],
       buttonText: "Comenzar ahora",
       href: "/contratar/launchpad",
@@ -71,7 +72,6 @@ export default function PreciosPage() {
         "PR digital y enlaces EEAT",
         "20 contenidos por mes + chatbot experto",
         "Coaching mensual 1:1",
-        "Dashboard de rendimiento",
         "Reporte mensual de visibilidad",
       ],
       buttonText: "Dominar mi mercado",
@@ -190,87 +190,93 @@ export default function PreciosPage() {
       {/* Pricing Cards */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 items-stretch">
             {plans.map((plan) => {
               const displayPrice = isAnnual ? calculateAnnualPrice(plan.monthlyPrice) : plan.monthlyPrice
               const displayPriceUsd = isAnnual ? calculateAnnualPriceUsd(plan.monthlyPriceUsd) : plan.monthlyPriceUsd
               const savings = isAnnual ? plan.monthlyPrice * 12 - displayPrice : 0
 
               return (
-                <Card
-                  key={plan.id}
-                  className={`bg-slate-900 ${plan.borderColor} ${
-                    plan.popular || plan.enterprise ? "border-2 relative" : "border"
-                  } hover:shadow-2xl transition-all duration-300 ${plan.enterprise ? "transform hover:scale-105" : ""} flex flex-col h-full`}
-                >
-                  {(plan.popular || plan.enterprise) && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <Badge className={plan.badge.color}>
-                        {plan.enterprise && <Crown className="mr-1 h-3 w-3" />}
-                        {plan.badge.text}
-                      </Badge>
-                    </div>
-                  )}
-
-                  <CardHeader className="text-center pb-4">
-                    {!plan.popular && !plan.enterprise && (
-                      <Badge className={`${plan.badge.color} mb-4 mx-auto w-fit`}>{plan.badge.text}</Badge>
-                    )}
-                    {plan.secondaryBadge && (
-                      <Badge className={`${plan.secondaryBadge.color} mb-4 mx-auto w-fit`}>
-                        {plan.secondaryBadge.text}
-                      </Badge>
-                    )}
-
-                    <CardTitle className="text-2xl font-bold text-white mb-4">{plan.name}</CardTitle>
-
-                    <div className="mb-6">
-                      <div
-                        className={`text-4xl font-bold mb-2 ${
-                          plan.color === "green"
-                            ? "text-green-400"
-                            : plan.color === "orange"
-                              ? "text-orange-400"
-                              : plan.color === "purple"
-                                ? "text-purple-400"
-                                : "text-slate-300"
-                        }`}
-                      >
-                        ${displayPrice.toLocaleString()} MXN
+                <div key={plan.id} className="flex">
+                  <Card
+                    className={`bg-slate-900 ${plan.borderColor} ${
+                      plan.popular || plan.enterprise ? "border-2 relative" : "border"
+                    } hover:shadow-2xl transition-all duration-300 ${plan.enterprise ? "transform hover:scale-105" : ""} 
+                    flex flex-col w-full min-h-[600px]`}
+                  >
+                    {(plan.popular || plan.enterprise) && (
+                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                        <Badge className={plan.badge.color}>
+                          {plan.enterprise && <Crown className="mr-1 h-3 w-3" />}
+                          {plan.badge.text}
+                        </Badge>
                       </div>
-                      <div className="text-slate-400">o ${displayPriceUsd} USD</div>
-                      <div className="text-sm text-slate-500">{isAnnual ? "por año" : "por mes"}</div>
+                    )}
 
-                      {isAnnual && savings > 0 && (
-                        <div className="mt-2">
-                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                            Ahorras ${savings.toLocaleString()} MXN
-                          </Badge>
-                        </div>
+                    <CardHeader className="text-center pb-4 flex-shrink-0">
+                      {!plan.popular && !plan.enterprise && (
+                        <Badge className={`${plan.badge.color} mb-4 mx-auto w-fit`}>{plan.badge.text}</Badge>
                       )}
-                    </div>
-                  </CardHeader>
+                      {plan.secondaryBadge && (
+                        <Badge className={`${plan.secondaryBadge.color} mb-4 mx-auto w-fit`}>
+                          {plan.secondaryBadge.text}
+                        </Badge>
+                      )}
 
-                  <CardContent className="pt-0 flex-1 flex flex-col">
-                    <ul className="space-y-3 mb-8 flex-1">
-                      {plan.features.map((feature, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                          <span className="text-slate-300">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                      <CardTitle className="text-2xl font-bold text-white mb-4">{plan.name}</CardTitle>
 
-                    <Button
-                      className={`w-full ${plan.buttonColor} text-white font-semibold py-3 mt-auto`}
-                      onClick={() => handlePlanClick(plan)}
-                      type="button"
-                    >
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      {plan.buttonText}
-                    </Button>
-                  </CardContent>
-                </Card>
+                      <div className="mb-6">
+                        <div
+                          className={`text-4xl font-bold mb-2 ${
+                            plan.color === "green"
+                              ? "text-green-400"
+                              : plan.color === "orange"
+                                ? "text-orange-400"
+                                : plan.color === "purple"
+                                  ? "text-purple-400"
+                                  : "text-slate-300"
+                          }`}
+                        >
+                          ${displayPrice.toLocaleString()} MXN
+                        </div>
+                        <div className="text-slate-400">o ${displayPriceUsd} USD</div>
+                        <div className="text-sm text-slate-500">{isAnnual ? "por año" : "por mes"}</div>
+
+                        {isAnnual && savings > 0 && (
+                          <div className="mt-2">
+                            <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                              Ahorras ${savings.toLocaleString()} MXN
+                            </Badge>
+                          </div>
+                        )}
+                      </div>
+                    </CardHeader>
+
+                    <CardContent className="pt-0 flex flex-col flex-1">
+                      <div className="flex-1">
+                        <ul className="space-y-3 mb-8">
+                          {plan.features.map((feature, index) => (
+                            <li key={index} className="flex items-start gap-3">
+                              <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                              <span className="text-slate-300 text-sm leading-relaxed">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="mt-auto pt-4">
+                        <Button
+                          className={`w-full ${plan.buttonColor} text-white font-semibold py-3`}
+                          onClick={() => handlePlanClick(plan)}
+                          type="button"
+                        >
+                          <MessageSquare className="mr-2 h-4 w-4" />
+                          {plan.buttonText}
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               )
             })}
           </div>
