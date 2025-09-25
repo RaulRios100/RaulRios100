@@ -1,84 +1,105 @@
 "use client"
 
+import { useState } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Moon, Sun } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { useState, useEffect } from "react"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Menu, MessageSquare } from "lucide-react"
+import { trackContact } from "@/components/facebook-pixel"
 
-interface NavigationHeaderProps {
-  title: string
-}
+export default function NavigationHeader() {
+  const [isOpen, setIsOpen] = useState(false)
 
-export default function NavigationHeader({ title }: NavigationHeaderProps) {
-  const router = useRouter()
-  const [isDarkMode, setIsDarkMode] = useState(true)
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    if (savedTheme === "light") {
-      setIsDarkMode(false)
-      document.documentElement.classList.remove("dark")
-    } else {
-      setIsDarkMode(true)
-      document.documentElement.classList.add("dark")
-    }
-  }, [])
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-    if (!isDarkMode) {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
-    }
+  const handleContactClick = () => {
+    trackContact()
+    window.open(
+      "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20SEO%20con%20IA.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
+      "_blank",
+    )
   }
 
-  const handleBack = () => {
-    if (window.history.length > 1) {
-      router.back()
-    } else {
-      router.push("/")
-    }
-  }
+  const navigation = [
+    { name: "Inicio", href: "/" },
+    { name: "Servicios", href: "/servicios" },
+    { name: "Precios", href: "/precios" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contacto", href: "/contacto" },
+  ]
 
   return (
-    <>
-      {/* Navigation Header */}
-      <header className="bg-slate-950 border-b border-slate-800 py-4 px-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 backdrop-blur supports-[backdrop-filter]:bg-slate-950/60">
+      <div className="container mx-auto px-4">
+        <div className="flex h-16 items-center justify-between">
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="h-8 w-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">DO</span>
+              </div>
+              <span className="font-bold text-white text-lg">Diseño y Optimización Online</span>
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-slate-300 hover:text-orange-400 transition-colors duration-200 font-medium"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center space-x-4">
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleBack}
-              className="text-slate-300 hover:text-white hover:bg-slate-800"
+              onClick={handleContactClick}
+              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-6 py-2 transition-all duration-300 hover:scale-105"
             >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Volver
+              <MessageSquare className="mr-2 h-4 w-4" />
+              Contactar
             </Button>
-            <h1 className="text-xl font-bold text-white">{title}</h1>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors"
-            >
-              {isDarkMode ? <Sun className="h-4 w-4 text-yellow-500" /> : <Moon className="h-4 w-4 text-slate-600" />}
-            </button>
-          </div>
+          {/* Mobile Navigation */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon" className="text-white">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Abrir menú</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] bg-slate-950 border-slate-800">
+              <div className="flex flex-col space-y-4 mt-8">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-slate-300 hover:text-orange-400 transition-colors duration-200 font-medium py-2"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                <div className="pt-4 border-t border-slate-800">
+                  <Button
+                    onClick={() => {
+                      handleContactClick()
+                      setIsOpen(false)
+                    }}
+                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold"
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    Contactar
+                  </Button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
-      </header>
-
-      {/* Dark Mode Toggle (Fixed Position) */}
-      <button
-        onClick={toggleDarkMode}
-        className="fixed bottom-6 right-6 z-50 bg-white dark:bg-slate-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
-      >
-        {isDarkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-slate-600" />}
-      </button>
-    </>
+      </div>
+    </header>
   )
 }
