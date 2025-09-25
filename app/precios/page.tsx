@@ -12,6 +12,7 @@ import { trackInitiateCheckout, trackContact } from "@/components/facebook-pixel
 export default function PreciosPage() {
   const [isAnnual, setIsAnnual] = useState(false)
 
+  // AQUÍ PUEDES EDITAR LA INFORMACIÓN DE LOS PAQUETES
   const plans = [
     {
       id: "launchpad",
@@ -142,6 +143,7 @@ export default function PreciosPage() {
     window.open(`https://wa.me/5256202022210?text=${plan.whatsappMessage}`, "_blank")
   }
 
+  // CARACTERÍSTICAS ADICIONALES PARA LA SECCIÓN DETALLADA
   const additionalFeatures = {
     launchpad: [
       "Configuración Google Analytics y Search Console",
@@ -184,7 +186,7 @@ export default function PreciosPage() {
     <div className="min-h-screen bg-slate-950">
       <NavigationHeader title="Planes y Precios" />
 
-      {/* Hero Section */}
+      {/* SECCIÓN HERO - PUEDES EDITAR EL TÍTULO Y DESCRIPCIÓN AQUÍ */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
@@ -197,7 +199,7 @@ export default function PreciosPage() {
             </p>
           </div>
 
-          {/* Pricing Toggle */}
+          {/* Toggle Mensual/Anual */}
           <div className="flex items-center justify-center gap-4 mb-8 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-300">
             <span
               className={`text-lg font-medium transition-all duration-300 ${!isAnnual ? "text-white scale-110" : "text-slate-400"}`}
@@ -226,7 +228,7 @@ export default function PreciosPage() {
         </div>
       </section>
 
-      {/* Pricing Cards */}
+      {/* SECCIÓN DE TARJETAS DE PRECIOS - AQUÍ ESTÁN LOS PAQUETES */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 items-stretch">
@@ -251,6 +253,7 @@ export default function PreciosPage() {
                     hover:bg-slate-800/50 backdrop-blur-sm`}
                     onClick={() => handlePlanClick(plan)}
                   >
+                    {/* Badge superior para planes populares/enterprise */}
                     {(plan.popular || plan.enterprise) && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                         <Badge
@@ -263,6 +266,7 @@ export default function PreciosPage() {
                     )}
 
                     <CardHeader className="text-center pb-4 flex-shrink-0">
+                      {/* Badge para planes normales */}
                       {!plan.popular && !plan.enterprise && (
                         <Badge
                           className={`${plan.badge.color} mb-4 mx-auto w-fit transition-all duration-300 group-hover:scale-110`}
@@ -270,6 +274,8 @@ export default function PreciosPage() {
                           {plan.badge.text}
                         </Badge>
                       )}
+
+                      {/* Badge secundario */}
                       {plan.secondaryBadge && (
                         <Badge
                           className={`${plan.secondaryBadge.color} mb-4 mx-auto w-fit transition-all duration-300 group-hover:scale-110`}
@@ -278,17 +284,19 @@ export default function PreciosPage() {
                         </Badge>
                       )}
 
+                      {/* Nombre del plan */}
                       <CardTitle className="text-2xl font-bold text-white mb-4 transition-all duration-300 group-hover:text-orange-300">
                         {plan.name}
                       </CardTitle>
 
+                      {/* Precios */}
                       <div className="mb-6">
-                        {/* Original Price (crossed out) */}
+                        {/* Precio original tachado */}
                         <div className="text-lg text-slate-500 line-through mb-1">
                           ${plan.originalPrice.toLocaleString()} MXN
                         </div>
 
-                        {/* Current Price */}
+                        {/* Precio actual */}
                         <div
                           className={`text-4xl font-bold mb-2 transition-all duration-500 group-hover:scale-110 ${
                             plan.color === "green"
@@ -304,13 +312,16 @@ export default function PreciosPage() {
                         >
                           ${displayPrice.toLocaleString()} MXN
                         </div>
+
                         <div className="text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
                           o ${displayPriceUsd} USD
                         </div>
+
                         <div className="text-sm text-slate-500 transition-colors duration-300 group-hover:text-slate-400">
                           {isAnnual ? "por año" : "por mes"}
                         </div>
 
+                        {/* Badge de ahorro anual */}
                         {isAnnual && savings > 0 && (
                           <div className="mt-2 animate-in fade-in slide-in-from-right duration-500">
                             <Badge className="bg-green-500/20 text-green-400 border-green-500/30 animate-pulse group-hover:animate-bounce">
@@ -323,6 +334,7 @@ export default function PreciosPage() {
                     </CardHeader>
 
                     <CardContent className="pt-0 flex flex-col flex-1">
+                      {/* Lista de características */}
                       <div className="flex-1">
                         <ul className="space-y-3 mb-8">
                           {plan.features.map((feature, featureIndex) => (
@@ -340,6 +352,7 @@ export default function PreciosPage() {
                         </ul>
                       </div>
 
+                      {/* Botón - Alineado al final */}
                       <div className="mt-auto pt-4">
                         <Button
                           className={`w-full ${plan.buttonColor} text-white font-semibold py-3 
@@ -357,7 +370,7 @@ export default function PreciosPage() {
                       </div>
                     </CardContent>
 
-                    {/* Decorative gradient overlay */}
+                    {/* Overlay decorativo */}
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${
                         plan.color === "green"
@@ -379,7 +392,7 @@ export default function PreciosPage() {
         </div>
       </section>
 
-      {/* Detailed Features */}
+      {/* SECCIÓN DE CARACTERÍSTICAS DETALLADAS */}
       <section className="py-20 px-4 bg-gradient-to-r from-slate-900/50 to-slate-950">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
@@ -484,7 +497,7 @@ export default function PreciosPage() {
         </div>
       </section>
 
-      {/* Comparison Table */}
+      {/* TABLA DE COMPARACIÓN */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
@@ -572,7 +585,7 @@ export default function PreciosPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* SECCIÓN FAQ */}
       <section className="py-20 px-4 bg-gradient-to-r from-slate-900/50 to-slate-950">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
@@ -630,7 +643,7 @@ export default function PreciosPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* SECCIÓN CTA FINAL */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
