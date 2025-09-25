@@ -16,22 +16,21 @@ export default function PreciosPage() {
     {
       id: "launchpad",
       name: "AIO LAUNCHPAD",
-      badge: { text: "PARA EMPEZAR", color: "bg-slate-600" },
-      monthlyPrice: 12000,
-      monthlyPriceUsd: 666,
-      color: "slate",
-      borderColor: "border-slate-600",
-      buttonColor: "bg-slate-600 hover:bg-slate-700",
-      glowColor: "hover:shadow-slate-500/20",
+      badge: { text: "PARA EMPEZAR", color: "bg-blue-600" },
+      monthlyPrice: 10000,
+      originalPrice: 20000,
+      monthlyPriceUsd: 555,
+      color: "blue",
+      borderColor: "border-blue-500",
+      buttonColor: "bg-blue-500 hover:bg-blue-600",
+      glowColor: "hover:shadow-blue-500/20",
       features: [
-        "Auditoría inicial completa de SEO",
+        "Auditoría inicial completa incluida",
         "Optimización de 5 páginas clave",
-        "Datos estructurados básicos (Schema)",
-        "5 contenidos conversacionales mensuales",
-        "Configuración Google Analytics y Search Console",
-        "Investigación de palabras clave inicial",
-        "Optimización básica de velocidad de carga",
+        "Datos estructurados: FAQPage y LocalBusiness",
+        "5 contenidos mensuales",
         "Reporte mensual de visibilidad",
+        "Soporte estándar",
       ],
       buttonText: "Comenzar ahora",
       href: "/contratar/launchpad",
@@ -42,21 +41,22 @@ export default function PreciosPage() {
       name: "AIO ACCELERATOR",
       badge: { text: "MÁS POPULAR", color: "bg-green-500" },
       secondaryBadge: { text: "CRECIMIENTO", color: "bg-green-600" },
-      monthlyPrice: 18000,
-      monthlyPriceUsd: 1000,
+      monthlyPrice: 15000,
+      originalPrice: 30000,
+      monthlyPriceUsd: 833,
       color: "green",
       borderColor: "border-green-500",
       buttonColor: "bg-green-500 hover:bg-green-600",
       glowColor: "hover:shadow-green-500/30",
       features: [
-        "Todo lo anterior +",
-        "Optimización de 10 URLs completas",
-        "Integración de chatbot LLM simple",
-        "10 contenidos optimizados por mes",
-        "Análisis de competencia en SGE",
-        "Optimización avanzada Core Web Vitals",
-        "Estrategia de contenido personalizada",
+        "Auditoría inicial completa incluida",
+        "Optimización de 10 páginas clave",
+        "Datos estructurados: + Schema en 10 páginas",
+        "10 contenidos mensuales",
         "Reporte mensual de visibilidad",
+        "Soporte prioritario",
+        "Integración de chatbot LLM simple",
+        "Análisis de competencia en SGE básico",
       ],
       buttonText: "Acelerar mi crecimiento",
       href: "/contratar/accelerator",
@@ -67,21 +67,25 @@ export default function PreciosPage() {
       id: "dominator",
       name: "AIO DOMINATOR",
       badge: { text: "DOMINACIÓN TOTAL", color: "bg-orange-500" },
-      monthlyPrice: 36000,
-      monthlyPriceUsd: 2000,
+      monthlyPrice: 30000,
+      originalPrice: 60000,
+      monthlyPriceUsd: 1666,
       color: "orange",
       borderColor: "border-orange-500",
       buttonColor: "bg-orange-500 hover:bg-orange-600",
       glowColor: "hover:shadow-orange-500/30",
       features: [
-        "Todo lo anterior +",
-        "Sitio completo optimizado (ilimitado)",
-        "PR digital y enlaces EEAT",
-        "20 contenidos premium + chatbot experto",
-        "Coaching mensual 1:1 personalizado",
-        "Dashboard de rendimiento en tiempo real",
-        "Estrategia de link building avanzada",
+        "Auditoría inicial completa incluida",
+        "Optimización de 15 páginas clave",
+        "Datos estructurados: + Schema en 15 páginas",
+        "20 contenidos mensuales",
         "Reporte mensual de visibilidad",
+        "Soporte Completo",
+        "Integración de chatbot LLM avanzado",
+        "Análisis de competencia en SGE avanzado",
+        "Enlaces DA 20 SPAM Max 55",
+        "1 sesión de coaching estratégico",
+        "Dashboard de rendimiento básico",
       ],
       buttonText: "Dominar mi mercado",
       href: "/contratar/dominator",
@@ -92,21 +96,26 @@ export default function PreciosPage() {
       name: "AIO ENTERPRISE",
       badge: { text: "ENTERPRISE", color: "bg-purple-500" },
       secondaryBadge: { text: "CORPORATIVO", color: "bg-purple-600" },
-      monthlyPrice: 84000,
-      monthlyPriceUsd: 4666,
+      monthlyPrice: 70000,
+      originalPrice: 150000,
+      monthlyPriceUsd: 3888,
       color: "purple",
       borderColor: "border-purple-500",
       buttonColor: "bg-purple-500 hover:bg-purple-600",
       glowColor: "hover:shadow-purple-500/30",
       features: [
-        "Todo lo anterior +",
-        "Optimización ilimitada multi-sitio",
-        "IA personalizada entrenada para tu industria",
-        "Account Manager dedicado 24/7",
-        "50 contenidos premium mensuales",
-        "Integración con sistemas CRM y ERP",
-        "Consultoría estratégica C-level mensual",
-        "Reporte mensual de visibilidad",
+        "Auditoría inicial completa incluida",
+        "Optimización de 20 páginas clave",
+        "Datos estructurados: + Schema",
+        "50 contenidos mensuales",
+        "Reporte mensual de visibilidad ejecutivo",
+        "Account Manager 24/7",
+        "Agente IA personalizado",
+        "Análisis de competencia en SGE completo + benchmarking",
+        "Enlaces DA 20 SPAM Max 55",
+        "2 sesiones de coaching estratégico",
+        "Dashboard completo con KPIs",
+        "Solución corporativa a medida",
       ],
       buttonText: "Solución Enterprise",
       href: "/contratar/enterprise",
@@ -135,19 +144,23 @@ export default function PreciosPage() {
 
   const additionalFeatures = {
     launchpad: [
+      "Configuración Google Analytics y Search Console",
+      "Investigación de palabras clave inicial",
+      "Optimización básica de velocidad de carga",
       "Dashboard con métricas básicas",
-      "Soporte por email en horario laboral",
       "Onboarding personalizado",
       "Acceso a recursos educativos",
     ],
     accelerator: [
+      "Optimización avanzada Core Web Vitals",
+      "Estrategia de contenido personalizada",
       "Integración con redes sociales",
       "Monitoreo de competencia semanal",
-      "Soporte prioritario",
       "Sesiones de capacitación mensuales",
       "Implementación de datos estructurados avanzados",
     ],
     dominator: [
+      "Estrategia de link building avanzada",
       "Optimización para búsquedas locales",
       "Implementación de AMP (Accelerated Mobile Pages)",
       "Auditoría técnica mensual completa",
@@ -158,7 +171,7 @@ export default function PreciosPage() {
     enterprise: [
       "Optimización multiidioma y multinacional",
       "Acceso prioritario a nuevas funcionalidades",
-      "Tiempo de respuesta garantizado menor a 2 horas",
+      "Tiempo de respuesta garantizado <2 horas",
       "Equipo dedicado exclusivo",
       "Reportes en tiempo real personalizados",
       "Integración con herramientas empresariales",
@@ -176,7 +189,7 @@ export default function PreciosPage() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Elige tu plan <span className="text-orange-500 animate-pulse">AIO</span>
+              Nuestros <span className="text-orange-500 animate-pulse">paquetes</span>
             </h1>
             <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto">
               Desde startups hasta empresas Fortune 500, tenemos la solución perfecta para llevar tu SEO al siguiente
@@ -234,7 +247,7 @@ export default function PreciosPage() {
                     } hover:shadow-2xl ${plan.glowColor} transition-all duration-500 ease-out
                     ${plan.enterprise ? "hover:scale-105" : "hover:scale-102"} 
                     ${plan.popular ? "hover:-translate-y-2" : "hover:-translate-y-1"}
-                    flex flex-col w-full min-h-[700px] group cursor-pointer
+                    flex flex-col w-full group cursor-pointer
                     hover:bg-slate-800/50 backdrop-blur-sm`}
                     onClick={() => handlePlanClick(plan)}
                   >
@@ -270,6 +283,12 @@ export default function PreciosPage() {
                       </CardTitle>
 
                       <div className="mb-6">
+                        {/* Original Price (crossed out) */}
+                        <div className="text-lg text-slate-500 line-through mb-1">
+                          ${plan.originalPrice.toLocaleString()} MXN
+                        </div>
+
+                        {/* Current Price */}
                         <div
                           className={`text-4xl font-bold mb-2 transition-all duration-500 group-hover:scale-110 ${
                             plan.color === "green"
@@ -278,7 +297,9 @@ export default function PreciosPage() {
                                 ? "text-orange-400 group-hover:text-orange-300"
                                 : plan.color === "purple"
                                   ? "text-purple-400 group-hover:text-purple-300"
-                                  : "text-slate-300 group-hover:text-slate-200"
+                                  : plan.color === "blue"
+                                    ? "text-blue-400 group-hover:text-blue-300"
+                                    : "text-slate-300 group-hover:text-slate-200"
                           }`}
                         >
                           ${displayPrice.toLocaleString()} MXN
@@ -345,7 +366,9 @@ export default function PreciosPage() {
                             ? "from-orange-500/5 to-transparent"
                             : plan.color === "purple"
                               ? "from-purple-500/5 to-transparent"
-                              : "from-slate-500/5 to-transparent"
+                              : plan.color === "blue"
+                                ? "from-blue-500/5 to-transparent"
+                                : "from-slate-500/5 to-transparent"
                       } opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg`}
                     />
                   </Card>
@@ -395,6 +418,9 @@ export default function PreciosPage() {
                     </CardHeader>
                     <CardContent>
                       <div className="mb-6">
+                        <div className="text-lg text-slate-500 line-through mb-1">
+                          ${plan.originalPrice.toLocaleString()} MXN
+                        </div>
                         <div
                           className={`text-3xl font-bold transition-all duration-500 group-hover:scale-110 ${
                             plan.color === "green"
@@ -403,7 +429,9 @@ export default function PreciosPage() {
                                 ? "text-orange-400 group-hover:text-orange-300"
                                 : plan.color === "purple"
                                   ? "text-purple-400 group-hover:text-purple-300"
-                                  : "text-slate-300 group-hover:text-slate-200"
+                                  : plan.color === "blue"
+                                    ? "text-blue-400 group-hover:text-blue-300"
+                                    : "text-slate-300 group-hover:text-slate-200"
                           }`}
                         >
                           ${displayPrice.toLocaleString()} MXN
@@ -482,9 +510,9 @@ export default function PreciosPage() {
                   <td className="p-4 font-medium">Páginas optimizadas</td>
                   <td className="text-center p-4">5</td>
                   <td className="text-center p-4">10</td>
-                  <td className="text-center p-4">Sitio completo</td>
+                  <td className="text-center p-4">15</td>
                   <td className="text-center p-4">
-                    <span className="text-purple-400 font-semibold animate-pulse">Ilimitado</span>
+                    <span className="text-purple-400 font-semibold animate-pulse">20</span>
                   </td>
                 </tr>
                 <tr className="border-t border-slate-700 hover:bg-slate-800/30 transition-colors duration-300">
@@ -513,9 +541,9 @@ export default function PreciosPage() {
                 </tr>
                 <tr className="border-t border-slate-700 hover:bg-slate-800/30 transition-colors duration-300">
                   <td className="p-4 font-medium">Soporte</td>
-                  <td className="text-center p-4">Horario laboral</td>
+                  <td className="text-center p-4">Estándar</td>
                   <td className="text-center p-4">Prioritario</td>
-                  <td className="text-center p-4">Prioritario</td>
+                  <td className="text-center p-4">Completo</td>
                   <td className="text-center p-4">
                     <span className="text-purple-400 font-semibold animate-pulse">24/7 Dedicado</span>
                   </td>
