@@ -50,14 +50,16 @@ export default function PreciosPage() {
       buttonColor: "bg-green-500 hover:bg-green-600",
       glowColor: "hover:shadow-green-500/30",
       features: [
-        "Auditoría inicial completa incluida",
+        "Todo lo incluido en Launchpad +",
         "Optimización de 10 páginas clave",
-        "Datos estructurados: + Schema en 10 páginas",
-        "10 contenidos mensuales",
-        "Reporte mensual de visibilidad",
-        "Soporte prioritario",
-        "Integración de chatbot LLM simple",
-        "Análisis de competencia en SGE básico",
+        "Datos estructurados avanzados en 10 páginas",
+        "10 contenidos optimizados mensuales",
+        "Reporte mensual de visibilidad detallado",
+        "Soporte prioritario con respuesta rápida",
+        "Integración de chatbot LLM inteligente",
+        "Análisis completo de competencia en SGE",
+        "Optimización técnica avanzada",
+        "Estrategia de contenido personalizada",
       ],
       buttonText: "Acelerar mi crecimiento",
       href: "/contratar/accelerator",
@@ -662,7 +664,7 @@ export default function PreciosPage() {
               onClick={() => {
                 trackContact()
                 window.open(
-                  "https://wa.me/5256202022210?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20para%20elegir%20el%20mejor%20plan%20AIO%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
+                  "https://wa.me/5256202022210?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20para%20elegir%20el%20mejor%20plan%20AIO%20para%20mi%20negocio.%20%C2%BFPodr%C3%ADan%20ayudarme%3F",
                   "_blank",
                 )
               }}
