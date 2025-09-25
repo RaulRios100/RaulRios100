@@ -11,8 +11,18 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, FileText, MessageCircle } from "lucide-react"
 
+interface FormData {
+  name: string
+  email: string
+  phone: string
+  propertyState: string
+  debtAmount: string
+  propertyCondition: string
+  additionalInfo: string
+}
+
 export function QuestionnaireForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
@@ -25,7 +35,7 @@ export function QuestionnaireForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
-  const validateForm = () => {
+  const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {}
 
     if (!formData.name.trim() || formData.name.length < 2) {
@@ -52,11 +62,10 @@ export function QuestionnaireForm() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (validateForm()) {
-      // Create WhatsApp message with form data
       const message = `¡Hola! He llenado el cuestionario en su sitio web:
 
 📋 *Información Personal:*
@@ -80,9 +89,8 @@ Me gustaría recibir más información sobre sus servicios de liberación de viv
     }
   }
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: "" }))
     }
