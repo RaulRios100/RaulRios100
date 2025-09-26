@@ -17,16 +17,19 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import NavigationHeader from "@/components/navigation-header"
-import { trackContact, trackViewContent } from "@/components/facebook-pixel"
 import { useEffect } from "react"
 
 export default function HomePage() {
   useEffect(() => {
-    trackViewContent()
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      ;(window as any).fbq("track", "ViewContent")
+    }
   }, [])
 
   const handleContactClick = () => {
-    trackContact()
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      ;(window as any).fbq("track", "Contact")
+    }
     window.open(
       "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20SEO%20con%20IA.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
       "_blank",
@@ -149,7 +152,6 @@ export default function HomePage() {
               </Button>
             </div>
 
-            {/* Stats */}
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <div className="text-4xl font-bold text-orange-400 mb-2">+300%</div>
@@ -363,6 +365,98 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-950 border-t border-slate-800 py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="h-8 w-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">DO</span>
+                </div>
+                <span className="font-bold text-white">Diseño y Optimización Online</span>
+              </div>
+              <p className="text-slate-400 text-sm">
+                Agencia líder en posicionamiento para AI Overviews y motores de búsqueda generativos.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-4">Servicios</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link
+                    href="/servicios/ai-overviews"
+                    className="text-slate-400 hover:text-orange-400 transition-colors"
+                  >
+                    AI Overviews
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/servicios/sge-optimization"
+                    className="text-slate-400 hover:text-orange-400 transition-colors"
+                  >
+                    SGE Optimization
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/servicios/chatbots-ia"
+                    className="text-slate-400 hover:text-orange-400 transition-colors"
+                  >
+                    Chatbots IA
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-4">Empresa</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/sobre-nosotros" className="text-slate-400 hover:text-orange-400 transition-colors">
+                    Sobre nosotros
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="text-slate-400 hover:text-orange-400 transition-colors">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contacto" className="text-slate-400 hover:text-orange-400 transition-colors">
+                    Contacto
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-4">Legal</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/privacidad" className="text-slate-400 hover:text-orange-400 transition-colors">
+                    Privacidad
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terminos" className="text-slate-400 hover:text-orange-400 transition-colors">
+                    Términos
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-800 pt-8 text-center">
+            <p className="text-slate-400 text-sm">
+              © 2025 Diseño y Optimización Online. Todos los derechos reservados.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

@@ -5,13 +5,14 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, MessageSquare } from "lucide-react"
-import { trackContact } from "@/components/facebook-pixel"
 
 export default function NavigationHeader() {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleContactClick = () => {
-    trackContact()
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      ;(window as any).fbq("track", "Contact")
+    }
     window.open(
       "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20SEO%20con%20IA.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
       "_blank",
@@ -39,7 +40,6 @@ export default function NavigationHeader() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navigation.map((item) => (
               <Link
@@ -52,7 +52,6 @@ export default function NavigationHeader() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
             <Button
               onClick={handleContactClick}
@@ -63,7 +62,6 @@ export default function NavigationHeader() {
             </Button>
           </div>
 
-          {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon" className="text-white">
