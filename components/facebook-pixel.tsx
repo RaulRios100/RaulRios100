@@ -11,14 +11,8 @@ declare global {
 
 export default function FacebookPixel() {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.fbq =
-        window.fbq ||
-        (() => {
-          ;(window.fbq.q = window.fbq.q || []).push(arguments)
-        })
-      window.fbq.l = +new Date()
-      window.fbq("init", "YOUR_PIXEL_ID")
+    // Initialize Facebook Pixel
+    if (typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "PageView")
     }
   }, [])
@@ -38,11 +32,32 @@ export default function FacebookPixel() {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '644155554997693');
+            fbq('track', 'PageView');
           `,
         }}
       />
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src="https://www.facebook.com/tr?id=644155554997693&ev=PageView&noscript=1"
+          alt=""
+        />
+      </noscript>
     </>
   )
+}
+
+// Utility functions for tracking events
+export const trackLead = (value?: number) => {
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "Lead", {
+      value: value,
+      currency: "MXN",
+    })
+  }
 }
 
 export const trackContact = () => {
@@ -51,9 +66,21 @@ export const trackContact = () => {
   }
 }
 
-export const trackViewContent = () => {
+export const trackInitiateCheckout = (planName: string, value: number) => {
   if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", "ViewContent")
+    window.fbq("track", "InitiateCheckout", {
+      content_name: planName,
+      value: value,
+      currency: "MXN",
+    })
+  }
+}
+
+export const trackViewContent = (contentName: string) => {
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "ViewContent", {
+      content_name: contentName,
+    })
   }
 }
 
@@ -63,5 +90,11 @@ export const trackPurchase = (value: number, currency = "MXN") => {
       value: value,
       currency: currency,
     })
+  }
+}
+
+export const trackCompleteRegistration = () => {
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "CompleteRegistration")
   }
 }

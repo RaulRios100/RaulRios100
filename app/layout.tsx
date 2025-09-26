@@ -2,36 +2,48 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
+import FacebookPixel from "@/components/facebook-pixel"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Diseño y Optimización Online - Agencia SEO con IA",
+  title: "AI Positioning - Agencia de Marketing Digital con IA",
   description:
-    "Agencia líder en posicionamiento para AI Overviews, SGE y motores de búsqueda generativos. Aumenta tu visibilidad donde realmente importa.",
-  keywords: "SEO, IA, AI Overviews, SGE, marketing digital, posicionamiento web",
-  authors: [{ name: "Diseño y Optimización Online" }],
-  creator: "Diseño y Optimización Online",
-  publisher: "Diseño y Optimización Online",
-  metadataBase: new URL("https://disenooptimizaciononline.com"),
+    "Revoluciona tu presencia digital con nuestra agencia especializada en marketing con inteligencia artificial. Aumenta tu visibilidad, genera más leads y domina tu mercado.",
+  keywords: "marketing digital, inteligencia artificial, SEO, leads, conversiones, agencia marketing",
+  authors: [{ name: "AI Positioning" }],
   openGraph: {
-    title: "Diseño y Optimización Online - Agencia SEO con IA",
-    description: "Agencia líder en posicionamiento para AI Overviews, SGE y motores de búsqueda generativos.",
-    url: "https://disenooptimizaciononline.com",
-    siteName: "Diseño y Optimización Online",
+    title: "AI Positioning - Marketing Digital con IA",
+    description: "Revoluciona tu presencia digital con IA. Más leads, más conversiones, más resultados.",
+    url: "https://aipositioningagency.com",
+    siteName: "AI Positioning",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "AI Positioning - Marketing Digital con IA",
+      },
+    ],
     locale: "es_MX",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Diseño y Optimización Online - Agencia SEO con IA",
-    description: "Agencia líder en posicionamiento para AI Overviews, SGE y motores de búsqueda generativos.",
+    title: "AI Positioning - Marketing Digital con IA",
+    description: "Revoluciona tu presencia digital con IA. Más leads, más conversiones, más resultados.",
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
     generator: 'v0.app'
 }
@@ -42,30 +54,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '644155554997693');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
-      </head>
+    <html lang="es">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <FacebookPixel />
+        {children}
       </body>
     </html>
   )

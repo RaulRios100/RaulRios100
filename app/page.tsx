@@ -1,317 +1,280 @@
-"use client"
-
+import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import NavigationHeader from "@/components/navigation-header"
 import {
+  Brain,
+  Target,
+  TrendingUp,
+  Users,
+  Zap,
+  Shield,
+  Star,
   ArrowRight,
   CheckCircle,
-  MessageSquare,
-  Star,
-  TrendingUp,
-  Shield,
-  Sparkles,
-  Brain,
-  Search,
-  BarChart3,
+  Rocket,
+  Building,
+  Phone,
+  Mail,
+  MapPin,
 } from "lucide-react"
-import Link from "next/link"
-import NavigationHeader from "@/components/navigation-header"
-import { useEffect } from "react"
 
 export default function HomePage() {
-  useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      ;(window as any).fbq("track", "ViewContent")
-    }
-  }, [])
-
-  const handleContactClick = () => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      ;(window as any).fbq("track", "Contact")
-    }
-    window.open(
-      "https://wa.me/5256202022210?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20SEO%20con%20IA.%20%C2%BFPodr%C3%ADamos%20hablar%3F",
-      "_blank",
-    )
-  }
-
-  const features = [
-    {
-      icon: Brain,
-      title: "IA Generativa Avanzada",
-      description: "Optimización automática para AI Overviews y motores de búsqueda generativos",
-    },
-    {
-      icon: Search,
-      title: "SGE Optimization",
-      description: "Posicionamiento estratégico en Search Generative Experience de Google",
-    },
-    {
-      icon: BarChart3,
-      title: "Analytics Predictivo",
-      description: "Análisis de datos con IA para predecir tendencias y oportunidades",
-    },
-    {
-      icon: Shield,
-      title: "Protección de Marca",
-      description: "Monitoreo y optimización de tu presencia en resultados generativos",
-    },
-  ]
-
-  const plans = [
-    {
-      name: "AIO LAUNCHPAD",
-      price: "10,000",
-      originalPrice: "20,000",
-      description: "Perfecto para empezar tu transformación digital",
-      features: [
-        "Auditoría inicial completa",
-        "5 páginas optimizadas",
-        "5 contenidos mensuales",
-        "Reporte mensual básico",
-      ],
-      color: "blue",
-      href: "/contratar/launchpad",
-    },
-    {
-      name: "AIO ACCELERATOR",
-      price: "15,000",
-      originalPrice: "30,000",
-      description: "El más popular para crecimiento acelerado",
-      features: ["10 páginas optimizadas", "10 contenidos mensuales", "Chatbot IA incluido", "Soporte prioritario"],
-      color: "green",
-      popular: true,
-      href: "/contratar/accelerator",
-    },
-    {
-      name: "AIO DOMINATOR",
-      price: "30,000",
-      originalPrice: "60,000",
-      description: "Para dominar completamente tu mercado",
-      features: ["15 páginas optimizadas", "20 contenidos mensuales", "Link building premium", "Coaching estratégico"],
-      color: "orange",
-      href: "/contratar/dominator",
-    },
-  ]
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <NavigationHeader />
 
       {/* Hero Section */}
-      <section className="py-24 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-purple-500/5"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <section className="relative overflow-hidden py-20 lg:py-32">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10" />
+        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=1200')] bg-cover bg-center opacity-5" />
 
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <Badge className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-orange-500/30 text-orange-300 mb-8 px-6 py-2">
-              <Sparkles className="mr-2 h-4 w-4" />
-              Agencia líder en SEO con IA
+        <div className="container relative z-10">
+          <div className="mx-auto max-w-4xl text-center">
+            <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+              🚀 Revoluciona tu Marketing Digital
             </Badge>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Domina los{" "}
-              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
-                motores generativos
-              </span>{" "}
-              con IA
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
+              Domina el Futuro del{" "}
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                Marketing con IA
+              </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Somos la primera agencia especializada en posicionamiento para AI Overviews, SGE y motores de búsqueda
-              generativos. Aumenta tu visibilidad donde realmente importa.
+            <p className="mb-8 text-xl text-gray-600 sm:text-2xl">
+              Aumenta tus leads un <strong>300%</strong> y convierte más clientes con estrategias de marketing digital
+              potenciadas por inteligencia artificial.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-6 text-xl font-bold
-                transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 
-                active:scale-95 transform-gpu group shadow-xl"
-                onClick={handleContactClick}
-              >
-                <MessageSquare className="mr-3 h-6 w-6 transition-transform duration-300 group-hover:rotate-12" />
-                Consulta Gratuita
-              </Button>
-
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-orange-400 text-orange-400 hover:bg-orange-950/30 bg-transparent px-10 py-6 text-xl font-bold
-                transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/10
-                active:scale-95 transform-gpu group hover:border-orange-300"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                 asChild
               >
-                <Link href="/precios">
-                  <ArrowRight className="mr-3 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
-                  Ver Planes
+                <Link href="/agendar-sesion">
+                  Agendar Consulta Gratuita
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/casos-de-exito">Ver Casos de Éxito</Link>
               </Button>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-orange-400 mb-2">+300%</div>
-                <div className="text-slate-300">Aumento promedio en visibilidad</div>
+            <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Consulta gratuita de 30 min</span>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-green-400 mb-2">95%</div>
-                <div className="text-slate-300">Clientes satisfechos</div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Resultados en 30 días</span>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-400 mb-2">24/7</div>
-                <div className="text-slate-300">Monitoreo con IA</div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Garantía de satisfacción</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-white/50 backdrop-blur-sm">
+        <div className="container">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-600 sm:text-4xl">300%</div>
+              <div className="text-sm text-gray-600">Aumento en Leads</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-purple-600 sm:text-4xl">95%</div>
+              <div className="text-sm text-gray-600">Satisfacción Cliente</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-indigo-600 sm:text-4xl">150+</div>
+              <div className="text-sm text-gray-600">Empresas Exitosas</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-600 sm:text-4xl">24/7</div>
+              <div className="text-sm text-gray-600">Soporte IA</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 bg-gradient-to-r from-slate-900/50 via-slate-800/30 to-slate-900/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              ¿Por qué elegir{" "}
-              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
-                nuestra IA
-              </span>
-              ?
-            </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Somos pioneros en optimización para motores generativos y AI Overviews
+      <section className="py-20">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">¿Por qué elegir AI Positioning?</h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Combinamos la experiencia humana con el poder de la inteligencia artificial
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon
-              return (
-                <Card
-                  key={index}
-                  className="bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700 hover:border-orange-500/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group"
-                >
-                  <CardHeader className="text-center">
-                    <div className="mx-auto mb-4 p-3 rounded-full bg-gradient-to-br from-orange-500/20 to-orange-600/20 w-fit group-hover:scale-110 transition-transform duration-300">
-                      <IconComponent className="h-8 w-8 text-orange-400" />
-                    </div>
-                    <CardTitle className="text-white group-hover:text-orange-300 transition-colors duration-300">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-slate-300 text-center group-hover:text-slate-100 transition-colors duration-300">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              )
-            })}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <Card className="border-0 bg-gradient-to-br from-blue-50 to-blue-100/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader>
+                <Brain className="h-12 w-12 text-blue-600 mb-4" />
+                <CardTitle>IA Avanzada</CardTitle>
+                <CardDescription>
+                  Algoritmos de última generación que analizan y optimizan tus campañas en tiempo real
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="border-0 bg-gradient-to-br from-purple-50 to-purple-100/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader>
+                <Target className="h-12 w-12 text-purple-600 mb-4" />
+                <CardTitle>Targeting Preciso</CardTitle>
+                <CardDescription>Identifica y alcanza a tu audiencia ideal con precisión milimétrica</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="border-0 bg-gradient-to-br from-indigo-50 to-indigo-100/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader>
+                <TrendingUp className="h-12 w-12 text-indigo-600 mb-4" />
+                <CardTitle>ROI Maximizado</CardTitle>
+                <CardDescription>Optimización continua para obtener el máximo retorno de tu inversión</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="border-0 bg-gradient-to-br from-green-50 to-green-100/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader>
+                <Users className="h-12 w-12 text-green-600 mb-4" />
+                <CardTitle>Equipo Experto</CardTitle>
+                <CardDescription>
+                  Especialistas certificados en marketing digital e inteligencia artificial
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="border-0 bg-gradient-to-br from-orange-50 to-orange-100/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader>
+                <Zap className="h-12 w-12 text-orange-600 mb-4" />
+                <CardTitle>Resultados Rápidos</CardTitle>
+                <CardDescription>Ve mejoras significativas en tus métricas desde la primera semana</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="border-0 bg-gradient-to-br from-red-50 to-red-100/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader>
+                <Shield className="h-12 w-12 text-red-600 mb-4" />
+                <CardTitle>Garantía Total</CardTitle>
+                <CardDescription>100% de garantía de satisfacción o te devolvemos tu dinero</CardDescription>
+              </CardHeader>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Plans Preview Section */}
-      <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Planes diseñados para{" "}
-              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
-                tu crecimiento
-              </span>
-            </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Desde startups hasta empresas Fortune 500, tenemos la solución perfecta
+      <section className="py-20 bg-gradient-to-r from-gray-50 to-gray-100">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Planes Diseñados para tu Éxito</h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Desde startups hasta empresas, tenemos la solución perfecta para ti
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {plans.map((plan, index) => (
-              <Card
-                key={index}
-                className={`bg-gradient-to-br from-slate-900 to-slate-800 border-2 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 group relative
-                ${plan.popular ? "border-green-500 ring-2 ring-green-500/20" : "border-slate-700 hover:border-orange-500/50"}`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <Badge className="bg-green-500 text-white animate-pulse px-4 py-1">
-                      <Star className="mr-1 h-3 w-3" />
-                      MÁS POPULAR
-                    </Badge>
-                  </div>
-                )}
+          <div className="grid gap-8 md:grid-cols-3">
+            <Card className="border-2 border-blue-200 bg-white shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="text-center">
+                <Rocket className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <CardTitle className="text-2xl">Launchpad</CardTitle>
+                <div className="text-3xl font-bold text-blue-600">$2,997</div>
+                <CardDescription>Perfecto para startups y pequeñas empresas</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Optimización AI Overviews</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Schema Markup básico</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Reportes mensuales</span>
+                  </li>
+                </ul>
+                <Button className="w-full mt-6" asChild>
+                  <Link href="/contratar/launchpad">Comenzar Ahora</Link>
+                </Button>
+              </CardContent>
+            </Card>
 
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl font-bold text-white mb-4 group-hover:text-orange-300 transition-colors duration-300">
-                    {plan.name}
-                  </CardTitle>
+            <Card className="border-2 border-purple-200 bg-white shadow-lg hover:shadow-xl transition-all duration-300 relative">
+              <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600">Más Popular</Badge>
+              <CardHeader className="text-center">
+                <Star className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                <CardTitle className="text-2xl">Accelerator</CardTitle>
+                <div className="text-3xl font-bold text-purple-600">$4,997</div>
+                <CardDescription>Ideal para empresas en crecimiento</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Todo de Launchpad +</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Chatbot IA personalizado</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Optimización LLM avanzada</span>
+                  </li>
+                </ul>
+                <Button className="w-full mt-6 bg-purple-600 hover:bg-purple-700" asChild>
+                  <Link href="/contratar/accelerator">Comenzar Ahora</Link>
+                </Button>
+              </CardContent>
+            </Card>
 
-                  <div className="mb-4">
-                    <div className="text-lg text-slate-500 line-through mb-1">${plan.originalPrice} MXN</div>
-                    <div
-                      className={`text-4xl font-bold mb-2 transition-all duration-500 group-hover:scale-110 ${
-                        plan.color === "green"
-                          ? "text-green-400"
-                          : plan.color === "orange"
-                            ? "text-orange-400"
-                            : "text-blue-400"
-                      }`}
-                    >
-                      ${plan.price} MXN
-                    </div>
-                    <div className="text-sm text-slate-500">por mes</div>
-                  </div>
-
-                  <p className="text-slate-300 mb-6 group-hover:text-slate-100 transition-colors duration-300">
-                    {plan.description}
-                  </p>
-                </CardHeader>
-
-                <CardContent>
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                        <span className="text-slate-300 text-sm group-hover:text-slate-100 transition-colors duration-300">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    className={`w-full font-bold py-3 transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95 ${
-                      plan.color === "green"
-                        ? "bg-green-500 hover:bg-green-600"
-                        : plan.color === "orange"
-                          ? "bg-orange-500 hover:bg-orange-600"
-                          : "bg-blue-500 hover:bg-blue-600"
-                    }`}
-                    asChild
-                  >
-                    <Link href={plan.href}>Elegir Plan</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+            <Card className="border-2 border-indigo-200 bg-white shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="text-center">
+                <Building className="h-12 w-12 text-indigo-600 mx-auto mb-4" />
+                <CardTitle className="text-2xl">Enterprise</CardTitle>
+                <div className="text-3xl font-bold text-indigo-600">Personalizado</div>
+                <CardDescription>Soluciones a medida para grandes empresas</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Solución completamente personalizada</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Soporte 24/7 dedicado</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Integración completa</span>
+                  </li>
+                </ul>
+                <Button className="w-full mt-6 bg-transparent" variant="outline" asChild>
+                  <Link href="/contacto">Contactar Ventas</Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
-          <div className="text-center">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-orange-400 text-orange-400 hover:bg-orange-950/30 bg-transparent px-8 py-4 text-lg font-bold
-              transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/10
-              active:scale-95 transform-gpu group hover:border-orange-300"
-              asChild
-            >
+          <div className="text-center mt-12">
+            <Button size="lg" variant="outline" asChild>
               <Link href="/precios">
-                <ArrowRight className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 Ver Todos los Planes
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
@@ -319,93 +282,79 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 bg-gradient-to-r from-slate-900/50 via-slate-800/30 to-slate-900/50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 via-transparent to-purple-500/10"></div>
-        <div className="absolute top-10 left-10 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
-            ¿Listo para{" "}
-            <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
-              dominar
-            </span>{" "}
-            los motores generativos?
-          </h2>
-
-          <p className="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed">
-            Agenda una consulta gratuita y descubre cómo la IA puede transformar tu presencia digital
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-6 text-xl font-bold
-              transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 
-              active:scale-95 transform-gpu group shadow-xl"
-              onClick={handleContactClick}
-            >
-              <MessageSquare className="mr-3 h-6 w-6 transition-transform duration-300 group-hover:rotate-12" />
-              Consulta Gratuita
-            </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-orange-400 text-orange-400 hover:bg-orange-950/30 bg-transparent px-10 py-6 text-xl font-bold
-              transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/10
-              active:scale-95 transform-gpu group hover:border-orange-300"
-              asChild
-            >
-              <Link href="/aprende-mas">
-                <TrendingUp className="mr-3 h-6 w-6 transition-transform duration-300 group-hover:translate-y-1" />
-                Aprende Más
-              </Link>
-            </Button>
+      <section className="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center text-white">
+            <h2 className="text-3xl font-bold sm:text-4xl mb-6">¿Listo para Revolucionar tu Marketing?</h2>
+            <p className="text-xl mb-8 opacity-90">
+              Únete a más de 150 empresas que ya están dominando su mercado con IA
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100" asChild>
+                <Link href="/agendar-sesion">
+                  Agendar Consulta Gratuita
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
+                asChild
+              >
+                <Link href="/casos-de-exito">Ver Casos de Éxito</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-800 py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="container">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="h-8 w-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">DO</span>
-                </div>
-                <span className="font-bold text-white">Diseño y Optimización Online</span>
+                <Image src="/logo.png" alt="AI Positioning" width={32} height={32} className="h-8 w-8" />
+                <span className="font-bold text-xl">AI Positioning</span>
               </div>
-              <p className="text-slate-400 text-sm">
-                Agencia líder en posicionamiento para AI Overviews y motores de búsqueda generativos.
-              </p>
+              <p className="text-gray-400 mb-4">Revolucionando el marketing digital con inteligencia artificial</p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <Phone className="h-4 w-4" />
+                  <span>+52 (55) 1234-5678</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <Mail className="h-4 w-4" />
+                  <span>hola@aipositioningagency.com</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <MapPin className="h-4 w-4" />
+                  <span>Ciudad de México, México</span>
+                </div>
+              </div>
             </div>
 
             <div>
-              <h4 className="font-semibold text-white mb-4">Servicios</h4>
-              <ul className="space-y-2 text-sm">
+              <h3 className="font-semibold mb-4">Servicios</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
                 <li>
-                  <Link
-                    href="/servicios/ai-overviews"
-                    className="text-slate-400 hover:text-orange-400 transition-colors"
-                  >
+                  <Link href="/servicios/ai-overviews" className="hover:text-white">
                     AI Overviews
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/servicios/sge-optimization"
-                    className="text-slate-400 hover:text-orange-400 transition-colors"
-                  >
-                    SGE Optimization
+                  <Link href="/servicios/optimizacion-llm" className="hover:text-white">
+                    Optimización LLM
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/servicios/chatbots-ia"
-                    className="text-slate-400 hover:text-orange-400 transition-colors"
-                  >
+                  <Link href="/servicios/schema-markup" className="hover:text-white">
+                    Schema Markup
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/servicios/chatbots-ia" className="hover:text-white">
                     Chatbots IA
                   </Link>
                 </li>
@@ -413,20 +362,25 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h4 className="font-semibold text-white mb-4">Empresa</h4>
-              <ul className="space-y-2 text-sm">
+              <h3 className="font-semibold mb-4">Empresa</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
                 <li>
-                  <Link href="/sobre-nosotros" className="text-slate-400 hover:text-orange-400 transition-colors">
-                    Sobre nosotros
+                  <Link href="/sobre-nosotros" className="hover:text-white">
+                    Sobre Nosotros
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="text-slate-400 hover:text-orange-400 transition-colors">
+                  <Link href="/casos-de-exito" className="hover:text-white">
+                    Casos de Éxito
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="hover:text-white">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contacto" className="text-slate-400 hover:text-orange-400 transition-colors">
+                  <Link href="/contacto" className="hover:text-white">
                     Contacto
                   </Link>
                 </li>
@@ -434,26 +388,29 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h4 className="font-semibold text-white mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm">
+              <h3 className="font-semibold mb-4">Legal</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
                 <li>
-                  <Link href="/privacidad" className="text-slate-400 hover:text-orange-400 transition-colors">
-                    Privacidad
+                  <Link href="/privacidad" className="hover:text-white">
+                    Política de Privacidad
                   </Link>
                 </li>
                 <li>
-                  <Link href="/terminos" className="text-slate-400 hover:text-orange-400 transition-colors">
-                    Términos
+                  <Link href="/terminos-de-servicio" className="hover:text-white">
+                    Términos de Servicio
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/centro-de-ayuda" className="hover:text-white">
+                    Centro de Ayuda
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-slate-800 pt-8 text-center">
-            <p className="text-slate-400 text-sm">
-              © 2025 Diseño y Optimización Online. Todos los derechos reservados.
-            </p>
+          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
+            <p>&copy; 2025 AI Positioning. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>
